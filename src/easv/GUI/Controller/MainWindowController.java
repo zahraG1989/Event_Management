@@ -1,4 +1,4 @@
-package easv.gui.controller;
+package easv.GUI.Controller;
 
 public class MainWindowController {
 }
