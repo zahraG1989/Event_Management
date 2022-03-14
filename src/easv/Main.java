@@ -14,9 +14,12 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/easv/GUI/View/mainWindow.fxml"));
-        Parent root=fxmlLoader.load();
+        Parent root = fxmlLoader.load();
         primaryStage.setScene(new Scene(root));
+        primaryStage.setTitle("MainWindow");
+
         primaryStage.show();
 
+        System.out.println("firsttest in Main class ");
     }
 }

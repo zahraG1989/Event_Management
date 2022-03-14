@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.TilePane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="easv.GUI.Controller.MainWindowController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="659.0" prefWidth="1129.0" stylesheets="/easv/GUI/View/CSS/Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.MainWindowController">
+   <top>
+      <HBox prefHeight="63.0" prefWidth="1012.0" styleClass="blue" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton prefHeight="62.0" prefWidth="74.0" styleClass="blue" text="Sign in" />
+            <JFXButton prefHeight="66.0" prefWidth="82.0" text="Login" />
+            <Label prefHeight="63.0" prefWidth="483.0" text="                                                     the application name" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <TilePane fx:id="tlepane" prefHeight="596.0" prefWidth="1014.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

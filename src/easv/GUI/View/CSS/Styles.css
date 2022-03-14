@@ -1,0 +1,9 @@
+
+.background{
+
+    -fx-background-image: url("/resourse/display.gif");
+}
+
+.blue{
+    -fx-background-color: red;
+}
