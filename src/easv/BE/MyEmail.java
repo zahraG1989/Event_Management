@@ -12,20 +12,26 @@ import java.util.Properties;
 public class MyEmail {
 
     public static void main(String[] args) throws MessagingException, IOException {
+        System.out.println("preapring ");
         Properties properties = new Properties();
-        properties.put("mail.smtp.auth" , true);
+        properties.put("mail.smtp.auth" , "true");
+        properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.host" , "smtp.gmail.com");
-        properties.put("mail.smtp.port", 587);
-        properties.put("mail.smtp.starttls.enable", true);
-        properties.put("mail.transport.protocl" , "smtp");
-
-        Session session =  Session.getInstance(properties, new Authenticator() {
+        properties.put("mail.smtp.port", "587");
+        // properties.put("mail.transport.protocl" , "smtp");
+        String acountname = "@gmail.com";
+        String password = "" ;
+        String recipeant = "@gmail.com";
+                Session session =  Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("@gmail.com","");
+                return new PasswordAuthentication(acountname,password);
             }
         });
-
+        Message message = preparemessage(session,acountname , recipeant);
+        Transport.send(message);
+        System.out.println("message sent ");
+            /*
         Message message = new MimeMessage(session);
         //  message.setText();
         message.setSubject("Email form event manager ");
@@ -47,6 +53,24 @@ public class MyEmail {
         message.setContent(multipart);
 
         Transport.send(message);
+        
+             */
+    }
+
+    private static Message preparemessage(Session session , String myaccount , String recipeant  ) {
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(myaccount));
+            message.setRecipient(Message.RecipientType.TO , new InternetAddress(recipeant));
+            message.setSubject("first test");
+            message.setText("he is a  champ ");
+
+            return  message ;
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        return null ;
     }
 
 
