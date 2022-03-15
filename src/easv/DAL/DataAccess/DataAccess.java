@@ -14,7 +14,7 @@ public class DataAccess {
             dataSource.setServerName("10.176.111.31");
             dataSource.setUser("CSe21B_24");
             dataSource.setPassword("CSe21B_24");
-            dataSource.setDatabaseName("MovieManager");  // create new database name called what ever
+            dataSource.setDatabaseName("Eventmanager01");  // create new database name called what ever
 
 
             System.out.println("you are connected ");

@@ -2,7 +2,7 @@
 
 <?import javafx.scene.layout.*?>
 
-<StackPane stylesheets="/easv/GUI/View/CSS/Styles.css" xmlns="http://javafx.com/javafx"
+<StackPane fx:id="stcpne" stylesheets="/easv/GUI/View/CSS/Styles.css" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="easv.GUI.Controller.LoginController"
             prefHeight="400.0" prefWidth="600.0" styleClass="lightwhitw" >
