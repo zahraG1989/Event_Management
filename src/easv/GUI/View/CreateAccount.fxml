@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 
-<StackPane stylesheets="/easv/GUI/View/CSS/Styles.css" xmlns="http://javafx.com/javafx"
-           xmlns:fx="http://javafx.com/fxml"
-           fx:controller="easv.GUI.Controller.CreateAccountController"
-           prefHeight="400.0" prefWidth="600.0" styleClass="blue" >
-
+<StackPane fx:id="stackpaneid" prefHeight="400.0" prefWidth="600.0" styleClass="blue" stylesheets="/easv/GUI/View/CSS/Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.CreateAccountController">
+   <children>
+      <AnchorPane fx:id="anchorid" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <JFXButton fx:id="save" layoutX="449.0" layoutY="353.0" onAction="#saveuser" text="Save" />
+            <JFXButton fx:id="exitid" layoutX="516.0" layoutY="353.0" onAction="#exit" text="Exit" />
+            <TextField fx:id="name" layoutX="181.0" layoutY="61.0" promptText="username" />
+            <TextField fx:id="email" layoutX="181.0" layoutY="105.0" promptText="Email" />
+            <TextField fx:id="password" layoutX="181.0" layoutY="149.0" promptText="Password" />
+         </children>
+      </AnchorPane>
+   </children>
 </StackPane>

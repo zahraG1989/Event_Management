@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+
+<StackPane fx:id="stackpne" stylesheets="/easv/GUI/View/CSS/Styles.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="962.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.Users.AdminController"
+                                    styleClass="honey">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label layoutX="35.0" layoutY="25.0" prefHeight="33.0" prefWidth="112.0" text="admin name here " />
+            <JFXButton fx:id="exitid" layoutX="866.0" layoutY="690.0" onAction="#exitbtn" prefHeight="33.0" prefWidth="63.0" text="Exit" />
+            <TableView fx:id="customertable" layoutX="22.0" layoutY="115.0" prefHeight="365.0" prefWidth="224.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="name" />
+                <TableColumn prefWidth="75.0" text="email" />
+                  <TableColumn prefWidth="75.0" text="password" />
+              </columns>
+            </TableView>
+            <TableView fx:id="eventcorditable" layoutX="253.0" layoutY="115.0" prefHeight="365.0" prefWidth="224.0">
+               <columns>
+                  <TableColumn prefWidth="75.0" text="name" />
+                  <TableColumn prefWidth="75.0" text="email" />
+                  <TableColumn prefWidth="75.0" text="event" />
+               </columns>
+            </TableView>
+            <TableView fx:id="eventstable" layoutX="495.0" layoutY="115.0" prefHeight="365.0" prefWidth="459.0">
+               <columns>
+                  <TableColumn prefWidth="75.0" text="name" />
+                  <TableColumn prefWidth="75.0" text="location" />
+                  <TableColumn prefWidth="75.0" text="StartDate" />
+                  <TableColumn prefWidth="75.0" text="EndDate" />
+                  <TableColumn prefWidth="79.0" text="Participant" />
+                  <TableColumn prefWidth="71.0" text="ticket.alt" />
+               </columns>
+            </TableView>
+            <JFXButton layoutX="22.0" layoutY="489.0" onAction="#deleteuserbtn" text="Delete" />
+            <JFXButton layoutX="82.0" layoutY="489.0" onAction="#manageuserbtn" text="Manage" />
+            <JFXButton layoutX="259.0" layoutY="489.0" onAction="#deleteeventerbtn" text="Delete" />
+            <JFXButton layoutX="314.0" layoutY="489.0" onAction="#manageeventerbtn" text="Manage" />
+            <JFXButton layoutX="382.0" layoutY="489.0" onAction="#createeventbtn" text="Create" />
+            <JFXButton layoutX="147.0" layoutY="489.0" onAction="#createuserbtn" text="Create" />
+            <Label layoutX="21.0" layoutY="80.0" prefHeight="25.0" prefWidth="60.0" text="Customers" />
+            <Label layoutX="255.0" layoutY="80.0" prefHeight="25.0" prefWidth="112.0" text="EventCoordinator " />
+            <Label layoutX="495.0" layoutY="80.0" prefHeight="25.0" prefWidth="60.0" text="Events" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

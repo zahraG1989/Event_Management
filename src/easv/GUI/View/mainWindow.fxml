@@ -13,8 +13,8 @@
          <top>
             <HBox prefHeight="63.0" prefWidth="1012.0" styleClass="blue" BorderPane.alignment="CENTER">
                <children>
-                  <JFXButton fx:id="signin" onAction="#login" prefHeight="62.0" prefWidth="74.0" styleClass="blue" text="Sign in" />
-                  <JFXButton fx:id="loginin" onAction="#sign" prefHeight="66.0" prefWidth="82.0" text="Log in" />
+                  <JFXButton fx:id="loginin" onAction="#login" prefHeight="62.0" prefWidth="74.0" styleClass="blue" text="Log in" />
+                  <JFXButton fx:id="signin" onAction="#sign" prefHeight="66.0" prefWidth="82.0" text="sign in" />
                   <Label prefHeight="63.0" prefWidth="483.0" text="                                                     the application name" />
                </children>
             </HBox>
