@@ -1,7 +1,7 @@
 package easv.BE;
 
-import javax.xml.crypto.Data;
-import java.util.Date;
+
+import java.sql.Date;
 
 public class Event {
 
@@ -12,8 +12,9 @@ public class Event {
     private Date startevent ;
     private Date endevent ;
     private String LocationGuidance ;
+    private int id ;
 
-    public Event(String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance) {
+    public Event( int id, String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance) {
         this.name = name;
         this.location = location;
         this.notes = notes;
@@ -21,6 +22,15 @@ public class Event {
         this.startevent = startevent;
         this.endevent = endevent;
         LocationGuidance = locationGuidance;
+        this.id = id ;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

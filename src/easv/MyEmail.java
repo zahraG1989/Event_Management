@@ -1,4 +1,4 @@
-package easv.BE;
+package easv;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

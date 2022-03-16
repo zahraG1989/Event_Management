@@ -46,10 +46,10 @@ public class MainWindowController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         List<Event> events = new ArrayList<>();
 
-        Event e1 = new Event("1","dfdsf","dsfsdfsdf",0 ,null ,null,"dsfsdf");
-        Event e2 = new Event("2","dfdsf","dsfsdfsdf",0 ,null ,null,"dsfsdf");
-        Event e3 = new Event("3","dfdsf","dsfsdfsdf",0 ,null ,null,"dsfsdf");
-        Event e4 = new Event("4","dfdsf","dsfsdfsdf",0 ,null ,null,"dsfsdf");
+        Event e1 = new Event( 1, "1","dfdsf","dsfsdfsdf",0 ,null ,null,"dsfsdf");
+        Event e2 = new Event(2, "2","dfdsf","dsfsdfsdf",0 ,null ,null,"dsfsdf");
+        Event e3 = new Event(3,"3","dfdsf","dsfsdfsdf",0 ,null ,null,"dsfsdf");
+        Event e4 = new Event(4,"4","dfdsf","dsfsdfsdf",0 ,null ,null,"dsfsdf");
         events.add(e1);
         events.add(e2);
         events.add(e3);
