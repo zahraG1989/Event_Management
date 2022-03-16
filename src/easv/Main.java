@@ -20,6 +20,6 @@ public class Main extends Application {
 
         primaryStage.show();
 
-        System.out.println("firsttest in Main class ");
+        System.out.println("first test in Main class ");
     }
 }

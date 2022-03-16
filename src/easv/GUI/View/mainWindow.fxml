@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -9,19 +11,30 @@
 
 <StackPane fx:id="stackpne" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="722.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.MainWindowController">
    <children>
-      <BorderPane fx:id="borderpne" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="724.0" prefWidth="934.0" stylesheets="/easv/GUI/View/CSS/Styles.css">
-         <top>
-            <HBox prefHeight="63.0" prefWidth="1012.0" styleClass="blue" BorderPane.alignment="CENTER">
-               <children>
-                  <JFXButton fx:id="loginin" onAction="#login" prefHeight="62.0" prefWidth="74.0" styleClass="blue" text="Log in" />
-                  <JFXButton fx:id="signin" onAction="#sign" prefHeight="66.0" prefWidth="82.0" text="sign in" />
-                  <Label prefHeight="63.0" prefWidth="483.0" text="                                                     the application name" />
-               </children>
-            </HBox>
-         </top>
-         <center>
-            <TilePane fx:id="tlepane" prefTileHeight="200.0" prefTileWidth="200.0" prefWidth="1014.0" styleClass="lightwhitw" BorderPane.alignment="CENTER" />
-         </center>
-      </BorderPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <BorderPane fx:id="borderpne" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="724.0" prefWidth="934.0" stylesheets="/easv/GUI/View/CSS/Styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <top>
+                  <HBox prefHeight="63.0" prefWidth="1012.0" styleClass="blue">
+                     <children>
+                        <JFXButton fx:id="loginin" onAction="#login" prefHeight="62.0" prefWidth="74.0" styleClass="blue" text="Log in" />
+                        <JFXButton fx:id="signin" onAction="#sign" prefHeight="66.0" prefWidth="82.0" text="sign up" />
+                        <Label prefHeight="63.0" prefWidth="483.0" text="                                                     the application name" />
+                     </children>
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
+                  </HBox>
+               </top>
+               <center>
+                  <TilePane fx:id="tlepane" prefTileHeight="200.0" prefTileWidth="200.0" prefWidth="1014.0" styleClass="lightwhitw" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
+                  </TilePane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
    </children>
 </StackPane>

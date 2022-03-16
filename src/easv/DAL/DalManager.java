@@ -70,7 +70,7 @@ public class DalManager implements LogicFecade {
     }
 
     @Override
-    public int newestidcustomer() {
+    public int newestIdCustomer() {
         int newid = -1;
         try (Connection con = dataAccess.getConnection()) {
             String sql = "SELECT TOP(1) * FROM User ORDER by id desc";

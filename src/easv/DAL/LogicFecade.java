@@ -13,7 +13,7 @@ public interface LogicFecade {
 
     Customer addCustomer(String username, String password, String email);
 
-    int newestidcustomer();
+    int newestIdCustomer();
 
     void updateCustomer(Customer customer , String username, String password, String email) ;
 

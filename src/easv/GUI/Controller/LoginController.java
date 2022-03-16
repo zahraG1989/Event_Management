@@ -62,7 +62,20 @@ public class LoginController implements Initializable {
             }
     }
 
-    public void backbtn(ActionEvent actionEvent) {
+    public void backbtn(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/mainWindow.fxml"));
+        Parent root = loader.load();
+        Scene scene = loginid.getScene();
+        root.translateYProperty().set(scene.getHeight());
+        stcpne.getChildren().add(root);
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.setOnFinished(t -> {
+            stcpne.getChildren().remove(anchorpne);
+        });
+        timeline.play();
     }
 
     public void logintouser() throws IOException {
