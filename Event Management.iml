@@ -12,5 +12,6 @@
     <orderEntry type="library" name="microsoft.sqlserver.mssql.jdbc" level="project" />
     <orderEntry type="library" name="javax.mail.api" level="project" />
     <orderEntry type="library" name="javax.mail" level="project" />
+    <orderEntry type="library" name="de.jensd.fontawesomefx.fontawesome" level="project" />
   </component>
 </module>

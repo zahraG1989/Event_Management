@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-
-<StackPane fx:id="stcpne" prefHeight="400.0" prefWidth="600.0" styleClass="lightwhitw" stylesheets="/easv/GUI/View/CSS/Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.LoginController">
+<StackPane fx:id="stcpne" prefHeight="722.0" prefWidth="926.0" stylesheets="/easv/GUI/View/CSS/Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.LoginController">
    <children>
-      <AnchorPane fx:id="anchorpne" prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane fx:id="anchorpne" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #212121;">
          <children>
-            <TextField fx:id="usernameid" layoutX="190.0" layoutY="123.0" promptText="Username" />
-            <TextField fx:id="passwordid" layoutX="190.0" layoutY="175.0" promptText="password" />
-            <JFXButton fx:id="loginid" layoutX="227.0" layoutY="235.0" onAction="#loginbtn" prefHeight="40.0" prefWidth="76.0" text="Login" />
-            <JFXButton fx:id="backid" layoutX="244.0" layoutY="292.0" onAction="#backbtn" text="Back" />
+            <TextField fx:id="usernameid" layoutX="329.0" layoutY="268.0" prefHeight="25.0" prefWidth="231.0" promptText="Username" />
+            <TextField fx:id="passwordid" layoutX="329.0" layoutY="323.0" prefHeight="25.0" prefWidth="231.0" promptText="password" />
+            <JFXButton fx:id="loginid" buttonType="RAISED" layoutX="382.0" layoutY="385.0" onAction="#loginbtn" prefHeight="52.0" prefWidth="130.0" ripplerFill="WHITE" style="-fx-background-radius: 90; -fx-background-color: #64dd17;" text="Login" textFill="WHITE" />
+            <JFXButton fx:id="backid" buttonType="RAISED" layoutX="382.0" layoutY="460.0" onAction="#backbtn" prefHeight="52.0" prefWidth="130.0" ripplerFill="#eeeeee" style="-fx-background-radius: 90; -fx-background-color: #64dd17;" text="Back" textFill="#fffefe" />
+            <Label layoutX="382.0" layoutY="160.0" prefHeight="52.0" prefWidth="130.0" text="Login" textFill="#fcfcfc">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="44.0" />
+               </font>
+            </Label>
+            <Label layoutX="329.0" layoutY="231.0" prefHeight="17.0" prefWidth="231.0" style="-fx-background-color: #64dd17; -fx-background-radius: 90;" textFill="WHITE" />
+            <FontAwesomeIconView fill="WHITE" glyphName="USER" layoutX="275.0" layoutY="291.0" size="30" wrappingWidth="27.71428680419922" />
+            <FontAwesomeIconView fill="WHITE" glyphName="KEY" layoutX="275.0" layoutY="346.0" size="30" wrappingWidth="27.71428680419922" />
          </children>
       </AnchorPane>
    </children>

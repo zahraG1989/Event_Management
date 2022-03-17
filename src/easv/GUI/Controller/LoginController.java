@@ -37,11 +37,7 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Label lbl = new Label();
-        lbl.setText("in order login ,, password and username for Customer page is \n user  \n password for admin and eventcordinator is \n admin ");
-        lbl.setLayoutX(400);
-        lbl.setLayoutY(500);
-       stcpne.getChildren().add(lbl);
+
     }
 
     public void loginbtn(ActionEvent actionEvent) throws IOException {

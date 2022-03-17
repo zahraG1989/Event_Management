@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.text.Font?>
 
 <StackPane fx:id="stackpne" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="722.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.MainWindowController">
    <children>
@@ -15,11 +16,20 @@
          <children>
             <BorderPane fx:id="borderpne" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="724.0" prefWidth="934.0" stylesheets="/easv/GUI/View/CSS/Styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <top>
-                  <HBox prefHeight="63.0" prefWidth="1012.0" styleClass="blue">
+                  <HBox prefHeight="63.0" prefWidth="1012.0" style="-fx-background-color: #81d4fa;">
                      <children>
-                        <JFXButton fx:id="loginin" onAction="#login" prefHeight="62.0" prefWidth="74.0" styleClass="blue" text="Log in" />
-                        <JFXButton fx:id="signin" onAction="#sign" prefHeight="66.0" prefWidth="82.0" text="sign up" />
-                        <Label prefHeight="63.0" prefWidth="483.0" text="                                                     the application name" />
+                        <JFXButton fx:id="loginin" onAction="#login" prefHeight="74.0" prefWidth="117.0" style="-fx-background-color: #29b6f6;" text="Log in" textFill="#a14242">
+                           <font>
+                              <Font name="Broadway" size="22.0" />
+                           </font></JFXButton>
+                        <JFXButton fx:id="signin" onAction="#sign" prefHeight="66.0" prefWidth="121.0" style="-fx-background-color: #29b6f6;" text="sign up" textFill="#c62b2b">
+                           <font>
+                              <Font name="Broadway" size="22.0" />
+                           </font></JFXButton>
+                        <Label prefHeight="66.0" prefWidth="465.0" style="-fx-background-color: #81d4fa;" text=" Event Manager" textFill="#b21e1e">
+                           <font>
+                              <Font name="Consolas" size="56.0" />
+                           </font></Label>
                      </children>
                      <BorderPane.margin>
                         <Insets />
@@ -27,7 +37,7 @@
                   </HBox>
                </top>
                <center>
-                  <TilePane fx:id="tlepane" prefTileHeight="200.0" prefTileWidth="200.0" prefWidth="1014.0" styleClass="lightwhitw" BorderPane.alignment="CENTER">
+                  <TilePane fx:id="tlepane" prefTileHeight="200.0" prefTileWidth="200.0" prefWidth="1014.0" style="-fx-background-color: #81d4fa;" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets />
                      </BorderPane.margin>

@@ -5,11 +5,20 @@
 }
 
 .blue{
-    -fx-background-color: red;
+    -fx-background-color: #ff5252;
 }
 .lightwhitw{
-    -fx-background-color: #00ff48;
+    -fx-background-color: #bbdefb;
+
 }
 .honey{
     -fx-background-color: #ffd500;
+}
+.black{
+    -fx-background-color: #212121;
+
+}
+
+.userpic{
+    -fx-background-image: url("/resourse/user.png");
 }
