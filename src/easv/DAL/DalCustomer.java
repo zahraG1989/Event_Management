@@ -158,8 +158,6 @@ public class DalCustomer implements DaoUser {
 
         prs.executeUpdate();
 
-    } catch (SQLServerException e) {
-        e.printStackTrace();
     } catch (SQLException e) {
         e.printStackTrace();
     }

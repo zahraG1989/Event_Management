@@ -93,11 +93,37 @@ public class DalEvent implements DaoEvent{
 
     @Override
     public void updateEvent(Event event, String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance) {
+        try(Connection con = dataAccess.getConnection()){
+            String sql = "UPDATE Events SET  name = ? , location = ? , notes = ?  , participants = ? ,startevent = ? ,startevent = ? ,startevent = ? WHERE id = ? ";
 
+            PreparedStatement prs = con.prepareStatement(sql);
+            prs.setString(1 , name);
+            prs.setString(2 , location);
+            prs.setString(3, notes);
+            prs.setInt(4, participants);
+            prs.setDate(5, startevent);
+            prs.setDate(6 , endevent);
+            prs.setString(7 , locationGuidance);
+            prs.setInt(8 , event.getId());
+            prs.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @Override
     public void deleteEvent(Event event) {
+        try(Connection con = dataAccess.getConnection()) {
 
+            String sql = "DELETE FROM Events WHERE id = ?  " ;
+
+            PreparedStatement prs = con.prepareStatement(sql);
+            prs.setInt(1 , event.getId());
+            prs.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

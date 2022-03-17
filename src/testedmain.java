@@ -6,13 +6,10 @@ public class testedmain {
 
         DalCustomer dalCustomer = new DalCustomer();
 
-        dalCustomer.getAllCutomers();
+     //   dalCustomer.getAllCutomers();
 
        // dalCustomer.addCustomer("diana" , "diana200" , "diana@gmail.com");
-        for (User c : dalCustomer.getAllCutomers()){
 
-            System.out.println(c);
-        }
 
     }
 }
