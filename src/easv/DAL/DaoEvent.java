@@ -11,11 +11,11 @@ public interface DaoEvent {
 
     List<Event> getAllEvents();
 
-    Event createEvent(String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance);
+    Event createEvent(String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance , String imagepath);
 
     int newestid();
 
-    void updateEvent(Event event , String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance);
+    void updateEvent(Event event , String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance , String image);
 
     void deleteEvent(Event event);
 }

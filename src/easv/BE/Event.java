@@ -1,6 +1,10 @@
 package easv.BE;
 
 
+
+
+import javafx.scene.image.Image;
+
 import java.sql.Date;
 
 public class Event {
@@ -13,8 +17,8 @@ public class Event {
     private Date endevent ;
     private String LocationGuidance ;
     private int id ;
-
-    public Event( int id, String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance) {
+    private Image image ;
+    public Event( int id, String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance, Image image) {
         this.name = name;
         this.location = location;
         this.notes = notes;
@@ -23,6 +27,15 @@ public class Event {
         this.endevent = endevent;
         LocationGuidance = locationGuidance;
         this.id = id ;
+       this.image = image ;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public int getId() {

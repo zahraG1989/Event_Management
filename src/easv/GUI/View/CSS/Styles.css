@@ -1,8 +1,4 @@
 
-.background{
-
-    -fx-background-image: url("/resourse/display.gif");
-}
 
 .blue{
     -fx-background-color: #ff5252;
@@ -21,4 +17,10 @@
 
 .userpic{
     -fx-background-image: url("/resourse/user.png");
+}
+
+.logindiv {
+    height: 200px;
+    width: 200px;
+    -fx-background-color: linear-gradient(to right, #50c923 0%, #2c7ee0 25%, #e50909 50%, #4d2f2f 75%);
 }

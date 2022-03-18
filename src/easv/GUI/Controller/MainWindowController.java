@@ -50,8 +50,8 @@ public class MainWindowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+      /*
         List<Event> events = new ArrayList<>();
-
         Event e1 = new Event( 1, "1","dfdsf","dsfsdfsdf",0 ,null ,null,"dsfsdf");
         Event e2 = new Event(2, "2","dfdsf","dsfsdfsdf",0 ,null ,null,"dsfsdf");
         Event e3 = new Event(3,"3","dfdsf","dsfsdfsdf",0 ,null ,null,"dsfsdf");
@@ -67,9 +67,10 @@ public class MainWindowController implements Initializable {
            vbox.getChildren().add(label);
 
            tlepane.getChildren().add(vbox);
+          }
+       */
 
 
-       }
     }
 
 
@@ -104,5 +105,14 @@ public class MainWindowController implements Initializable {
             stackpne.getChildren().remove(borderpne);
         });
         timeline.play();
+    }
+
+    public void aboutusbtn(ActionEvent actionEvent) {
+    }
+
+    public void blogbtn(ActionEvent actionEvent) {
+    }
+
+    public void exitbtn(ActionEvent actionEvent) {
     }
 }

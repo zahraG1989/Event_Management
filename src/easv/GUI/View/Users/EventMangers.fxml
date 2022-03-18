@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="962.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.Users.EventMangersController">
+   <children>
+      <AnchorPane prefHeight="749.0" prefWidth="962.0" style="-fx-background-color: #a3842c;">
+         <children>
+            <TableView layoutX="326.0" layoutY="14.0" prefHeight="354.0" prefWidth="586.0" style="-fx-background-color: #575200;">
+               <columns>
+                  <TableColumn prefWidth="183.0" text="name" />
+                  <TableColumn minWidth="6.0" prefWidth="168.0" text="location" />
+                  <TableColumn minWidth="0.0" prefWidth="66.0" text="C.alt" />
+                  <TableColumn minWidth="0.0" prefWidth="64.0" text="start date" />
+                  <TableColumn minWidth="0.0" prefWidth="71.0" text="end Date" />
+                  <TableColumn minWidth="0.0" prefWidth="33.0" text="T.alt" />
+               </columns>
+            </TableView>
+            <TableView layoutX="13.0" layoutY="13.0" prefHeight="694.0" prefWidth="308.0" style="-fx-background-color: #575200;">
+               <columns>
+                  <TableColumn prefWidth="29.0" text="C1">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="CHECK" />
+                     </graphic>
+                  </TableColumn>
+                  <TableColumn prefWidth="132.0" text="Name" />
+                  <TableColumn prefWidth="146.0" text="Ticket" />
+               </columns>
+            </TableView>
+            <TableView layoutX="326.0" layoutY="467.0" prefHeight="187.0" prefWidth="586.0" style="-fx-background-color: #575200;">
+               <columns>
+                  <TableColumn prefWidth="90.0" text="type" />
+                  <TableColumn prefWidth="66.0" text="ticketprice" />
+                  <TableColumn prefWidth="429.0" text="info" />
+               </columns>
+            </TableView>
+            <JFXButton layoutX="332.0" layoutY="375.0" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #00e676;" text="Create Event" />
+            <JFXButton layoutX="332.0" layoutY="415.0" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #00e676;" text="Create Ticket" />
+            <JFXButton layoutX="431.0" layoutY="375.0" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #ff1744;" text="Delete Event" />
+            <JFXButton layoutX="431.0" layoutY="415.0" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #ff1744;" text="Delete Ticket" />
+            <JFXButton layoutX="533.0" layoutY="375.0" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #2196f3;" text="Update Event" />
+            <JFXButton layoutX="533.0" layoutY="415.0" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #2196f3;" text="Update Ticket" />
+            <JFXButton layoutX="818.0" layoutY="672.0" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #424242;" text="Terminate" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

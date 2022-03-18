@@ -1,18 +1,30 @@
 package easv.BE;
 
+import javafx.scene.control.CheckBox;
+
 public class User {
     private String username ;
     private String password ;
     private String email ;
     private String userType ;
     private int id ;
+    private CheckBox select ;
 
     public User(int id, String username, String password, String email ,String userType) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.id = id ;
-        this.userType = userType ;
+        this.userType = userType;
+        this.select = new CheckBox();
+    }
+
+    public CheckBox getSelect() {
+        return select;
+    }
+
+    public void setSelect(CheckBox select) {
+        this.select = select;
     }
 
     public String getUserType() {
