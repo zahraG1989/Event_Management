@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DalCustomer implements DaoUser {
+public class DalUser implements DaoUser {
 
     private final DataAccess dataAccess ;
 
-    public DalCustomer(){
+    public DalUser(){
         dataAccess = new DataAccess();
     }
     @Override
