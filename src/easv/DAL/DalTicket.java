@@ -1,7 +1,11 @@
 package easv.DAL;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+import easv.BE.Event;
 import easv.BE.Ticket;
 import easv.DAL.DataAccess.DataAccess;
+
+import javax.swing.text.html.HTMLDocument;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +43,24 @@ public class DalTicket implements DaoTicket{
     }
 
     @Override
-    public Ticket createticket(int id , String type , int ticketprice , String barcode, Date expirationdan , String info) {
+    public Ticket createticket(Event event, int id , String type , int ticketprice , String barcode, Date expirationdan , String info) {
+        //--insert into Ticket(Eventid , tickettype , price , barcode , info) values (1 , 'standard' , 50 , 14584 , ' just for showing ');
+        try(Connection con = dataAccess.getConnection()) {
+            String sql = "insert into Ticket(Eventid , tickettype , price , barcode , info) values (?, ?, ?,?,?)";
+            PreparedStatement prs = con.prepareStatement(sql);
+            prs.setInt(1,event.getId());
+            prs.setString(2 ,type);
+            prs.setInt(3 , ticketprice);
+            prs.setString(4 , barcode);
+            prs.setString(5,info);
+            prs.executeUpdate();
+            // int id , String type , int ticketprice , String barcode, Date expirationdan , String info
+            Ticket ticket = new Ticket(newestid() , type , ticketprice , barcode , expirationdan ,info);
+        } catch (SQLServerException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
