@@ -3,9 +3,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane  fx:id="stackpanid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="724.0" prefWidth="934.0" styleClass="honey" stylesheets="/easv/GUI/View/CSS/Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.Users.CustomerController"
-      >
+<StackPane fx:id="stackpanid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="724.0" prefWidth="934.0" styleClass="honey" stylesheets="/easv/GUI/View/CSS/Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.Users.CustomerController">
    <children>
-      <AnchorPane fx:id="anchorpaneid" stylesheets="/easv/GUI/View/CSS/Styles.css" prefHeight="724.0" prefWidth="934.0"  />
+      <AnchorPane fx:id="anchorpaneid" prefHeight="724.0" prefWidth="934.0" style="-fx-background-color: #FFBD33;" stylesheets="/easv/GUI/View/CSS/Styles.css" />
    </children>
 </StackPane>
