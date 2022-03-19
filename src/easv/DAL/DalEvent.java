@@ -23,7 +23,7 @@ public class DalEvent implements DaoEvent{
     @Override
     public List<Event> getAllEvents() {
         ArrayList<Event> events = new ArrayList<>();
-        Image image ;
+
         try(Connection con = dataAccess.getConnection()){
             String sql = "SELECT * FROM Event ";
             Statement statement = con.createStatement();
@@ -39,9 +39,9 @@ public class DalEvent implements DaoEvent{
                 String locatioguide = rs.getString("LocationGuidance");
                 int id = rs.getInt("id");
                 String imagepath = rs.getString("images");
-                 image = new Image(imagepath);
+
                 //int id, String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance, Image image
-                Event event = new Event(id ,name ,location , notes , participants , startevent , endevent, locatioguide , image);
+                Event event = new Event(id ,name ,location , notes , participants , startevent , endevent, locatioguide , imagepath);
                 events.add(event);
             }
 
@@ -55,7 +55,7 @@ public class DalEvent implements DaoEvent{
 
     @Override
     public Event createEvent(String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance , String imagepath) {
-        Image image = new Image(imagepath);
+
         try (Connection con = dataAccess.getConnection()) {
             String sql = "INSERT INTO Event(name , location, notes , participants , startevent , endevent , LocationGuidance , images )" +
                     "VALUES  (?,?,?,?,?, ?,?,?)";
@@ -69,7 +69,7 @@ public class DalEvent implements DaoEvent{
             prs.setString(7 , locationGuidance);
             prs.setString(8, imagepath);
             prs.executeUpdate();
-            Event event = new Event(newestid() , name , location , notes , participants , startevent , endevent , locationGuidance, image );
+            Event event = new Event(newestid() , name , location , notes , participants , startevent , endevent , locationGuidance, imagepath );
             return event ;
         } catch (SQLException e) {
             e.printStackTrace();

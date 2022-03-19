@@ -17,8 +17,8 @@ public class Event {
     private Date endevent ;
     private String LocationGuidance ;
     private int id ;
-    private Image image ;
-    public Event( int id, String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance, Image image) {
+    private String imagepath ;
+    public Event( int id, String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance, String imagepath) {
         this.name = name;
         this.location = location;
         this.notes = notes;
@@ -27,15 +27,15 @@ public class Event {
         this.endevent = endevent;
         LocationGuidance = locationGuidance;
         this.id = id ;
-       this.image = image ;
+       this.imagepath = imagepath ;
     }
 
-    public Image getImage() {
-        return image;
+    public String getImagepath() {
+        return imagepath;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
+    public void setImagepath(String imagepath) {
+        this.imagepath = imagepath;
     }
 
     public int getId() {
