@@ -38,6 +38,12 @@ public class TicketModel {
         return tickets ;
     }
 
+    public ObservableList<Ticket> getuserTickets(int id){
+        tickets = FXCollections.observableArrayList();
+        tickets.addAll(logicFecade.getTicketsinEvent(id));
+
+        return tickets ;
+    }
 
     public void deleteTicket(Ticket ticket , int item ){
         logicFecade.deleteTicket(ticket);

@@ -95,6 +95,12 @@ public class Manager implements LogicFecade{
     }
 
     @Override
+    public List<Ticket> getusertickets(int id) {
+
+        return dalTicket.getusertickets(id);
+    }
+
+    @Override
     public List<User> getusersinEvent(int idi ) {
         return  dalUserEvent.getusersinEvent(idi);
     }

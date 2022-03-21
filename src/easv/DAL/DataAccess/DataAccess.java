@@ -17,7 +17,7 @@ public class DataAccess {
             dataSource.setDatabaseName("Eventmanager01");  // create new database name called what ever
 
 
-            System.out.println("you are connected ");
+
         }
 
         public Connection getConnection() throws SQLServerException {

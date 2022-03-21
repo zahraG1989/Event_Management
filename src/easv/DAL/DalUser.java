@@ -20,14 +20,16 @@ public class DalUser implements DaoUser {
         ArrayList<User> customers = new ArrayList<>();
 
         try(Connection con = dataAccess.getConnection()){
-            String sql = "SELECT * FROM users where usertype = 'Customer' ";
+            String sql = "SELECT * FROM users ";
             Statement statement = con.createStatement();
           ResultSet rs = statement.executeQuery(sql);
             while(rs.next()){
+                int id = rs.getInt("id");
                 String username = rs.getString("username");
                 String pasword = rs.getString("password");
                 String email = rs.getString("email");
-                User customer = new User(newestid(),username , pasword , email , null);
+                String usertype = rs.getString("usertype");
+                User customer = new User(id,username , pasword , email , usertype);
                 customers.add(customer);
             }
 

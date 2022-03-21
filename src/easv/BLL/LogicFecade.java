@@ -44,6 +44,8 @@ public interface LogicFecade {
 
     void deleteTicket(Ticket ticket);
 
+    List<Ticket> getusertickets(int id);
+
     // usereventticket
 
     void addusertoEvent(User user , Event event , Ticket ticket);

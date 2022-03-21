@@ -13,6 +13,8 @@ public interface DaoTicket {
         //String ticketholder, String type, String eventname, int ticketprice, String eventlocation, String barcode, Date expirationdan
     Ticket createticket(Event event, int id , String type , int ticketprice , String barcode, Date expirationdan , String info);
 
+    List<Ticket> getusertickets(int id);
+
     int newestid();
 
     void updateTicket(Ticket ticket , String type , int ticketprice, String info);

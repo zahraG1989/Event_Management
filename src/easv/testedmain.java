@@ -2,7 +2,10 @@ package easv;
 
 import easv.BE.Event;
 import easv.BE.Ticket;
+import easv.BE.User;
 import easv.DAL.DalEvent;
+import easv.DAL.DalUserEvent;
+import easv.DAL.DaoUserEvent;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -19,13 +22,17 @@ public class testedmain {
         java.sql.Date date = new java.sql.Date(Ust.getTime());
         String path = "/resourse/icons8_java_64px.png";
         //  String text = "eide nowroz \n Zahra  ";
-        // System.out.println(text);
+
         // File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\ticket.jpg");
         // File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\images3.jpg");
 
         //addTixttoimage(text , "jpg" , input , output);
 
+        DaoUserEvent d = new DalUserEvent();
 
+        for (User u : d.getusersinEvent(1)){
+            System.out.println(u.getUsername());
+        }
     }
 
     private static void addTixttoimage(String text, String type, File source, File destination) throws IOException {

@@ -3,6 +3,7 @@ package easv.DAL;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import easv.BE.Event;
 import easv.BE.Ticket;
+import easv.BE.User;
 import easv.DAL.DataAccess.DataAccess;
 
 import javax.swing.text.html.HTMLDocument;
@@ -62,6 +63,35 @@ public class DalTicket implements DaoTicket{
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public List<Ticket> getusertickets(int id) {
+        ArrayList<Ticket> tickets = new ArrayList<>();
+        try(Connection con = dataAccess.getConnection()) {
+
+            String sql = "SELECT  tickettype , price , barcode , info ,  [Ticket].[id] from Ticket join userevent on [Ticket].[id] = ticketid join users on  userevent.userid = users.id -- WHERE users.id = ?";
+
+            PreparedStatement prs = con.prepareStatement(sql);
+            prs.setInt(1 , id);
+            ResultSet rs = prs.executeQuery();
+            while(rs.next()){
+                //int id , String type , int ticketprice , String barcode, Date expirationdan , String info
+                int idi = rs.getInt("[Ticket].[id]");
+                String type = rs.getString("tickettype");
+                int price = rs.getInt("price");
+                String barcode = rs.getString("barcode");
+                String info = rs.getString("info");
+
+                Ticket ticket = new Ticket(idi , type ,price ,barcode , null , info);
+                tickets.add(ticket);
+            }
+        } catch (SQLServerException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tickets;
     }
 
     @Override

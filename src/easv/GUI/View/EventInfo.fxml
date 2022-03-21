@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.TilePane?>
 
-<StackPane fx:id="stackpaneid" prefHeight="722.0" prefWidth="926.0" styleClass="logindiv" stylesheets="/easv/GUI/View/CSS/Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.EventInfoController">
+<StackPane fx:id="stackpaneid" prefHeight="722.0" prefWidth="926.0" styleClass="honey" stylesheets="/easv/GUI/View/CSS/Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.EventInfoController">
    <children>
       <AnchorPane fx:id="anchorid" prefHeight="200.0" prefWidth="200.0">
          <children>
