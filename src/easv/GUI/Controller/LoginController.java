@@ -35,6 +35,20 @@ public class LoginController implements Initializable {
     @FXML
     public JFXButton backid;
 
+    /*
+    private void refreshmovieincat() {
+        movieInCategory.getItems().clear();
+        refreshcategorylist();
+        if (tableviewCategories.getSelectionModel().getSelectedIndex() != -1) {
+            List<Movie> movieList = tableviewCategories.getSelectionModel().getSelectedItem().getListOfMovies();
+            for( int i =0 ; i < movieList.size() ; i++ ){
+                movieInCategory.getItems().add(movieList.get(i));
+            }
+        }
+    }
+
+     */
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

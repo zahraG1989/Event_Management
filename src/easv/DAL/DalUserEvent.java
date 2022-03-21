@@ -8,6 +8,7 @@ import easv.DAL.DataAccess.DataAccess;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DalUserEvent implements DaoUserEvent{
@@ -20,13 +21,17 @@ public class DalUserEvent implements DaoUserEvent{
     }
 
     @Override
-    public List<User> getusersinEvent() {
+    public List<User> getusersinEvent( int idi ) {
         ArrayList<User> users = new ArrayList<>();
             // we need name and ticket ...
         try(Connection con = dataAccess.getConnection()) {
-            String sql = "";
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
+            String sql = "SELECT [username] , [name] , [tickettype] \n" +
+                    "\tfROM [users] join userevent on [userS].[id] = [userevent].[userid] \n" +
+                    "\t\t\t  join [Event] on  userevent.eventid = [event].[id] \n" +
+                    "\t\t\t  join Ticket on  userevent.ticketid = Ticket.id WHERE event.id = ? ";
+           PreparedStatement prs = con.prepareStatement(sql);
+           prs.setInt(1 , idi);
+            ResultSet rs = prs.executeQuery(sql);
             while(rs.next()){
                int id = rs.getInt("id");
                String name = rs.getString("username");
@@ -43,6 +48,8 @@ public class DalUserEvent implements DaoUserEvent{
 
         return users;
     }
+
+
 
     @Override
     public void addusertoEvent(User user, Event event, Ticket ticket) {

@@ -1,6 +1,7 @@
 package easv.DAL;
 
 import easv.BE.Event;
+import easv.BE.Ticket;
 import easv.BE.User;
 
 
@@ -14,6 +15,11 @@ public interface DaoEvent {
     Event createEvent(String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance , String imagepath);
 
     int newestid();
+
+    List<Ticket> getTicketsinEvent(int idi );
+
+    List<User> getusersinEvent(int idi );
+
 
     void updateEvent(Event event , String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance , String image);
 

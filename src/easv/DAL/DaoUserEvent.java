@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface DaoUserEvent {
 
-    List<User> getusersinEvent();
+    List<User> getusersinEvent(int idi);
+
+
 
     void addusertoEvent(User user , Event event , Ticket ticket);
 

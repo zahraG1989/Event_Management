@@ -1,0 +1,37 @@
+ @Override
+    public List<Employee> searchdb(String query ){
+
+      List<Employee> employees = new ArrayList<>();
+
+        String stringQuery = "%" + query + "%";
+
+        try(Connection con = dataAccess.getConnection()) {
+
+             String command = "SELECT . . .";
+
+            PreparedStatement prepStatement = con.prepareStatement(command);
+
+                prepStatement.setString(1, stringQuery);
+                prepStatement.setString(2, stringQuery);
+                prepStatement.setString(3, stringQuery);
+                prepStatement.setString(4, stringQuery);
+
+            prepStatement.execute();
+            ResultSet rs = prepStatement.getResultSet();
+            while(rs.next())
+            {
+                employees.add(new Employee(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getInt(3),
+                        " ",
+                        0,
+                        rs.getInt(4) == 1,
+                        rs.getString(5))
+                );
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return employees;
+    }

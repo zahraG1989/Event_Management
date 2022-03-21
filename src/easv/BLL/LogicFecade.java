@@ -17,6 +17,10 @@ public interface LogicFecade {
     void updateEvent(Event event , String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance , String image);
 
     void deleteEvent(Event event);
+
+    List<Ticket> getTicketsinEvent( int idi );
+
+    List<User> getusersinEvent(int idi);
         // user methods
 
     List<User> getAllUsers();
@@ -41,8 +45,6 @@ public interface LogicFecade {
     void deleteTicket(Ticket ticket);
 
     // usereventticket
-
-    List<User> getusersinEvent();
 
     void addusertoEvent(User user , Event event , Ticket ticket);
 
