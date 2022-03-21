@@ -49,7 +49,33 @@ public class DalUserEvent implements DaoUserEvent{
         return users;
     }
 
+    @Override
+    public List<Ticket> getTicketsinEvent(int idi ) {
+        ArrayList<Ticket> tickets = new ArrayList<>();
+        // we need name and ticket ...
+        try(Connection con = dataAccess.getConnection()) {
+            String sql = "select * from Ticket where Eventid = ?";
+            PreparedStatement prs = con.prepareStatement(sql);
+            prs.setInt(1 , idi);
+            ResultSet rs = prs.executeQuery();
+            while(rs.next()){
+                int id = rs.getInt("id");
+                String tikcettype = rs.getString("tickettype");
+                int price = rs.getInt("price");
+                String barcode = rs.getString("barcode");
+                String ticketinfo = rs.getString("info");
 
+                Ticket ticket = new Ticket(id , tikcettype, price , barcode ,null ,ticketinfo);
+                tickets.add(ticket);
+            }
+        } catch (SQLServerException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return tickets;
+    }
 
     @Override
     public void addusertoEvent(User user, Event event, Ticket ticket) {

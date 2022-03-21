@@ -42,7 +42,7 @@ public class DalEvent implements DaoEvent{
                 int id = rs.getInt("id");
                 String imagepath = rs.getString("images");
 
-                Event event = new Event(id ,name ,location , notes , participants , startevent , endevent, locatioguide , imagepath , getTicketsinEvent(id));
+                Event event = new Event(id ,name ,location , notes , participants , startevent , endevent, locatioguide , imagepath );
                 events.add(event);
             }
 
@@ -54,66 +54,6 @@ public class DalEvent implements DaoEvent{
         return events;
     }
 
-    @Override
-    public List<User> getusersinEvent(int idi ) {
-        ArrayList<User> users = new ArrayList<>();
-        // we need name and ticket ...
-        try(Connection con = dataAccess.getConnection()) {
-            String sql = "SELECT [username] , [name] , [tickettype] \n" +
-                    "\tfROM [users] join userevent on [userS].[id] = [userevent].[userid] \n" +
-                    "\t\t\t  join [Event] on  userevent.eventid = [event].[id] \n" +
-                    "\t\t\t  join Ticket on  userevent.ticketid = Ticket.id WHERE event.id = ? ";
-            PreparedStatement prs = con.prepareStatement(sql);
-            prs.setInt(1 , idi);
-            ResultSet rs = prs.executeQuery(sql);
-            while(rs.next()){
-                int id = rs.getInt("id");
-                String name = rs.getString("username");
-                String ticket = rs.getString("tickettype");
-                User user = new User(id ,name , ticket,null,"Customer");
-                users.add(user);
-
-            }
-        } catch (SQLServerException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return users;
-    }
-
-    @Override
-    public List<Ticket> getTicketsinEvent(int idi ) {
-        ArrayList<Ticket> tickets = new ArrayList<>();
-        // we need name and ticket ...
-        try(Connection con = dataAccess.getConnection()) {
-            String sql = "SELECT  [Ticket].[id] , tickettype , price , info , barcode  \n" +
-                    "FROM [users] join userevent on [userS].[id] = [userevent].[userid] \n" +
-                    " join [Event] on  userevent.eventid = [event].[id] \n" +
-                    "  join Ticket on  userevent.ticketid = Ticket.id\n" +
-                    "WHERE event.id = ?";
-            PreparedStatement prs = con.prepareStatement(sql);
-            prs.setInt(1 , idi);
-            ResultSet rs = prs.executeQuery();
-            while(rs.next()){
-                int id = rs.getInt("id");
-                String tikcettype = rs.getString("tickettype");
-                int price = rs.getInt("price");
-                String barcode = rs.getString("barcode");
-                String ticketinfo = rs.getString("info");
-
-                Ticket ticket = new Ticket(id , tikcettype, price , barcode ,null ,ticketinfo);
-
-            }
-        } catch (SQLServerException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return tickets;
-    }
 
     @Override
     public Event createEvent(String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance , String imagepath) {
@@ -131,7 +71,7 @@ public class DalEvent implements DaoEvent{
             prs.setString(7 , locationGuidance);
             prs.setString(8, imagepath);
             prs.executeUpdate();
-            Event event = new Event(newestid() , name , location , notes , participants , startevent , endevent , locationGuidance, imagepath , null );
+            Event event = new Event(newestid() , name , location , notes , participants , startevent , endevent , locationGuidance, imagepath );
             return event ;
         } catch (SQLException e) {
             e.printStackTrace();

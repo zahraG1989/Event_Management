@@ -2,6 +2,7 @@ package easv.GUI.Controller;
 
 import com.jfoenix.controls.JFXButton;
 import easv.BE.Event;
+import easv.BE.Ticket;
 import easv.GUI.Model.EventModel;
 import easv.GUI.Model.TicketModel;
 import easv.GUI.Model.UserModel;
@@ -29,7 +30,9 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable {
@@ -52,7 +55,6 @@ public class MainWindowController implements Initializable {
     ImageView view ;
     private EventModel eventModel ;
     private ObservableList<Event> listofEvents;
-
     public String name ;
     public String loc ;
     public String notes ;
@@ -61,15 +63,17 @@ public class MainWindowController implements Initializable {
     public Date endevent ;
     public String locationGuidance ;
     public String imagepath ;
-
+    public int eventid ;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
        eventModel = EventModel.getInstance();
-
         listofEvents = eventModel.getAllEvents();
-        // int id, String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance, String imagepath
+
+
+
         for(Event e : listofEvents){
+
             imagepath = e.getImagepath();
          String s =String.valueOf(e.getParticipants());
          Label lbl = new Label(e.getName());
@@ -80,6 +84,8 @@ public class MainWindowController implements Initializable {
             vBox.getChildren().add(lbl);
             tlepane.getChildren().add(vBox);
             vBox.setOnMousePressed(event -> {
+
+                eventid = e.getId();
                 imagepath = e.getImagepath();
                 name = e.getName();
                 loc = e.getLocation();
@@ -96,6 +102,7 @@ public class MainWindowController implements Initializable {
                 }
             });
         }
+
 
     }
 

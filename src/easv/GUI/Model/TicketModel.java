@@ -20,34 +20,29 @@ public class TicketModel {
     }
 
     public static TicketModel getInstance(){
-
         return  ticketsingleton;
     }
 
-    public ObservableList<Ticket> getAllTickets(){
-
-        tickets = FXCollections.observableArrayList();
-
-        tickets.addAll(logicFecade.getAllTickets());
-
-        return tickets ;
-    }
-
     public ObservableList<Ticket> getCuurentTickets(){
-
         return tickets ;
     }
 
     public void createTicket(Event event, int id, String type, int ticketprice, String barcode, Date expirationdan, String info){
        Ticket t = logicFecade.createticket(event , id , type , ticketprice , barcode , expirationdan , info);
-
        tickets.add(t);
-
     }
+
+    public ObservableList<Ticket> getticketinevent(int id){
+        tickets = FXCollections.observableArrayList();
+        tickets.addAll(logicFecade.getTicketsinEvent(id));
+        return tickets ;
+    }
+
 
     public void deleteTicket(Ticket ticket , int item ){
         logicFecade.deleteTicket(ticket);
         tickets.remove(item);
+        updatethelist();
     }
 
     public void updateTicket(Ticket ticket , int index , String type, int ticketprice, String info ){

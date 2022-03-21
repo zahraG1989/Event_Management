@@ -16,10 +16,6 @@ public interface DaoEvent {
 
     int newestid();
 
-    List<Ticket> getTicketsinEvent(int idi );
-
-    List<User> getusersinEvent(int idi );
-
 
     void updateEvent(Event event , String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance , String image);
 

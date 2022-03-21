@@ -1,21 +1,27 @@
 package easv.GUI.Controller;
 
 import com.jfoenix.controls.JFXButton;
+import easv.BE.Ticket;
+import easv.GUI.Model.TicketModel;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -33,10 +39,16 @@ public class EventInfoController implements Initializable {
     public JFXButton backid;
     public StackPane stackpaneid;
     public AnchorPane anchorid;
+
+
     private MainWindowController cntrl ;
+    private TicketModel ticketModel ;
+    public ObservableList<Ticket> tickets ;
+    private VBox vBox ;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+    ticketModel = TicketModel.getInstance();
     }
 
     public void setController(MainWindowController mainWindowController) {
@@ -49,7 +61,27 @@ public class EventInfoController implements Initializable {
        participantsid.setText(s);
        locationid.setText(cntrl.loc);
         locguideid.setText(cntrl.locationGuidance);
+        showtickets();
     }
+
+    public void showtickets(){
+
+        tickets = ticketModel.getticketinevent(cntrl.eventid);
+
+        for(Ticket t : tickets){
+            String s =String.valueOf(t.getTicketprice());
+            Label price = new Label(s);
+            Label barcode = new Label(t.getBarcode());
+            Button btn = new Button();
+            btn.setText(t.getType());
+            vBox = new VBox();
+            vBox.getChildren().add(price);
+            vBox.getChildren().add(barcode);
+            vBox.getChildren().add(btn);
+            tilepaneid.getChildren().add(vBox);
+        }
+    }
+
 
     public void backbtn(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/mainWindow.fxml"));

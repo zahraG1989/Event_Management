@@ -1,6 +1,7 @@
 package easv.GUI.Model;
 
 import easv.BE.Event;
+import easv.BE.Ticket;
 import easv.BE.User;
 import easv.BLL.LogicFecade;
 import easv.BLL.Manager;
@@ -8,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.Date;
+import java.util.List;
 
 public class EventModel {
 
@@ -55,6 +57,8 @@ public class EventModel {
         events.set(index , event);
         updatethelist();
     }
+
+
 
     public void updatethelist() {
         events.setAll(logicFecade.getAllEvents());

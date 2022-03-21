@@ -19,9 +19,9 @@ public class Event {
     private String LocationGuidance ;
     private int id ;
     private String imagepath ;
-    private List<Ticket> listoftickets ;
 
-    public Event( int id, String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance, String imagepath , List<Ticket> listoftickets) {
+
+    public Event( int id, String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance, String imagepath ) {
         this.name = name;
         this.location = location;
         this.notes = notes;
@@ -31,16 +31,10 @@ public class Event {
         LocationGuidance = locationGuidance;
         this.id = id ;
        this.imagepath = imagepath ;
-       this.listoftickets = listoftickets ;
+
     }
 
-    public List<Ticket> getListoftickets() {
-        return listoftickets;
-    }
 
-    public void setListoftickets(List<Ticket> listoftickets) {
-        this.listoftickets = listoftickets;
-    }
 
     public String getImagepath() {
         return imagepath;

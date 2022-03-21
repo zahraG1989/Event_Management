@@ -9,7 +9,7 @@ public interface DaoUserEvent {
 
     List<User> getusersinEvent(int idi);
 
-
+    List<Ticket> getTicketsinEvent(int idi );
 
     void addusertoEvent(User user , Event event , Ticket ticket);
 

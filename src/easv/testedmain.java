@@ -1,6 +1,7 @@
 package easv;
 
 import easv.BE.Event;
+import easv.BE.Ticket;
 import easv.DAL.DalEvent;
 
 import javax.imageio.ImageIO;
@@ -17,16 +18,14 @@ public class testedmain {
         java.util.Date Ust = new Date();
         java.sql.Date date = new java.sql.Date(Ust.getTime());
         String path = "/resourse/icons8_java_64px.png";
-      //  String text = "eide nowroz \n Zahra  ";
-       // System.out.println(text);
-       // File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\ticket.jpg");
-       // File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\images3.jpg");
+        //  String text = "eide nowroz \n Zahra  ";
+        // System.out.println(text);
+        // File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\ticket.jpg");
+        // File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\images3.jpg");
 
         //addTixttoimage(text , "jpg" , input , output);
-        DalEvent dalEvent = new DalEvent();
-       // dalEvent.createEvent("tea party" , "lintrupvej12" , "we invite you to come and suck on our best tea " , 5 ,date , date ,"come by car if you are rich" , path );
-    for(Event e : dalEvent.getAllEvents())
-        System.out.println(e);
+
+
     }
 
     private static void addTixttoimage(String text, String type, File source, File destination) throws IOException {
