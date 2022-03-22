@@ -2,7 +2,7 @@ package easv.GUI.Controller.create;
 
 import com.jfoenix.controls.JFXButton;
 import easv.GUI.Controller.Users.EventMangersController;
-import easv.GUI.Model.EventModel;
+import easv.GUI.Model.TicketModel;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -17,68 +17,42 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
 import java.util.ResourceBundle;
 
-public class CreateeventController implements Initializable {
+public class CreateTicketController implements Initializable {
     @FXML
     public StackPane stackid;
     @FXML
-    public AnchorPane anchor;
+    public AnchorPane anchorid;
     @FXML
-    public TextField eventnameid;
-    @FXML
-    public TextField eventlocid;
-    @FXML
-    public TextField startdateid;
-    @FXML
-    public TextField enddateid;
-    @FXML
-    public TextArea eventinfoid;
-    @FXML
-    public TextArea locationguideid;
-    @FXML
-    public JFXButton backid;
     public JFXButton saveid;
     @FXML
-    private EventMangersController cntrl ;
+    public JFXButton exitid;
     @FXML
-    private EventModel eventModel ;
+    public TextField tickettypeid;
+    @FXML
+    public TextField ticketpriceid;
+    @FXML
+    public TextArea infoid;
+
+    private EventMangersController cntrl ;
+    private TicketModel ticketModel ;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        eventModel = EventModel.getInstance();
+        ticketModel = TicketModel.getInstance();
 
     }
 
-    public void save(ActionEvent actionEvent) {
-        java.util.Date Ust = new Date();
-        java.sql.Date date = new java.sql.Date(Ust.getTime());
-
-
-        String name = eventnameid.getText();
-        String locations = eventlocid.getText();
-        String notes = eventinfoid.getText();
-        String locationGuidance = locationguideid.getText();
-        String imagepath = "/resourse/icons8_java_64px.png" ;
-        eventModel.createEvent(name , locations ,notes ,0 ,date , date , locationGuidance , imagepath);
-        eventModel.updatethelist();
-    }
-
-    public void setController(EventMangersController eventMangersController) {
-    this.cntrl = eventMangersController ;
-
-    }
-
-    public void back(ActionEvent actionEvent) throws IOException {
+    public void savebtn(ActionEvent actionEvent) throws IOException {
+        createTicekt();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/Users/EventMangers.fxml"));
         Parent root = loader.load();
-        Scene scene = backid.getScene();
+        Scene scene = exitid.getScene();
         root.translateYProperty().set(scene.getHeight());
         stackid.getChildren().add(root);
         Timeline timeline = new Timeline();
@@ -86,9 +60,26 @@ public class CreateeventController implements Initializable {
         KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
         timeline.getKeyFrames().add(kf);
         timeline.setOnFinished(t -> {
-            stackid.getChildren().remove(anchor);
+            stackid.getChildren().remove(anchorid);
         });
         timeline.play();
+    }
+
+    public void exitbtn(ActionEvent actionEvent) {
+
+    }
+
+    public void setController(EventMangersController eventMangersController) {
+       this.cntrl = eventMangersController ;
+
+    }
+
+    public void createTicekt(){
+        //Event event, int id, String type, int ticketprice, String barcode, Date expirationdan, String info'
+        String type = tickettypeid.getText();
+        int price = Integer.parseInt(ticketpriceid.getText());
+        String info = infoid.getText();
+        ticketModel.createTicket(cntrl.selectedevent ,cntrl.selectedeventid , type , price ,"151" , cntrl.selectedevent.getEndevent() , info  );
     }
 
 

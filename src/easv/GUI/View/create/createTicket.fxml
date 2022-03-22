@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="stackid" prefHeight="722.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.create.CreateTicketController">
+   <children>
+      <AnchorPane fx:id="anchorid" prefHeight="722.0" prefWidth="926.0" style="-fx-background-color: brown;">
+         <children>
+            <JFXButton fx:id="saveid" layoutX="30.0" layoutY="666.0" onAction="#savebtn" text="Save" textFill="WHITE" />
+            <JFXButton fx:id="exitid" layoutX="834.0" layoutY="666.0" onAction="#exitbtn" text="exit" textFill="WHITE" />
+            <Label layoutX="350.0" layoutY="174.0" prefHeight="27.0" prefWidth="51.0" text="type" textFill="WHITE">
+               <font>
+                  <Font name="Bernard MT Condensed" size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="350.0" layoutY="270.0" prefHeight="27.0" prefWidth="51.0" text="price" textFill="WHITE">
+               <font>
+                  <Font name="Bernard MT Condensed" size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="350.0" layoutY="387.0" prefHeight="27.0" prefWidth="51.0" text="info" textFill="WHITE">
+               <font>
+                  <Font name="Bernard MT Condensed" size="21.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tickettypeid" layoutX="301.0" layoutY="218.0" promptText="vip , standard ,,," />
+            <TextField fx:id="ticketpriceid" layoutX="301.0" layoutY="320.0" promptText="DKK" />
+            <TextArea fx:id="infoid" layoutX="276.0" layoutY="428.0" prefHeight="200.0" prefWidth="200.0" promptText="what the user can access with this ticket type" />
+         </children></AnchorPane>
+   </children>
+</StackPane>

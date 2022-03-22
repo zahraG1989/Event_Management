@@ -8,6 +8,7 @@ import easv.BE.Ticket;
 import easv.BE.User;
 import easv.GUI.Controller.EventInfoController;
 import easv.GUI.Controller.LoginController;
+import easv.GUI.Controller.create.CreateTicketController;
 import easv.GUI.Controller.create.CreateeventController;
 import easv.GUI.Model.EventModel;
 import easv.GUI.Model.TicketModel;
@@ -94,11 +95,16 @@ public class EventMangersController implements Initializable {
     private TicketModel ticketModel ;
     private ObservableList<Ticket> getAllticket ;
 
+    public int selectedeventid ;
+    public Event selectedevent ;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         displayEventsintableview();
         getuserinevent();
         displayTicketsInsideEvent();
+
+
+
     }
 
     public void getUsersinSelectedEvent(MouseEvent mouseEvent) {
@@ -107,6 +113,9 @@ public class EventMangersController implements Initializable {
             tableviewtickets.getItems().clear();
             getAllusers.addAll(userModel.getuserinevent(tableviewevents.getSelectionModel().getSelectedItem().getId()));
             getAllticket.addAll(ticketModel.getticketinevent(tableviewevents.getSelectionModel().getSelectedItem().getId()));
+            selectedeventid = tableviewevents.getSelectionModel().getSelectedItem().getId();
+             selectedevent = tableviewevents.getSelectionModel().getSelectedItem();
+            System.out.println(selectedeventid);
         }
 
     }
@@ -166,7 +175,21 @@ public class EventMangersController implements Initializable {
         timeline.play();
     }
 
-    public void createticketbtn(ActionEvent actionEvent) {
+    public void createticketbtn(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/create/createTicket.fxml"));
+        Parent root = loader.load();
+        loader.<CreateTicketController>getController().setController(this);
+        Scene scene = createticketid.getScene();
+        root.translateYProperty().set(scene.getHeight());
+        stackid.getChildren().add(root);
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.setOnFinished(t -> {
+            stackid.getChildren().remove(ancorid);
+        });
+        timeline.play();
     }
 
     public void deleteeventbtn(ActionEvent actionEvent) {
@@ -190,16 +213,3 @@ public class EventMangersController implements Initializable {
 
 
 }
-/*
-         public void getmoviesincat(MouseEvent mouseEvent) {
-        if (tableviewCategories.getSelectionModel().getSelectedIndex() != -1) {
-            movieInCategory.getItems().clear();
-            List<Movie> moviesinlist = tableviewCategories.getSelectionModel().getSelectedItem().getListOfMovies();
-            for( int i = 0 ; i < moviesinlist.size() ; i++){
-                movieInCategory.getItems().add(moviesinlist.get(i));
-            }
-
-
-        }
-    }
-         */

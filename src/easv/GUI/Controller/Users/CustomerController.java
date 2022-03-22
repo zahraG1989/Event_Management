@@ -48,7 +48,7 @@ public class CustomerController implements Initializable {
         getalltickets = FXCollections.observableArrayList();
 
 
-       // String path = "/resourse/icons8_java_64px.png";
+        String path = "/resourse/tickettemplate.png";
         //  String text = "eide nowroz \n Zahra  ";
         // File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\ticket.jpg");
         // File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\images3.jpg");
