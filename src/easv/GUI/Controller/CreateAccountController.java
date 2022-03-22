@@ -33,7 +33,7 @@ public class CreateAccountController {
     @FXML
     public TextField password;
 
-    public void saveuser(ActionEvent actionEvent) {
+    public void saveUser(ActionEvent actionEvent) {
     }
 
     public void exit(ActionEvent actionEvent) throws IOException {

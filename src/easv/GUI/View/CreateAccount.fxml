@@ -14,7 +14,7 @@
    <children>
       <AnchorPane fx:id="anchorid" prefHeight="196.0" prefWidth="327.0" style="-fx-background-color: #F4DF4EFF;">
          <children>
-            <JFXButton fx:id="save" buttonType="RAISED" layoutX="563.0" layoutY="622.0" onAction="#saveuser" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #949398FF; -fx-background-radius: 90;" text="Save">
+            <JFXButton fx:id="save" buttonType="RAISED" layoutX="563.0" layoutY="622.0" onAction="#saveUser" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #949398FF; -fx-background-radius: 90;" text="Save">
                <font>
                   <Font name="System Bold Italic" size="15.0" />
                </font></JFXButton>

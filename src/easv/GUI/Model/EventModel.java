@@ -13,7 +13,7 @@ import java.util.List;
 
 public class EventModel {
 
-    private static final EventModel  eventingleton = new EventModel();
+    private static final EventModel  eventSingleton = new EventModel();
     private final LogicFecade logicFecade ;
     private ObservableList<Event> events ;
 
@@ -23,7 +23,7 @@ public class EventModel {
 
     public static EventModel getInstance(){
 
-        return  eventingleton;
+        return  eventSingleton;
     }
 
     public ObservableList<Event> getAllEvents(){
@@ -35,7 +35,7 @@ public class EventModel {
         return events;
     }
 
-    public ObservableList<Event> getcurrentEvents (){
+    public ObservableList<Event> getCurrentEvents (){
         return  events ;
     }
 
@@ -55,12 +55,12 @@ public class EventModel {
 
         logicFecade.updateEvent(event,name ,location , notes , participants , startevent , endevent , locationGuidance ,image);
         events.set(index , event);
-        updatethelist();
+        updateTheList();
     }
 
 
 
-    public void updatethelist() {
+    public void updateTheList() {
         events.setAll(logicFecade.getAllEvents());
     }
 
