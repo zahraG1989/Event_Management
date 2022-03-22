@@ -46,27 +46,27 @@ public class AdminController {
 
     }
 
-    public void deleteuserbtn(ActionEvent actionEvent) {
+    public void deleteUserbtn(ActionEvent actionEvent) {
 
     }
 
-    public void manageuserbtn(ActionEvent actionEvent) {
+    public void manageUserbtn(ActionEvent actionEvent) {
 
     }
 
-    public void deleteeventerbtn(ActionEvent actionEvent) {
+    public void deleteEventerbtn(ActionEvent actionEvent) {
 
     }
 
-    public void manageeventerbtn(ActionEvent actionEvent) {
+    public void manageEventerbtn(ActionEvent actionEvent) {
 
     }
 
-    public void createeventbtn(ActionEvent actionEvent) {
+    public void createEventbtn(ActionEvent actionEvent) {
 
     }
 
-    public void createuserbtn(ActionEvent actionEvent) {
+    public void createUserbtn(ActionEvent actionEvent) {
 
     }
 }

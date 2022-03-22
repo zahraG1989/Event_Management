@@ -39,12 +39,12 @@
                   <TableColumn prefWidth="71.0" text="ticket.alt" />
                </columns>
             </TableView>
-            <JFXButton layoutX="22.0" layoutY="489.0" onAction="#deleteuserbtn" text="Delete" />
-            <JFXButton layoutX="82.0" layoutY="489.0" onAction="#manageuserbtn" text="Manage" />
-            <JFXButton layoutX="259.0" layoutY="489.0" onAction="#deleteeventerbtn" text="Delete" />
-            <JFXButton layoutX="314.0" layoutY="489.0" onAction="#manageeventerbtn" text="Manage" />
-            <JFXButton layoutX="382.0" layoutY="489.0" onAction="#createeventbtn" text="Create" />
-            <JFXButton layoutX="147.0" layoutY="489.0" onAction="#createuserbtn" text="Create" />
+            <JFXButton layoutX="22.0" layoutY="489.0" onAction="#deleteUserbtn" text="Delete" />
+            <JFXButton layoutX="82.0" layoutY="489.0" onAction="#manageUserbtn" text="Manage" />
+            <JFXButton layoutX="259.0" layoutY="489.0" onAction="#deleteEventerbtn" text="Delete" />
+            <JFXButton layoutX="314.0" layoutY="489.0" onAction="#manageEventerbtn" text="Manage" />
+            <JFXButton layoutX="382.0" layoutY="489.0" onAction="#createEventbtn" text="Create" />
+            <JFXButton layoutX="147.0" layoutY="489.0" onAction="#createUserbtn" text="Create" />
             <Label layoutX="21.0" layoutY="80.0" prefHeight="25.0" prefWidth="60.0" text="Customers" />
             <Label layoutX="255.0" layoutY="80.0" prefHeight="25.0" prefWidth="112.0" text="EventCoordinator " />
             <Label layoutX="495.0" layoutY="80.0" prefHeight="25.0" prefWidth="60.0" text="Events" />
