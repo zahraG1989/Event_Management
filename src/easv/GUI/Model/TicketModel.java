@@ -41,7 +41,7 @@ public class TicketModel {
         tickets.addAll(logicFecade.getTicketsinEvent(id));
         return tickets ;
     }
-
+                                // used inside the customer controller
     public ObservableList<Ticket> getuserTickets(int id){
         tickets = FXCollections.observableArrayList();
         tickets.addAll(logicFecade.getTicketsinEvent(id));

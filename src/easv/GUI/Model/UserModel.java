@@ -36,24 +36,33 @@ public class UserModel {
         return users;
     }
 
+    public ObservableList<User> getuserinevent(int id){
+
+        users = FXCollections.observableArrayList();
+
+        users.addAll(logicFecade.getusersinEvent(id));
+
+        return users;
+    }
+
     public ObservableList<User> getcurrentusers (){
         return  users ;
     }
 
     public void adduser(String username, String password, String email, String usertype){
-
         User u = logicFecade.adduser(username ,password ,email , usertype);
-
         users.add(u);
     }
 
     public void deleteUser(User user , int item){
         logicFecade.deleteUser(user);
         users.remove(item);
+        updatethelist();
     }
 
     public void updatethelist() {
         users.setAll(logicFecade.getAllUsers());
+
     }
 
     public void updateUser (User user , int index , String username, String password, String email, String usertype){

@@ -39,20 +39,20 @@ public class EventModel {
         return events;
     }
 
+
     public ObservableList<Event> getcurrentEvents (){
         return  events ;
     }
 
     public void createEvent(String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance, String imagepath){
-
         Event e = logicFecade.createEvent(name, location, notes, participants, startevent, endevent, locationGuidance, imagepath);
-
         events.add(e);
     }
 
     public void deleteEvent(Event event , int item){
         logicFecade.deleteEvent(event);
         events.remove(item);
+        updatethelist();
     }
 
     public void updateEvent (Event event, int index , String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance, String image){

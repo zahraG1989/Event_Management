@@ -25,8 +25,8 @@ public class DalUserEvent implements DaoUserEvent{
         ArrayList<User> users = new ArrayList<>();
             // we need name and ticket ...
         try(Connection con = dataAccess.getConnection()) {
-            String sql = "SELECT [username] , [name] , [tickettype] " +
-                    " from [users] join userevent on [userS].[id] = [userevent].[userid] " +
+            String sql = "SELECT [users].[id] , [username] , [name] , [tickettype] " +
+                    " from [users] join userevent on [users].[id] = [userevent].[userid] " +
                     " join [Event] on  userevent.eventid = [event].[id] " +
                     " join Ticket on  userevent.ticketid = Ticket.id WHERE event.id = ? ";
            PreparedStatement prs = con.prepareStatement(sql);
