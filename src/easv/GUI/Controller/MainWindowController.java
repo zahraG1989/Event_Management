@@ -77,7 +77,7 @@ public class MainWindowController implements Initializable {
             imagepath = e.getImagepath();
          String s =String.valueOf(e.getParticipants());
          Label lbl = new Label(e.getName());
-          image = new Image(imagepath);
+         image = new Image(imagepath);
          view = new ImageView(image);
             vBox = new VBox();
             vBox.getChildren().add(view);

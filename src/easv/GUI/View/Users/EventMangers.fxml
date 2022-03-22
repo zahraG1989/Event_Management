@@ -39,13 +39,13 @@
                   <TableColumn fx:id="ticketinfo" prefWidth="429.0" text="info" />
                </columns>
             </TableView>
-            <JFXButton layoutX="332.0" layoutY="375.0" onAction="#createeventbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #00e676;" text="Create Event" />
-            <JFXButton layoutX="332.0" layoutY="415.0" onAction="#createticketbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #00e676;" text="Create Ticket" />
-            <JFXButton layoutX="431.0" layoutY="375.0" onAction="#deleteeventbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #ff1744;" text="Delete Event" />
-            <JFXButton layoutX="431.0" layoutY="415.0" onAction="#deleteticketbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #ff1744;" text="Delete Ticket" />
-            <JFXButton layoutX="533.0" layoutY="375.0" onAction="#updateeventbtn" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #2196f3;" text="Update Event" />
-            <JFXButton layoutX="533.0" layoutY="415.0" onAction="#updateticketbtn" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #2196f3;" text="Update Ticket" />
-            <JFXButton layoutX="818.0" layoutY="672.0" onAction="#backbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #424242;" text="Terminate" />
+            <JFXButton fx:id="createeventid" layoutX="332.0" layoutY="375.0" onAction="#createeventbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #00e676;" text="Create Event" />
+            <JFXButton fx:id="createticketid" layoutX="332.0" layoutY="415.0" onAction="#createticketbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #00e676;" text="Create Ticket" />
+            <JFXButton fx:id="deleteeventid" layoutX="431.0" layoutY="375.0" onAction="#deleteeventbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #ff1744;" text="Delete Event" />
+            <JFXButton fx:id="deleteticketid" layoutX="431.0" layoutY="415.0" onAction="#deleteticketbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #ff1744;" text="Delete Ticket" />
+            <JFXButton fx:id="updateeventid" layoutX="533.0" layoutY="375.0" onAction="#updateeventbtn" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #2196f3;" text="Update Event" />
+            <JFXButton fx:id="updateticketid" layoutX="533.0" layoutY="415.0" onAction="#updateticketbtn" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #2196f3;" text="Update Ticket" />
+            <JFXButton fx:id="backid" layoutX="818.0" layoutY="672.0" onAction="#backbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #424242;" text="Terminate" />
          </children>
       </AnchorPane>
    </children>

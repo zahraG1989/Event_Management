@@ -1,26 +1,38 @@
 package easv.GUI.Controller.Users;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import easv.BE.Event;
 import easv.BE.Ticket;
 import easv.BE.User;
+import easv.GUI.Controller.EventInfoController;
 import easv.GUI.Controller.LoginController;
+import easv.GUI.Controller.create.CreateeventController;
 import easv.GUI.Model.EventModel;
 import easv.GUI.Model.TicketModel;
 import easv.GUI.Model.UserModel;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
@@ -61,6 +73,15 @@ public class EventMangersController implements Initializable {
     public TableColumn<Ticket , Integer> ticketprice;
     @FXML
     public TableColumn<Ticket , String > ticketinfo;
+
+
+    public JFXButton createeventid;
+    public JFXButton createticketid;
+    public JFXButton deleteeventid;
+    public JFXButton deleteticketid;
+    public JFXButton updateeventid;
+    public JFXButton updateticketid;
+    public JFXButton backid;
 
     private LoginController cntrl ;
 
@@ -128,7 +149,21 @@ public class EventMangersController implements Initializable {
     }
 
 
-    public void createeventbtn(ActionEvent actionEvent) {
+    public void createeventbtn(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/create/createevent.fxml"));
+        Parent root = loader.load();
+        loader.<CreateeventController>getController().setController(this);
+        Scene scene = createticketid.getScene();
+        root.translateYProperty().set(scene.getHeight());
+        stackid.getChildren().add(root);
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.setOnFinished(t -> {
+            stackid.getChildren().remove(ancorid);
+        });
+        timeline.play();
     }
 
     public void createticketbtn(ActionEvent actionEvent) {
