@@ -1,6 +1,7 @@
 package easv.GUI.Controller.Users;
 
 import com.jfoenix.controls.JFXButton;
+import easv.GUI.Controller.LoginController;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -27,6 +28,8 @@ public class AdminController {
     public TableView eventcorditable;
     @FXML
     public TableView eventstable;
+
+    public LoginController cntrl ;
 
     public void exitbtn(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/mainWindow.fxml"));
@@ -68,5 +71,9 @@ public class AdminController {
 
     public void createUserbtn(ActionEvent actionEvent) {
 
+    }
+
+    public void setController(LoginController loginController) {
+        this.cntrl = loginController;
     }
 }

@@ -2,7 +2,9 @@ package easv.GUI.Controller;
 
 import com.jfoenix.controls.JFXButton;
 import easv.BE.User;
+import easv.GUI.Controller.Users.AdminController;
 import easv.GUI.Controller.Users.CustomerController;
+import easv.GUI.Controller.Users.EventMangersController;
 import easv.GUI.Model.UserModel;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -117,6 +119,7 @@ public class LoginController implements Initializable {
     public void logintoAdmin() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/Users/adminpage.fxml"));
         Parent root = loader.load();
+        loader.<AdminController>getController().setController(this);
         Scene scene = loginid.getScene();
         root.translateYProperty().set(scene.getHeight());
         stcpne.getChildren().add(root);
@@ -133,6 +136,7 @@ public class LoginController implements Initializable {
     public void logintoEventCoordinatoer() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/Users/EventMangers.fxml"));
         Parent root = loader.load();
+        loader.<EventMangersController>getController().setController(this);
         Scene scene = loginid.getScene();
         root.translateYProperty().set(scene.getHeight());
         stcpne.getChildren().add(root);

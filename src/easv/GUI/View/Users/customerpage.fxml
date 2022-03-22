@@ -13,7 +13,7 @@
       <AnchorPane fx:id="anchorpaneid" prefHeight="724.0" prefWidth="934.0" style="-fx-background-color: #FFBD33;" stylesheets="/easv/GUI/View/CSS/Styles.css">
          <children>
             <Separator layoutX="262.0" layoutY="25.0" orientation="VERTICAL" prefHeight="672.0" prefWidth="9.0" />
-            <ChoiceBox fx:id="choiceboxid" layoutX="21.0" layoutY="54.0" prefHeight="25.0" prefWidth="201.0" style="-fx-background-color: #FFBD33;" />
+            <ChoiceBox fx:id="choicebox" layoutX="21.0" layoutY="54.0" prefHeight="25.0" prefWidth="201.0" style="-fx-background-color: #FFBD33;" />
             <ImageView fx:id="imageid" fitHeight="643.0" fitWidth="627.0" layoutX="286.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" />
             <JFXButton layoutX="21.0" layoutY="661.0" text="Close" />
             <Label layoutX="30.0" layoutY="17.0" prefHeight="17.0" prefWidth="201.0" text="your Tcikets list " />

@@ -20,7 +20,11 @@ public class TicketModel {
     }
 
     public static TicketModel getInstance(){
-        return  ticketsingleton;
+        if(ticketsingleton == null) {
+            return new TicketModel();
+        }
+        return ticketsingleton ;
+
     }
 
     public ObservableList<Ticket> getCuurentTickets(){

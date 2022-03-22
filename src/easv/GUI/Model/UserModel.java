@@ -21,6 +21,9 @@ public class UserModel {
 
     public static UserModel getInstance(){
 
+        if(usersingleton == null){
+            return new UserModel();
+        }
         return usersingleton;
     }
 

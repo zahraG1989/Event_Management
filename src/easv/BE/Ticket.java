@@ -59,4 +59,9 @@ public class Ticket {
         this.expirationdan = expirationdan;
     }
 
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "type='" + type + ", ticketprice=" + ticketprice   + ", id=" + id + ", info='" + info + '}';
+    }
 }
