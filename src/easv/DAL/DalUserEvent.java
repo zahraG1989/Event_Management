@@ -37,7 +37,7 @@ public class DalUserEvent implements DaoUserEvent{
                String name = rs.getString("username");
                String ticket = rs.getString("tickettype");
 
-               User user = new User(id ,name , ticket,null,"Customer");
+               User user = new User(id ,name , ticket,"Customer");
                users.add(user);
 
             }

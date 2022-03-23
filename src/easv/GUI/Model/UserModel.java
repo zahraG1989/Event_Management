@@ -27,6 +27,10 @@ public class UserModel {
         return usersingleton;
     }
 
+    public User verifyUsers(String username, String password){
+        return logicFecade.verifyUsers(username, password);
+    }
+
     public ObservableList<User> getAllUsers(){
 
         users = FXCollections.observableArrayList();

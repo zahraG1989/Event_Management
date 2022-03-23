@@ -26,10 +26,9 @@ public class DalUser implements DaoUser {
             while(rs.next()){
                 int id = rs.getInt("id");
                 String username = rs.getString("username");
-                String pasword = rs.getString("password");
                 String email = rs.getString("email");
                 String usertype = rs.getString("usertype");
-                User customer = new User(id,username , pasword , email , usertype);
+                User customer = new User(id,username , email , usertype);
                 customers.add(customer);
             }
 
@@ -52,9 +51,8 @@ public class DalUser implements DaoUser {
             ResultSet rs = statement.executeQuery(sql);
             while(rs.next()){
                 String username = rs.getString("username");
-                String pasword = rs.getString("password");
                 String email = rs.getString("email");
-                User customer = new User(newestid(),username , pasword , email , null);
+                User customer = new User(newestid(),username  , email , null);
                 customers.add(customer);
             }
 
@@ -79,7 +77,7 @@ public class DalUser implements DaoUser {
                 String username = rs.getString("username");
                 String pasword = rs.getString("password");
                 String email = rs.getString("email");
-                User customer = new User(newestid(),username , pasword , email , null);
+                User customer = new User(newestid(),username  , email , null);
                 customers.add(customer);
             }
 
@@ -104,7 +102,7 @@ public class DalUser implements DaoUser {
             prs.setString(3, email);
             prs.setString(4, usertype);
             prs.executeUpdate();
-            user = new User(newestid(),username, password, email , usertype);
+            user = new User(newestid(),username, email , usertype);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -163,5 +161,31 @@ public class DalUser implements DaoUser {
     } catch (SQLException e) {
         e.printStackTrace();
     }
+    }
+    @Override
+    public User verifyUsers(String username, String password) {
+        User user = null;
+
+        try(Connection con = dataAccess.getConnection()){
+            String sql = " SELECT * FROM users where users.username = ? AND password = ?";
+            PreparedStatement prs = con.prepareStatement(sql);
+            prs.setString(1 ,username);
+            prs.setString(2, password);
+            ResultSet rs = prs.executeQuery();
+            while(rs.next()){
+                int id = rs.getInt("id");
+                String email = rs.getString("email");
+                String usertype = rs.getString("usertype");
+                user = new User(id,username , email , usertype);
+            }
+            return user;
+
+
+        } catch (SQLServerException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 }

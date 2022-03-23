@@ -96,7 +96,7 @@ public class Manager implements LogicFecade{
 
     @Override
     public List<Ticket> getusertickets(int id) {
-
+        System.out.println(dalTicket.getusertickets(id));
         return dalTicket.getusertickets(id);
     }
 
@@ -118,5 +118,10 @@ public class Manager implements LogicFecade{
     @Override
     public void removeuserfromEvent(User user, Event event, Ticket ticket) {
         dalUserEvent.removeuserfromEvent(user ,event ,ticket);
+    }
+
+    @Override
+    public User verifyUsers(String username, String password) {
+        return daluser.verifyUsers(username, password);
     }
 }

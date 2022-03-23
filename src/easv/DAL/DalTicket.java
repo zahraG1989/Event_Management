@@ -67,17 +67,22 @@ public class DalTicket implements DaoTicket{
 
     @Override
     public List<Ticket> getusertickets(int id) {
+        System.out.println(id);
         ArrayList<Ticket> tickets = new ArrayList<>();
         try(Connection con = dataAccess.getConnection()) {
 
-            String sql = "SELECT  tickettype , price , barcode , info ,  [Ticket].[id] from Ticket join userevent on [Ticket].[id] = ticketid join users on  userevent.userid = users.id -- WHERE users.id = ?";
+            String sql = "SELECT  tickettype , price , barcode , info ,  Ticket.id as TicketID" +
+                    "       from users " +
+                    "  join userevent on userevent.userid = users.id" +
+                    "  join Ticket on  userevent.ticketid = Ticket.id" +
+                    "   WHERE users.id =?";
 
             PreparedStatement prs = con.prepareStatement(sql);
             prs.setInt(1 , id);
             ResultSet rs = prs.executeQuery();
             while(rs.next()){
                 //int id , String type , int ticketprice , String barcode, Date expirationdan , String info
-                int idi = rs.getInt("[Ticket].[id]");
+                int idi = rs.getInt("TicketID");
                 String type = rs.getString("tickettype");
                 int price = rs.getInt("price");
                 String barcode = rs.getString("barcode");

@@ -4,15 +4,13 @@ import javafx.scene.control.CheckBox;
 
 public class User {
     private String username ;
-    private String password ;
     private String email ;
     private String userType ;
     private int id ;
     private CheckBox select ;
 
-    public User(int id, String username, String password, String email ,String userType) {
+    public User(int id, String username, String email ,String userType) {
         this.username = username;
-        this.password = password;
         this.email = email;
         this.id = id ;
         this.userType = userType;
@@ -51,14 +49,6 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -71,7 +61,6 @@ public class User {
     public String toString() {
         return "Customer{" +
                 "username='" + username + '\'' +
-                ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }

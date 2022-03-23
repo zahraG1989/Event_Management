@@ -43,44 +43,43 @@ public class LoginController implements Initializable {
     public JFXButton backid;
 
     private UserModel userModel ;
-    private ObservableList<User> users ;
 
     public int userid ;
     public String username ;
-    public String userpassword ;
     public String useremail;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
      userModel = UserModel.getInstance();
-     users = userModel.getAllUsers();
 
     }
 
     public void loginbtn(ActionEvent actionEvent) throws IOException {
+        User user =userModel.verifyUsers(usernameid.getText(), passwordid.getText());
+            if(user != null){
+                if( user.getUserType().equals("Customer")){
+                    System.out.println(user.getId());
+                    userid = user.getId();
+                    username = user.getUsername();
+                    useremail = user.getEmail();
+                    logintouser();
 
-        for(User user : users){
-          //  System.out.println(user.getUsername() + " " + user.getPassword());
-            if(usernameid.getText().equals(user.getUsername()) && passwordid.getText().equals(user.getPassword()) && user.getUserType().equals("Customer")){
-                System.out.println(user.getId());
-                userid = user.getId();
-                username = user.getUsername();
-                userpassword = user.getPassword();
-                useremail = user.getEmail();
-                logintouser();
+                }else if ( user.getUserType().equals("Admin")){
+                    logintoAdmin();
 
-            }else if (usernameid.getText().equals(user.getUsername()) && passwordid.getText().equals(user.getPassword()) && user.getUserType().equals("Admin")){
-                logintoAdmin();
+                }else if ( user.getUserType().equals("EventCoordinator")){
+                    logintoEventCoordinatoer();
 
-            }else if (usernameid.getText().equals(user.getUsername()) && passwordid.getText().equals(user.getPassword()) && user.getUserType().equals("EventCoordinator")){
-                logintoEventCoordinatoer();
-
-            }else {
-                System.out.println("wrong data");
+                }else {
+                    System.out.println("wrong data");
+                }
+            }else{
+                System.out.println("Wrong user m8");
             }
+          //  System.out.println(user.getUsername() + " " + user.getPassword());
 
-        }
+
     }
 
     public void backbtn(ActionEvent actionEvent) throws IOException {

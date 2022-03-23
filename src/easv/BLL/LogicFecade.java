@@ -52,4 +52,5 @@ public interface LogicFecade {
 
     void removeuserfromEvent(User user , Event event ,Ticket ticket);
 
+    User verifyUsers(String username, String password);
 }

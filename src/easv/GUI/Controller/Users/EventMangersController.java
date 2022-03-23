@@ -128,7 +128,7 @@ public class EventMangersController implements Initializable {
         tableviewusers.setItems(getAllusers);
 
         username.setCellValueFactory(new PropertyValueFactory<>("username"));
-        userticket.setCellValueFactory(new PropertyValueFactory<>("password"));
+        userticket.setCellValueFactory(new PropertyValueFactory<>("email"));
         usercheckbox.setCellValueFactory(new PropertyValueFactory<>("select"));
     }
 

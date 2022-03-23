@@ -3,21 +3,37 @@ package easv.DAL.DataAccess;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
+import java.util.Properties;
 
 public class DataAccess {
 
         private final SQLServerDataSource dataSource ;
 
         public DataAccess() {
+
             dataSource = new SQLServerDataSource();
-            dataSource.setServerName("10.176.111.31");
-            dataSource.setUser("CSe21B_24");
-            dataSource.setPassword("CSe21B_24");
-            dataSource.setDatabaseName("Eventmanager01");  // create new database name called what ever
+            try (InputStream input = new FileInputStream("data/database.properties")) {
 
+                Properties prop = new Properties();
 
+                // load a properties file
+                prop.load(input);
+                dataSource.setServerName(prop.getProperty("servername"));
+                dataSource.setUser(prop.getProperty("user"));
+                dataSource.setPassword(prop.getProperty("password"));
+                dataSource.setDatabaseName(prop.getProperty("databasename"));
+                // get the property value and print it out
 
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         public Connection getConnection() throws SQLServerException {
