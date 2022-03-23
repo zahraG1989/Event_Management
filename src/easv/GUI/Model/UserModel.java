@@ -49,9 +49,11 @@ public class UserModel {
         return  users ;
     }
 
-    public void adduser(String username, String password, String email, String usertype){
+    public User adduser(String username, String password, String email, String usertype){
         User u = logicFecade.adduser(username ,password ,email , usertype);
         users.add(u);
+
+        return u ;
     }
 
     public void deleteUser(User user , int item){

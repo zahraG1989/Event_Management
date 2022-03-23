@@ -2,7 +2,9 @@ package easv.GUI.Controller;
 
 import com.jfoenix.controls.JFXButton;
 import easv.BE.Ticket;
+import easv.BE.User;
 import easv.GUI.Model.TicketModel;
+import easv.GUI.Model.UserModel;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -24,6 +26,7 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,11 +47,17 @@ public class EventInfoController implements Initializable {
     private MainWindowController cntrl ;
     private TicketModel ticketModel ;
     public ObservableList<Ticket> tickets ;
+    public UserModel userModel ;
     private VBox vBox ;
+    private  ObservableList<User> users ;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     ticketModel = TicketModel.getInstance();
+    userModel = UserModel.getInstance();
+
+    users = userModel.getAllUsers();
+        // tickets = ticketModel.
     }
 
     public void setController(MainWindowController mainWindowController) {
@@ -79,6 +88,11 @@ public class EventInfoController implements Initializable {
             vBox.getChildren().add(barcode);
             vBox.getChildren().add(btn);
             tilepaneid.getChildren().add(vBox);
+            vBox.setOnMousePressed(event -> {
+                String name= JOptionPane.showInputDialog("Enter Name");
+              User user = userModel.adduser(name ,"1234" ,"1234" ,"Customer");
+                ticketModel.createUsTiEv(cntrl.selectedevent,t ,user );
+            });
         }
     }
 

@@ -2,6 +2,7 @@ package easv.GUI.Model;
 
 import easv.BE.Event;
 import easv.BE.Ticket;
+import easv.BE.User;
 import easv.BLL.LogicFecade;
 import easv.BLL.Manager;
 import javafx.collections.FXCollections;
@@ -36,10 +37,15 @@ public class TicketModel {
        tickets.add(t);
     }
 
+
     public ObservableList<Ticket> getticketinevent(int id){
         tickets = FXCollections.observableArrayList();
         tickets.addAll(logicFecade.getTicketsinEvent(id));
         return tickets ;
+    }
+
+    public void createUsTiEv(Event event , Ticket ticket , User user){
+        logicFecade.addusertoEvent(user , event , ticket);
     }
                                 // used inside the customer controller
     public ObservableList<Ticket> getuserTickets(int id){

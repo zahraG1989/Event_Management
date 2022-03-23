@@ -64,7 +64,7 @@ public class MainWindowController implements Initializable {
     public String locationGuidance ;
     public String imagepath ;
     public int eventid ;
-
+    public Event selectedevent ;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
        eventModel = EventModel.getInstance();
@@ -84,7 +84,7 @@ public class MainWindowController implements Initializable {
             vBox.getChildren().add(lbl);
             tlepane.getChildren().add(vBox);
             vBox.setOnMousePressed(event -> {
-
+                selectedevent = e ;
                 eventid = e.getId();
                 imagepath = e.getImagepath();
                 name = e.getName();
