@@ -5,6 +5,7 @@ import easv.BE.Ticket;
 import easv.BE.User;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface LogicFecade {
@@ -12,9 +13,9 @@ public interface LogicFecade {
 
     List<Event> getAllEvents();
 
-    Event createEvent(String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance , String imagepath);
+    Event createEvent(String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance , String imagepath);
 
-    void updateEvent(Event event , String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance , String image);
+    void updateEvent(Event event , String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance , String image);
 
     void deleteEvent(Event event);
 
@@ -38,7 +39,7 @@ public interface LogicFecade {
     // ticket
     List<Ticket> getAllTickets();
     //String ticketholder, String type, String eventname, int ticketprice, String eventlocation, String barcode, Date expirationdan
-    Ticket createticket(Event event, int id , String type , int ticketprice , String barcode, Date expirationdan , String info);
+    Ticket createticket(Event event, int id , String type , int ticketprice , String barcode, Timestamp expirationdan , String info);
 
     void updateTicket(Ticket ticket , String type , int ticketprice, String info);
 

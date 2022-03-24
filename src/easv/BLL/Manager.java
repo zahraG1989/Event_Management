@@ -10,6 +10,7 @@ import easv.DAL.DalUserEvent;
 
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Manager implements LogicFecade{
@@ -30,12 +31,12 @@ public class Manager implements LogicFecade{
     }
 
     @Override
-    public Event createEvent(String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance, String imagepath) {
+    public Event createEvent(String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance, String imagepath) {
         return dalEvent.createEvent(name , location,notes,participants,startevent,endevent,locationGuidance,imagepath);
     }
 
     @Override
-    public void updateEvent(Event event, String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance, String image) {
+    public void updateEvent(Event event, String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance, String image) {
         dalEvent.updateEvent(event , name , location , notes ,participants ,startevent ,endevent ,locationGuidance ,image);
     }
 
@@ -80,7 +81,7 @@ public class Manager implements LogicFecade{
     }
 
     @Override
-    public Ticket createticket(Event event, int id, String type, int ticketprice, String barcode, Date expirationdan, String info) {
+    public Ticket createticket(Event event, int id, String type, int ticketprice, String barcode, Timestamp expirationdan, String info) {
         return dalTicket.createticket(event ,id ,type ,ticketprice ,barcode ,expirationdan ,info);
     }
 

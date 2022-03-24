@@ -1,36 +1,40 @@
 package easv;
 
-
-
-
-import com.barcodelib.barcode.Linear;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Random;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
+
 
 
 public class testedmain {
     public static void main(String[] args) throws Exception {
 
-        Random random = new Random();
-        StringBuilder sb = new StringBuilder();
 
-        // first not 0 digit
-        sb.append(random.nextInt(9) + 1);
+      //  String date_string = "26-09-1989";
+        //Instantiating the SimpleDateFormat class
+     //   SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        //Parsing the given String to Date object
+      //  Date date = formatter.parse(date_string);
+       // System.out.println("Date value: "+date);
 
-        // rest of 11 digits
-        for (int i = 0; i < 11; i++) {
-            sb.append(random.nextInt(10));
-        }
-        System.out.println(sb);
+      //  SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        //Parsing the given String to Date object
+       // Date date = formatter.parse("23/09/2016");
+     //   System.out.println("Date object value: "+date);
 
-        String sbd = String.valueOf(sb);
-        System.out.println(sbd);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date date2 = dateFormat.parse("2022-03-24 20:59");
+        long time = date2.getTime();
+        Timestamp stamp = new Timestamp(time);
+        System.out.println(stamp);
 /*
         Calendar cal = Calendar.getInstance();
         java.sql.Timestamp timestamp = new Timestamp(cal.getTimeInMillis());

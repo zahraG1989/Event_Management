@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class EventModel {
@@ -44,7 +45,7 @@ public class EventModel {
         return  events ;
     }
 
-    public void createEvent(String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance, String imagepath){
+    public void createEvent(String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance, String imagepath){
         Event e = logicFecade.createEvent(name, location, notes, participants, startevent, endevent, locationGuidance, imagepath);
         events.add(e);
     }
@@ -55,7 +56,7 @@ public class EventModel {
         updatethelist();
     }
 
-    public void updateEvent (Event event, int index , String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance, String image){
+    public void updateEvent (Event event, int index , String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance, String image){
 
         logicFecade.updateEvent(event,name ,location , notes , participants , startevent , endevent , locationGuidance ,image);
         events.set(index , event);

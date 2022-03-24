@@ -6,6 +6,7 @@ package easv.BE;
 import javafx.scene.image.Image;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Event {
@@ -14,14 +15,14 @@ public class Event {
     private String location ;
     private String notes ;
     private int participants ;
-    private Date startevent ;
-    private Date endevent ;
+    private Timestamp startevent ;
+    private Timestamp endevent ;
     private String LocationGuidance ;
     private int id ;
     private String imagepath ;
 
 
-    public Event( int id, String name, String location, String notes, int participants, Date startevent, Date endevent, String locationGuidance, String imagepath ) {
+    public Event( int id, String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance, String imagepath ) {
         this.name = name;
         this.location = location;
         this.notes = notes;
@@ -84,19 +85,19 @@ public class Event {
         this.participants = participants;
     }
 
-    public Date getStartevent() {
+    public Timestamp getStartevent() {
         return startevent;
     }
 
-    public void setStartevent(Date startevent) {
+    public void setStartevent(Timestamp startevent) {
         this.startevent = startevent;
     }
 
-    public Date getEndevent() {
+    public Timestamp getEndevent() {
         return endevent;
     }
 
-    public void setEndevent(Date endevent) {
+    public void setEndevent(Timestamp endevent) {
         this.endevent = endevent;
     }
 

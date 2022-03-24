@@ -23,6 +23,10 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -57,17 +61,26 @@ public class CreateeventController implements Initializable {
 
     }
 
-    public void save(ActionEvent actionEvent) {
+    public void save(ActionEvent actionEvent) throws ParseException {
         java.util.Date Ust = new Date();
         java.sql.Date date = new java.sql.Date(Ust.getTime());
-
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                // 2022-03-24 20:59
+        Date date1 = dateFormat.parse(startdateid.getText());
+        Date date2 = dateFormat.parse(enddateid.getText());
+        long time1 = date1.getTime();
+        long time2 = date2.getTime();
+        Timestamp stamp1 = new Timestamp(time1);
+        Timestamp stamp2 = new Timestamp(time2);
+        // stamp1 will be the start event
+        // stamp2 will be the end event
 
         String name = eventnameid.getText();
         String locations = eventlocid.getText();
         String notes = eventinfoid.getText();
         String locationGuidance = locationguideid.getText();
         String imagepath = "/resourse/icons8_java_64px.png" ;
-        eventModel.createEvent(name , locations ,notes ,0 ,date , date , locationGuidance , imagepath);
+        eventModel.createEvent(name , locations ,notes ,0 ,stamp1 , stamp2 , locationGuidance , imagepath);
         eventModel.updatethelist();
     }
 

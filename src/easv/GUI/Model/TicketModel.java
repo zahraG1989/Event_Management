@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class TicketModel {
 
@@ -32,7 +33,7 @@ public class TicketModel {
         return tickets ;
     }
 
-    public void createTicket(Event event, int id, String type, int ticketprice, String barcode, Date expirationdan, String info){
+    public void createTicket(Event event, int id, String type, int ticketprice, String barcode, Timestamp expirationdan, String info){
        Ticket t = logicFecade.createticket(event , id , type , ticketprice , barcode , expirationdan , info);
        tickets.add(t);
     }

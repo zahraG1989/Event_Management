@@ -1,5 +1,6 @@
 package easv.BE;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Ticket {
@@ -7,10 +8,10 @@ public class Ticket {
     private String type ;
     private int ticketprice ;
     private String barcode ; // for now
-    private Date expirationdan ;
+    private Timestamp expirationdan ;
     private int id ;
     private String info ;
-    public Ticket(int id , String type , int ticketprice , String barcode, Date expirationdan , String info) {
+    public Ticket(int id , String type , int ticketprice , String barcode, Timestamp expirationdan , String info) {
         this.type = type;
         this.ticketprice = ticketprice;
         this.barcode = barcode;
@@ -59,11 +60,11 @@ public class Ticket {
         this.barcode = barcode;
     }
 
-    public Date getExpirationdan() {
+    public Timestamp getExpirationdan() {
         return expirationdan;
     }
 
-    public void setExpirationdan(Date expirationdan) {
+    public void setExpirationdan(Timestamp expirationdan) {
         this.expirationdan = expirationdan;
     }
 

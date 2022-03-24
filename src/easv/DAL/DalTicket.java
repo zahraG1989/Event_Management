@@ -44,7 +44,7 @@ public class DalTicket implements DaoTicket{
     }
 
     @Override
-    public Ticket createticket(Event event, int id , String type , int ticketprice , String barcode, Date expirationdan , String info) {
+    public Ticket createticket(Event event, int id , String type , int ticketprice , String barcode, Timestamp expirationdan , String info) {
         //--insert into Ticket(Eventid , tickettype , price , barcode , info) values (1 , 'standard' , 50 , 14584 , ' just for showing ');
         try(Connection con = dataAccess.getConnection()) {
             String sql = "insert into Ticket(Eventid , tickettype , price , barcode , info) values (?, ?, ?,?,?)";
