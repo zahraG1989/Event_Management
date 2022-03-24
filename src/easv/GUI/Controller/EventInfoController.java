@@ -104,10 +104,8 @@ public class EventInfoController implements Initializable {
                     User user = userModel.adduser(name, "1234", "1234", "Customer");
                     ticketModel.createUsTiEv(cntrl.selectedevent, t ,user );
                     try {
-                        String path = "/resourse/tickettemplate.png";
-
                         File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\tickettemplate.png");
-                        File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\ticket.jpg");
+                        File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\"+user.getUsername()+".jpg");
 
                         Linear barcodes = new Linear();
                         barcodes.setType(Linear.CODE128B);
@@ -163,7 +161,7 @@ public class EventInfoController implements Initializable {
         w.drawString(tickettype, 476, 185);
         w.drawString(String.valueOf(ticketid), 552, 149);
         w.drawString(text, 482, 210);
-        w.drawImage(image2, null, 11, 284);
+        w.drawImage(image2, null, -20, 250);
         ImageIO.write(bold, type, destination);
         w.dispose();
     }
