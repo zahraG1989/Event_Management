@@ -22,6 +22,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class CreateTicketController implements Initializable {
@@ -76,11 +77,18 @@ public class CreateTicketController implements Initializable {
     }
 
     public void createTicekt(){
-        //Event event, int id, String type, int ticketprice, String barcode, Date expirationdan, String info'
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+        sb.append(random.nextInt(9) + 1);
+        for (int i = 0; i < 11; i++) {
+            sb.append(random.nextInt(10));
+        }
+
+        String sbd = String.valueOf(sb);
         String type = tickettypeid.getText();
         int price = Integer.parseInt(ticketpriceid.getText());
         String info = infoid.getText();
-        ticketModel.createTicket(cntrl.selectedevent ,cntrl.selectedeventid , type , price ,"151" , cntrl.selectedevent.getEndevent() , info  );
+        ticketModel.createTicket(cntrl.selectedevent ,cntrl.selectedeventid , type , price ,sbd , cntrl.selectedevent.getEndevent() , info  );
     }
 
 

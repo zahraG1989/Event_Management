@@ -1,19 +1,36 @@
 package easv;
 
 
+
+
+import com.barcodelib.barcode.Linear;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.Random;
+
 
 public class testedmain {
     public static void main(String[] args) throws Exception {
+
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+
+        // first not 0 digit
+        sb.append(random.nextInt(9) + 1);
+
+        // rest of 11 digits
+        for (int i = 0; i < 11; i++) {
+            sb.append(random.nextInt(10));
+        }
+        System.out.println(sb);
+
+        String sbd = String.valueOf(sb);
+        System.out.println(sbd);
 /*
         Calendar cal = Calendar.getInstance();
         java.sql.Timestamp timestamp = new Timestamp(cal.getTimeInMillis());
@@ -32,12 +49,12 @@ public class testedmain {
 
  */
 
-        String path = "/resourse/tickettemplate.png";
+     //   String path = "/resourse/tickettemplate.png";
 
-         File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\tickettemplate.png");
-         File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\images3.jpg");
+      //   File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\tickettemplate.png");
+        // File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\images3.jpg");
 
-        addTixttoimage("" , "teaparty" , "2022-12-15" , "koldingvej13" , "156264",50,1  , "jpg" , input , output);
+    //    addTixttoimage("" , "teaparty" , "2022-12-15" , "koldingvej13" , "156264",50,1  , "jpg" , input , output);
     }
 
     private static void addTixttoimage(String text, String name , String when , String where , String barcode , int price , int ticketid , String type, File source, File destination) throws IOException {

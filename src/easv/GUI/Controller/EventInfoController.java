@@ -1,5 +1,7 @@
 package easv.GUI.Controller;
 
+
+import com.barcodelib.barcode.Linear;
 import com.jfoenix.controls.JFXButton;
 import easv.BE.Ticket;
 import easv.BE.User;
@@ -31,6 +33,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -72,7 +75,7 @@ public class EventInfoController implements Initializable {
        eventnameid.setText(cntrl.name);
        infoid.setText(cntrl.notes);
         String s =String.valueOf(cntrl.participants);
-       participantsid.setText(s);
+
        locationid.setText(cntrl.loc);
         locguideid.setText(cntrl.locationGuidance);
         showtickets();
@@ -81,65 +84,87 @@ public class EventInfoController implements Initializable {
     public void showtickets(){
 
         tickets = ticketModel.getticketinevent(cntrl.eventid);
-
+        Image image = new Image("/resourse/user.png");
+       // ImageView view = new ImageView();
         for(Ticket t : tickets){
             String s =String.valueOf(t.getTicketprice());
             Label price = new Label(s);
-            Label barcode = new Label(t.getBarcode());
-            Button btn = new Button();
+            Label btn = new Label();
             btn.setText(t.getType());
+           // view.setImage(image);
             vBox = new VBox();
+
             vBox.getChildren().add(price);
-            vBox.getChildren().add(barcode);
             vBox.getChildren().add(btn);
+           // vBox.getChildren().add(view);
             tilepaneid.getChildren().add(vBox);
             vBox.setOnMousePressed(event -> {
                 String name= JOptionPane.showInputDialog("Enter Name");
-              User user = userModel.adduser(name ,"1234" ,"1234" ,"Customer");
-                ticketModel.createUsTiEv(cntrl.selectedevent, t ,user );
-                try {
-                    String path = "/resourse/tickettemplate.png";
+                if(name != null ) {
+                    User user = userModel.adduser(name, "1234", "1234", "Customer");
+                    ticketModel.createUsTiEv(cntrl.selectedevent, t ,user );
+                    try {
+                        String path = "/resourse/tickettemplate.png";
 
-                    File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\tickettemplate.png");
-                    File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\ticket.jpg");
-                    addTixttoimage(name , cntrl.selectedevent.getName() , cntrl.selectedevent.getStartevent().toString() , cntrl.selectedevent.getLocation() , t.getBarcode(),t.getTicketprice(),t.getId(),t.getType() , "jpg" , input , output);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                        File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\tickettemplate.png");
+                        File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\ticket.jpg");
+
+                        Linear barcodes = new Linear();
+                        barcodes.setType(Linear.CODE128B);
+                        barcodes.setData(t.getBarcode());
+                        barcodes.setI(1);
+
+
+                      BufferedImage  image2 = barcodes.renderBarcode();
+
+                        addTixttoimage(image2 ,name , cntrl.selectedevent.getName() , cntrl.selectedevent.getStartevent().toString() , cntrl.selectedevent.getLocation() , t.getBarcode(),t.getTicketprice(),t.getId(),t.getType() , "jpg" , input , output);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
+               else {
+                    System.out.println("nothing selected ");
+                }
+
             });
         }
     }
 
-    private static void addTixttoimage(String text, String name , String when , String where , String barcode , int price , int ticketid,String tickettype ,String type, File source, File destination) throws IOException {
+
+
+    private static void addTixttoimage(BufferedImage image2,String text, String name , String when , String where , String barcode , int price , int ticketid,String tickettype ,String type, File source, File destination) throws IOException {
+
         BufferedImage image = ImageIO.read(source);
         int imagetype = "png".equalsIgnoreCase(type) ? BufferedImage.TYPE_INT_ARGB : BufferedImage.TYPE_INT_RGB;
 
-        BufferedImage bold = new BufferedImage(image.getWidth() , image.getHeight() , imagetype);
+        BufferedImage bold = new BufferedImage(image.getWidth(), image.getHeight(), imagetype);
 
         Graphics2D w = (Graphics2D) bold.getGraphics();
 
-        w.drawImage(image , 1 , 2 ,null);
-        AlphaComposite alpha = AlphaComposite.getInstance(AlphaComposite.SRC_OVER , 0.9f );
+        w.drawImage(image, 1, 2, null);
+        AlphaComposite alpha = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.9f);
         w.setComposite(alpha);
         w.setColor(Color.BLACK);
-        w.setFont(new Font(Font.SANS_SERIF , Font.BOLD , 15));
+        w.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
 
         FontMetrics fontMetrics = w.getFontMetrics();
-        Rectangle2D rect = fontMetrics.getStringBounds(text , w );
-        int centerX = (image.getWidth() - (int) rect.getWidth())/2 ;
-        int centerY = image.getHeight()/2 ;
+        Rectangle2D rect = fontMetrics.getStringBounds(text, w);
+        int centerX = (image.getWidth() - (int) rect.getWidth()) / 2;
+        int centerY = image.getHeight() / 2;
 
 
-        w.drawString(name , 477  , 59);
-        w.drawString(where , 525  , 100);
-        w.drawString(when , 518  , 75);
-        w.drawString(String.valueOf(price), 521  , 126);
-        w.drawString(barcode , 482  , 236);
-        w.drawString(tickettype , 476  , 185);
-        w.drawString(String.valueOf(ticketid), 552  , 149);
-        w.drawString(text , 482  , 210);
-
-        ImageIO.write(bold ,type , destination);
+        w.drawString(name, 477, 59);
+        w.drawString(where, 525, 100);
+        w.drawString(when, 518, 75);
+        w.drawString(String.valueOf(price), 521, 126);
+        w.drawString(barcode, 482, 236);
+        w.drawString(tickettype, 476, 185);
+        w.drawString(String.valueOf(ticketid), 552, 149);
+        w.drawString(text, 482, 210);
+        w.drawImage(image2, null, 11, 284);
+        ImageIO.write(bold, type, destination);
         w.dispose();
     }
 

@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&display=swap');
 
 .blue{
     -fx-background-color: #ff5252;
@@ -26,4 +26,10 @@
 }
 .changedBackgroundColor{
     -fx-background-color: #D3DEDC;
+}
+
+.eventnamefont{
+    -fx-font-family: 'League Gothic', sans-serif ;
+    -fx-font-size: 24;
+
 }
