@@ -2,6 +2,7 @@ package easv.GUI.Controller.create;
 
 import com.jfoenix.controls.JFXButton;
 import easv.GUI.Controller.Users.EventMangersController;
+import easv.GUI.Controller.Users.EventMangersController2;
 import easv.GUI.Model.EventModel;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -46,7 +47,7 @@ public class CreateeventController implements Initializable {
     public JFXButton backid;
     public JFXButton saveid;
     @FXML
-    private EventMangersController cntrl ;
+    private EventMangersController2 cntrl ;
     @FXML
     private EventModel eventModel ;
 
@@ -70,7 +71,7 @@ public class CreateeventController implements Initializable {
         eventModel.updatethelist();
     }
 
-    public void setController(EventMangersController eventMangersController) {
+    public void setController(EventMangersController2 eventMangersController) {
     this.cntrl = eventMangersController ;
 
     }

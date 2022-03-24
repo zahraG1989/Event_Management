@@ -161,7 +161,7 @@ public class EventMangersController implements Initializable {
     public void createeventbtn(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/create/createevent.fxml"));
         Parent root = loader.load();
-        loader.<CreateeventController>getController().setController(this);
+//        loader.<CreateeventController>getController().setController(this);
         Scene scene = createticketid.getScene();
         root.translateYProperty().set(scene.getHeight());
         stackid.getChildren().add(root);
@@ -178,7 +178,7 @@ public class EventMangersController implements Initializable {
     public void createticketbtn(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/create/createTicket.fxml"));
         Parent root = loader.load();
-        loader.<CreateTicketController>getController().setController(this);
+//        loader.<CreateTicketController>getController().setController(this);
         Scene scene = createticketid.getScene();
         root.translateYProperty().set(scene.getHeight());
         stackid.getChildren().add(root);

@@ -2,6 +2,7 @@ package easv.GUI.Controller.create;
 
 import com.jfoenix.controls.JFXButton;
 import easv.GUI.Controller.Users.EventMangersController;
+import easv.GUI.Controller.Users.EventMangersController2;
 import easv.GUI.Model.TicketModel;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -39,7 +40,7 @@ public class CreateTicketController implements Initializable {
     @FXML
     public TextArea infoid;
 
-    private EventMangersController cntrl ;
+    private EventMangersController2 cntrl ;
     private TicketModel ticketModel ;
 
     @Override
@@ -69,7 +70,7 @@ public class CreateTicketController implements Initializable {
 
     }
 
-    public void setController(EventMangersController eventMangersController) {
+    public void setController(EventMangersController2 eventMangersController) {
        this.cntrl = eventMangersController ;
 
     }

@@ -1,11 +1,9 @@
 package easv.GUI.Controller;
 
 import com.jfoenix.controls.JFXButton;
+//import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import easv.BE.Event;
-import easv.BE.Ticket;
 import easv.GUI.Model.EventModel;
-import easv.GUI.Model.TicketModel;
-import easv.GUI.Model.UserModel;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -15,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -30,14 +29,12 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable {
     @FXML
-    public TilePane tlepane;
+    public TilePane tilePane;
     @FXML
     public JFXButton signin;
     @FXML
@@ -80,9 +77,10 @@ public class MainWindowController implements Initializable {
          image = new Image(imagepath);
          view = new ImageView(image);
             vBox = new VBox();
+            vBox.setAlignment(Pos.BASELINE_CENTER);
             vBox.getChildren().add(view);
             vBox.getChildren().add(lbl);
-            tlepane.getChildren().add(vBox);
+            tilePane.getChildren().add(vBox);
             vBox.setOnMousePressed(event -> {
                 selectedevent = e ;
                 eventid = e.getId();

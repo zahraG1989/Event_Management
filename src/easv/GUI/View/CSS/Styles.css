@@ -24,3 +24,6 @@
     width: 200px;
     -fx-background-color: linear-gradient(to right, #50c923 0%, #2c7ee0 25%, #e50909 50%, #4d2f2f 75%);
 }
+.changedBackgroundColor{
+    -fx-background-color: #D3DEDC;
+}

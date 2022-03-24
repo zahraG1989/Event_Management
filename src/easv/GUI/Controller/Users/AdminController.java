@@ -2,6 +2,7 @@ package easv.GUI.Controller.Users;
 
 import com.jfoenix.controls.JFXButton;
 import easv.GUI.Controller.LoginController;
+import easv.GUI.Controller.create.CreateeventController;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -28,6 +29,8 @@ public class AdminController {
     public TableView eventcorditable;
     @FXML
     public TableView eventstable;
+
+    public JFXButton createUserid;
 
     public LoginController cntrl ;
 
@@ -69,9 +72,24 @@ public class AdminController {
 
     }
 
-    public void createUserbtn(ActionEvent actionEvent) {
-
+    public void createUserbtn(ActionEvent actionEvent) throws IOException {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/Users/adminpage.fxml"));
+        Parent root = loader.load();
+        //loader.<AdminController>getController().setController(this);
+        Scene scene = createUserid.getScene();
+        root.translateYProperty().set(scene.getHeight());
+        stackpne.getChildren().add(root);
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.setOnFinished(t -> {
+            stackpne.getChildren().remove(stackpne);
+        });
+        timeline.play();
     }
+
+
 
     public void setController(LoginController loginController) {
         this.cntrl = loginController;

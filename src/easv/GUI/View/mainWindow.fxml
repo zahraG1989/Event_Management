@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -19,14 +18,17 @@
          <children>
             <BorderPane fx:id="borderpne" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="724.0" prefWidth="934.0" stylesheets="/easv/GUI/View/CSS/Styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <center>
-                  <TilePane fx:id="tlepane" prefTileHeight="200.0" prefTileWidth="200.0" prefWidth="1014.0" style="-fx-background-color: #81d4fa;" BorderPane.alignment="CENTER">
+                  <TilePane fx:id="tilePane" prefTileHeight="200.0" prefTileWidth="200.0" prefWidth="1014.0" styleClass="changedBackgroundColor" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets />
                      </BorderPane.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
                   </TilePane>
                </center>
                <left>
-                  <VBox prefHeight="711.0" prefWidth="140.0" style="-fx-background-color: #5e35b1;" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="711.0" prefWidth="140.0" style="-fx-background-color: #92A9BD;" BorderPane.alignment="CENTER">
                      <children>
                         <Label prefHeight="51.0" prefWidth="142.0" style="-fx-background-color: #81d4fa;" textFill="#b21e1e">
                            <font>
@@ -39,60 +41,14 @@
                                  </image>
                               </ImageView>
                            </graphic></Label>
-                        <JFXButton fx:id="loginin" onAction="#login" prefHeight="74.0" prefWidth="147.0" style="-fx-background-color: #29b6f6;" text="Log in" textFill="#a14242">
+                        <JFXButton fx:id="loginin" onAction="#login" prefHeight="74.0" prefWidth="147.0" style="-fx-background-color: #92A9BD;" text="Log in" textFill="#570b36">
                            <font>
-                              <Font name="Broadway" size="22.0" />
+                              <Font name="Serif Bold" size="31.0" />
                            </font></JFXButton>
-                        <JFXButton fx:id="signin" onAction="#sign" prefHeight="64.0" prefWidth="147.0" style="-fx-background-color: #29b6f6;" text="sign up" textFill="#c62b2b">
+                        <JFXButton fx:id="exitid" onAction="#exitbtn" prefHeight="64.0" prefWidth="147.0" style="-fx-background-color: #92A9BD;" text="Exit" textFill="#570b36d9">
                            <font>
-                              <Font name="Broadway" size="22.0" />
-                           </font></JFXButton>
-                        <JFXButton fx:id="aboutusid" onAction="#aboutusbtn" prefHeight="64.0" prefWidth="147.0" style="-fx-background-color: #29b6f6;" text="About us" textFill="#c62b2b">
-                           <font>
-                              <Font name="Broadway" size="22.0" />
+                              <Font name="Serif Bold" size="31.0" />
                            </font>
-                        </JFXButton>
-                        <JFXButton fx:id="blogid" onAction="#blogbtn" prefHeight="64.0" prefWidth="147.0" style="-fx-background-color: #29b6f6;" text="Blog" textFill="#c62b2b">
-                           <font>
-                              <Font name="Broadway" size="22.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton fx:id="exitid" onAction="#exitbtn" prefHeight="64.0" prefWidth="147.0" style="-fx-background-color: #29b6f6;" text="Exit" textFill="#c62b2b">
-                           <font>
-                              <Font name="Broadway" size="22.0" />
-                           </font>
-                        </JFXButton>
-                        <JFXButton fx:id="signin21" onAction="#sign" prefHeight="64.0" prefWidth="147.0" style="-fx-background-color: #29b6f6;" text=" " textFill="#c62b2b">
-                           <font>
-                              <Font name="Broadway" size="22.0" />
-                           </font>
-                           <graphic>
-                              <FontAwesomeIconView fill="#2349d3" glyphName="FACEBOOK" size="32" wrappingWidth="30.571428298950195" />
-                           </graphic>
-                        </JFXButton>
-                        <JFXButton fx:id="signin22" onAction="#sign" prefHeight="64.0" prefWidth="147.0" style="-fx-background-color: #29b6f6;" text=" " textFill="#c62b2b">
-                           <font>
-                              <Font name="Broadway" size="22.0" />
-                           </font>
-                           <graphic>
-                              <FontAwesomeIconView fill="#bf2b2b" glyphName="HASHTAG" selectionFill="#f2f2f2" />
-                           </graphic>
-                        </JFXButton>
-                        <JFXButton fx:id="signin23" onAction="#sign" prefHeight="64.0" prefWidth="147.0" style="-fx-background-color: #29b6f6;" text=" " textFill="#c62b2b">
-                           <font>
-                              <Font name="Broadway" size="22.0" />
-                           </font>
-                           <graphic>
-                              <FontAwesomeIconView fill="#00ff0d" glyphName="WHATSAPP" />
-                           </graphic>
-                        </JFXButton>
-                        <JFXButton fx:id="signin24" onAction="#sign" prefHeight="64.0" prefWidth="147.0" style="-fx-background-color: #29b6f6;" text=" " textFill="#c62b2b">
-                           <font>
-                              <Font name="Broadway" size="22.0" />
-                           </font>
-                           <graphic>
-                              <FontAwesomeIconView fill="#ba18ff" glyphName="INSTAGRAM" />
-                           </graphic>
                         </JFXButton>
                      </children>
                   </VBox>
