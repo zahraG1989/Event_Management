@@ -37,10 +37,10 @@ public class testedmain {
          File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\tickettemplate.png");
          File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\images3.jpg");
 
-        addTixttoimage("" , "teaparty" , "2022-12-15" , "koldingvej13" , "156264",50,1 , "jpg" , input , output);
+        addTixttoimage("" , "teaparty" , "2022-12-15" , "koldingvej13" , "156264",50,1  , "jpg" , input , output);
     }
 
-    private static void addTixttoimage(String text, String name , String when , String where , String barcode , int price , int ticketid, String type, File source, File destination) throws IOException {
+    private static void addTixttoimage(String text, String name , String when , String where , String barcode , int price , int ticketid , String type, File source, File destination) throws IOException {
         BufferedImage image = ImageIO.read(source);
         int imagetype = "png".equalsIgnoreCase(type) ? BufferedImage.TYPE_INT_ARGB : BufferedImage.TYPE_INT_RGB;
 
@@ -60,13 +60,12 @@ public class testedmain {
         int centerY = image.getHeight()/2 ;
 
 
-        w.drawString(name , 477  , 51);
-        w.drawString(where , 525  , 95);
-        w.drawString(when , 518  , 69);
-        w.drawString(barcode , 4  , 51);
-        w.drawString(String.valueOf(price), 521  , 124);
-        w.drawString(barcode , 482  , 232);
-        w.drawString(type , 476  , 179);
+        w.drawString(name , 477  , 56);
+        w.drawString(where , 525  , 100);
+        w.drawString(when , 518  , 75);
+        w.drawString(String.valueOf(price), 521  , 126);
+        w.drawString(barcode , 482  , 236);
+        w.drawString(type , 476  , 185);
 
         ImageIO.write(bold ,type , destination);
         w.dispose();
