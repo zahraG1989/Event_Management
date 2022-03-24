@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<!--<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>-->
+
+<StackPane fx:id="stackid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="962.0" stylesheets="/easv/GUI/View/CSS/Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.Users.EventMangersController2">
+   <children>
+      <AnchorPane fx:id="ancorid" prefHeight="749.0" prefWidth="962.0" styleClass="changedBackgroundColor">
+         <children>
+            <TableView fx:id="tableviewevents" layoutX="326.0" layoutY="14.0" onMousePressed="#getUsersinSelectedEvent" prefHeight="354.0" prefWidth="630.0">
+               <columns>
+                  <TableColumn fx:id="eventname" prefWidth="183.0" text="name" />
+                  <TableColumn fx:id="eventloc" minWidth="6.0" prefWidth="168.0" text="location" />
+                  <TableColumn fx:id="usersineventalt" minWidth="0.0" prefWidth="66.0" text="C.alt" />
+                  <TableColumn fx:id="startevent" minWidth="0.0" prefWidth="89.0" text="start date" />
+                  <TableColumn fx:id="endevent" minWidth="0.0" prefWidth="90.0" text="end Date" />
+                  <TableColumn fx:id="eventticketalt" minWidth="0.0" prefWidth="33.0" text="T.alt" />
+               </columns>
+            </TableView>
+            <TableView fx:id="tableviewusers" layoutX="13.0" layoutY="13.0" prefHeight="694.0" prefWidth="308.0">
+               <columns>
+                  <TableColumn fx:id="usercheckbox" prefWidth="29.0" text="C1">
+<!--                     <graphic>-->
+<!--                        <FontAwesomeIconView glyphName="CHECK" />-->
+<!--                     </graphic>-->
+                  </TableColumn>
+                  <TableColumn fx:id="username" prefWidth="132.0" text="Name" />
+                  <TableColumn fx:id="userticket" prefWidth="146.0" text="Ticket" />
+               </columns>
+            </TableView>
+            <TableView fx:id="tableviewtickets" layoutX="326.0" layoutY="467.0" prefHeight="187.0" prefWidth="607.0">
+               <columns>
+                  <TableColumn fx:id="tickettype" prefWidth="90.0" text="type" />
+                  <TableColumn fx:id="ticketprice" prefWidth="66.0" text="ticketprice" />
+                  <TableColumn fx:id="ticketinfo" prefWidth="429.0" text="info" />
+               </columns>
+            </TableView>
+            <JFXButton fx:id="createeventid" layoutX="332.0" layoutY="375.0" onAction="#createeventbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #00e676;" text="Create Event" />
+            <JFXButton fx:id="createticketid" layoutX="332.0" layoutY="415.0" onAction="#createticketbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #00e676;" text="Create Ticket" />
+            <JFXButton fx:id="deleteeventid" layoutX="431.0" layoutY="375.0" onAction="#deleteeventbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #ff1744;" text="Delete Event" />
+            <JFXButton fx:id="deleteticketid" layoutX="431.0" layoutY="415.0" onAction="#deleteticketbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #ff1744;" text="Delete Ticket" />
+            <JFXButton fx:id="updateeventid" layoutX="533.0" layoutY="375.0" onAction="#updateeventbtn" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #2196f3;" text="Update Event" />
+            <JFXButton fx:id="updateticketid" layoutX="533.0" layoutY="415.0" onAction="#updateticketbtn" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #2196f3;" text="Update Ticket" />
+            <JFXButton fx:id="backid" layoutX="847.0" layoutY="701.0" onAction="#backbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #f6f6f5;" text="Exit" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

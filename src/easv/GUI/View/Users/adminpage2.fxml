@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="stackpne" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="722.0" prefWidth="926.0" stylesheets="/easv/GUI/View/CSS/Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.Users.AdminController2">
+   <children>
+      <AnchorPane prefHeight="749.0" prefWidth="643.0" styleClass="changedBackgroundColor">
+         <children>
+            <Label layoutX="35.0" layoutY="25.0" prefHeight="33.0" prefWidth="112.0" text="admin name here " />
+            <JFXButton fx:id="exitid" layoutX="850.0" layoutY="678.0" onAction="#exitbtn" prefHeight="33.0" prefWidth="63.0" text="Back" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="13.0" />
+            <TableView fx:id="customertable" layoutX="19.0" layoutY="151.0" prefHeight="484.0" prefWidth="523.0" AnchorPane.bottomAnchor="87.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="384.0" AnchorPane.topAnchor="151.0">
+              <columns>
+                  <TableColumn prefWidth="75.0" text="Id" />
+                <TableColumn prefWidth="135.0" text="Name" />
+                <TableColumn prefWidth="143.0" text="Email" />
+                  <TableColumn prefWidth="199.0" text="User Type" />
+              </columns>
+            </TableView>
+            <JFXButton buttonType="RAISED" layoutX="137.0" layoutY="688.0" onAction="#deleteUserbtn" text="Delete" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="137.0" />
+            <JFXButton layoutX="91.0" layoutY="689.0" onAction="#manageUserbtn" text="Edit" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="83.0" />
+            <JFXButton layoutX="26.0" layoutY="689.0" onAction="#createUserbtn" text="Create" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="24.0" />
+            <Label alignment="CENTER" layoutX="259.0" layoutY="41.0" prefHeight="35.0" prefWidth="132.0" text="Users" textAlignment="CENTER" AnchorPane.leftAnchor="259.0" AnchorPane.rightAnchor="258.0" AnchorPane.topAnchor="41.0">
+               <font>
+                  <Font name="Times New Roman Bold" size="31.0" />
+               </font></Label>
+            <AnchorPane layoutX="42.0" layoutY="115.0" prefHeight="200.0" prefWidth="822.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="115.0" />
+            <AnchorPane layoutX="547.0" layoutY="179.0" prefHeight="444.0" prefWidth="366.0">
+               <children>
+                  <Label layoutX="37.0" layoutY="28.0" text="Name" AnchorPane.leftAnchor="41.0" />
+                  <Label layoutX="41.0" layoutY="105.0" text="Email" AnchorPane.leftAnchor="41.0" />
+                  <Label layoutX="41.0" layoutY="184.0" text="Type" AnchorPane.leftAnchor="41.0" />
+                  <JFXButton layoutX="270.0" layoutY="329.0" text="Save" AnchorPane.bottomAnchor="90.0" AnchorPane.rightAnchor="55.0" />
+                  <JFXButton layoutX="200.0" layoutY="329.0" text="Cancel" AnchorPane.bottomAnchor="90.0" AnchorPane.rightAnchor="114.0" />
+                  <Label layoutX="41.0" layoutY="252.0" text="Password" AnchorPane.leftAnchor="41.0" />
+                  <TextField layoutX="105.0" layoutY="24.0" prefHeight="25.0" prefWidth="353.0" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="50.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField layoutX="105.0" layoutY="101.0" prefHeight="25.0" prefWidth="353.0" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="50.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField layoutX="105.0" layoutY="248.0" prefHeight="25.0" prefWidth="353.0" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="50.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </PasswordField>
+                  <ComboBox fx:id="userTypeCombo" layoutX="105.0" layoutY="180.0" prefHeight="25.0" prefWidth="353.0" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="50.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
