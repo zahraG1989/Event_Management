@@ -67,7 +67,20 @@ public class CreateTicketController implements Initializable {
         timeline.play();
     }
 
-    public void exitbtn(ActionEvent actionEvent) {
+    public void exitbtn(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/mainWindow.fxml"));
+        Parent root = loader.load();
+        Scene scene = exitid.getScene();
+        root.translateYProperty().set(scene.getHeight());
+        stackid.getChildren().add(root);
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.setOnFinished(t -> {
+            stackid.getChildren().remove(anchorid);
+        });
+        timeline.play();
 
     }
 

@@ -104,7 +104,7 @@ public class EventInfoController implements Initializable {
                     User user = userModel.adduser(name, "1234", "1234", "Customer");
                     ticketModel.createUsTiEv(cntrl.selectedevent, t ,user );
                     try {
-                        File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\tickettemplate.png");
+                        File input = new File("C:\\Movies\\Ticket 627_643 px (1).png");
                         File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\"+user.getUsername()+".jpg");
 
                         Linear barcodes = new Linear();

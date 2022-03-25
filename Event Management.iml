@@ -18,5 +18,9 @@
     <orderEntry type="library" name="qrgen-1.0" level="project" />
     <orderEntry type="library" name="zxing-core-1.7" level="project" />
     <orderEntry type="library" name="zxing-j2se-1.7" level="project" />
+    <orderEntry type="library" name="barcode1" level="project" />
+    <orderEntry type="library" name="zxing-core-1.71" level="project" />
+    <orderEntry type="library" name="zxing-j2se-1.71" level="project" />
+    <orderEntry type="library" name="qrgen-1.01" level="project" />
   </component>
 </module>

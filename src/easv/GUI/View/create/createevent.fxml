@@ -7,26 +7,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane fx:id="stackid" prefHeight="722.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.create.CreateeventController">
+<StackPane fx:id="stackid" prefHeight="722.0" prefWidth="926.0" stylesheets="/easv/GUI/View/CSS/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.create.CreateeventController">
    <children>
-      <AnchorPane fx:id="anchor" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;">
+      <AnchorPane fx:id="anchor" prefHeight="200.0" prefWidth="200.0" styleClass="changedBackgroundColor">
          <children>
-            <TextField fx:id="eventnameid" layoutX="113.0" layoutY="57.0" promptText="the event name " />
-            <TextField fx:id="eventlocid" layoutX="113.0" layoutY="101.0" promptText="event location" />
-            <TextField fx:id="startdateid" layoutX="113.0" layoutY="145.0" promptText="YYYY/MM/DD" />
-            <TextField fx:id="enddateid" layoutX="113.0" layoutY="191.0" promptText="YYYY/MM/DD" />
-            <TextField layoutX="113.0" layoutY="236.0" />
-            <TextArea fx:id="eventinfoid" layoutX="113.0" layoutY="299.0" prefHeight="200.0" prefWidth="200.0" promptText="add information about the event , like what is it about , " />
-            <TextArea fx:id="locationguideid" layoutX="113.0" layoutY="508.0" prefHeight="200.0" prefWidth="200.0" promptText="tell the user how to get to the event " />
-            <Label layoutX="25.0" layoutY="61.0" prefHeight="17.0" prefWidth="51.0" text="name" textFill="WHITE" />
-            <Label layoutX="19.0" layoutY="105.0" prefHeight="17.0" prefWidth="57.0" text="location" textFill="WHITE" />
-            <Label layoutX="19.0" layoutY="149.0" prefHeight="17.0" prefWidth="65.0" text="startDate" textFill="WHITE" />
-            <Label layoutX="25.0" layoutY="195.0" prefHeight="17.0" prefWidth="57.0" text="endEvent" textFill="WHITE" />
-            <Label layoutX="25.0" layoutY="240.0" prefHeight="17.0" prefWidth="51.0" textFill="WHITE" />
-            <Label layoutX="20.0" layoutY="299.0" prefHeight="17.0" prefWidth="82.0" text="info" textFill="WHITE" />
-            <Label layoutX="13.0" layoutY="508.0" prefHeight="17.0" prefWidth="89.0" text="location guide" textFill="WHITE" />
-            <JFXButton fx:id="backid" buttonType="RAISED" layoutX="795.0" layoutY="662.0" onAction="#back" prefHeight="25.0" prefWidth="82.0" ripplerFill="WHITE" text="back" textFill="#f5f5f5" />
-            <JFXButton fx:id="saveid" buttonType="RAISED" layoutX="708.0" layoutY="662.0" onAction="#save" prefHeight="25.0" prefWidth="71.0" ripplerFill="WHITE" text="Save" textFill="WHITE" />
+            <TextField fx:id="eventnameid" layoutX="113.0" layoutY="57.0" prefHeight="24.0" prefWidth="261.0" promptText="the event name " AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="552.0" />
+            <TextField fx:id="eventlocid" layoutX="113.0" layoutY="101.0" prefHeight="24.0" prefWidth="261.0" promptText="event location" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="552.0" />
+            <TextField fx:id="startdateid" layoutX="113.0" layoutY="145.0" prefHeight="24.0" prefWidth="261.0" promptText="YYYY/MM/DD" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="552.0" />
+            <TextField fx:id="enddateid" layoutX="113.0" layoutY="191.0" prefHeight="24.0" prefWidth="261.0" promptText="YYYY/MM/DD" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="552.0" />
+            <TextField layoutX="113.0" layoutY="236.0" prefHeight="24.0" prefWidth="261.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="552.0" />
+            <TextArea fx:id="eventinfoid" layoutX="113.0" layoutY="299.0" prefHeight="200.0" prefWidth="261.0" promptText="add information about the event , like what is it about , " AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="552.0" />
+            <TextArea fx:id="locationguideid" layoutX="113.0" layoutY="508.0" prefHeight="200.0" prefWidth="261.0" promptText="tell the user how to get to the event " AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="552.0" />
+            <Label layoutX="25.0" layoutY="61.0" prefHeight="17.0" prefWidth="51.0" text="Name"  AnchorPane.leftAnchor="19.0" />
+            <Label layoutX="19.0" layoutY="105.0" prefHeight="17.0" prefWidth="57.0" text="Location"  AnchorPane.leftAnchor="19.0" />
+            <Label layoutX="19.0" layoutY="149.0" prefHeight="17.0" prefWidth="82.0" text="Start Date"  AnchorPane.leftAnchor="19.0" />
+            <Label layoutX="13.0" layoutY="195.0" prefHeight="17.0" prefWidth="65.0" text="End date"  AnchorPane.leftAnchor="19.0" />
+            <Label layoutX="25.0" layoutY="240.0" prefHeight="17.0" prefWidth="51.0"  />
+            <Label layoutX="20.0" layoutY="299.0" prefHeight="17.0" prefWidth="82.0" text="Info"  AnchorPane.leftAnchor="19.0" />
+            <Label layoutX="13.0" layoutY="508.0" prefHeight="25.0" prefWidth="100.0" text="Location guide"  AnchorPane.leftAnchor="19.0" />
+            <JFXButton fx:id="backid" buttonType="RAISED" layoutX="795.0" layoutY="662.0" onAction="#back" prefHeight="25.0" prefWidth="82.0" ripplerFill="WHITE" text="back" AnchorPane.bottomAnchor="35.0" AnchorPane.rightAnchor="49.0" />
+            <JFXButton fx:id="saveid" buttonType="RAISED" layoutX="708.0" layoutY="662.0" onAction="#save" prefHeight="25.0" prefWidth="71.0" ripplerFill="WHITE" text="Save" AnchorPane.bottomAnchor="35.0" AnchorPane.rightAnchor="147.0" />
          </children>
       </AnchorPane>
    </children>

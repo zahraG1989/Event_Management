@@ -6,32 +6,26 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.text.Font?>
 
-<StackPane fx:id="stackid" prefHeight="722.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.create.CreateTicketController">
-   <children>
-      <AnchorPane fx:id="anchorid" prefHeight="722.0" prefWidth="926.0" style="-fx-background-color: brown;">
-         <children>
-            <JFXButton fx:id="saveid" layoutX="30.0" layoutY="666.0" onAction="#savebtn" text="Save" textFill="WHITE" />
-            <JFXButton fx:id="exitid" layoutX="834.0" layoutY="666.0" onAction="#exitbtn" text="exit" textFill="WHITE" />
-            <Label layoutX="350.0" layoutY="174.0" prefHeight="27.0" prefWidth="51.0" text="type" textFill="WHITE">
-               <font>
-                  <Font name="Bernard MT Condensed" size="21.0" />
-               </font>
-            </Label>
-            <Label layoutX="350.0" layoutY="270.0" prefHeight="27.0" prefWidth="51.0" text="price" textFill="WHITE">
-               <font>
-                  <Font name="Bernard MT Condensed" size="21.0" />
-               </font>
-            </Label>
-            <Label layoutX="350.0" layoutY="387.0" prefHeight="27.0" prefWidth="51.0" text="info" textFill="WHITE">
-               <font>
-                  <Font name="Bernard MT Condensed" size="21.0" />
-               </font>
-            </Label>
-            <TextField fx:id="tickettypeid" layoutX="301.0" layoutY="218.0" promptText="vip , standard ,,," />
-            <TextField fx:id="ticketpriceid" layoutX="301.0" layoutY="320.0" promptText="DKK" />
-            <TextArea fx:id="infoid" layoutX="276.0" layoutY="428.0" prefHeight="200.0" prefWidth="200.0" promptText="what the user can access with this ticket type" />
-         </children></AnchorPane>
-   </children>
+<StackPane fx:id="stackid" prefHeight="722.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" stylesheets="/easv/GUI/View/CSS/Styles.css" fx:controller="easv.GUI.Controller.create.CreateTicketController">
+    <children>
+        <AnchorPane fx:id="anchorid" prefHeight="722.0" prefWidth="926.0" styleClass="changedBackgroundColor">
+            <children>
+                <JFXButton fx:id="saveid" layoutX="771.0" layoutY="666.0" onAction="#savebtn" text="Save" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="105.0" />
+                <JFXButton fx:id="exitid" layoutX="834.0" layoutY="666.0" onAction="#exitbtn" text="Exit" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="49.0" />
+                <Label layoutX="64.0" layoutY="174.0" prefHeight="27.0" prefWidth="81.0" text="Type" AnchorPane.leftAnchor="64.0">
+
+                </Label>
+                <Label layoutX="52.0" layoutY="270.0" prefHeight="27.0" prefWidth="98.0" text="Price" AnchorPane.leftAnchor="64.0">
+
+                </Label>
+                <Label layoutX="64.0" layoutY="387.0" prefHeight="27.0" prefWidth="51.0" text="Info" AnchorPane.leftAnchor="64.0">
+
+                </Label>
+                <TextField fx:id="tickettypeid" layoutX="191.0" layoutY="189.0" prefHeight="24.0" prefWidth="392.0" promptText="vip , standard ,,," AnchorPane.leftAnchor="162.0" AnchorPane.rightAnchor="372.0" AnchorPane.topAnchor="189.0" />
+                <TextField fx:id="ticketpriceid" layoutX="191.0" layoutY="258.0" prefHeight="24.0" prefWidth="392.0" promptText="DKK" AnchorPane.leftAnchor="162.0" AnchorPane.rightAnchor="372.0" AnchorPane.topAnchor="258.0" />
+                <TextArea fx:id="infoid" layoutX="162.0" layoutY="387.0" prefHeight="200.0" prefWidth="392.0" promptText="what the user can access with this ticket type" AnchorPane.bottomAnchor="135.0" AnchorPane.leftAnchor="162.0" AnchorPane.rightAnchor="372.0" />
+            </children>
+        </AnchorPane>
+    </children>
 </StackPane>

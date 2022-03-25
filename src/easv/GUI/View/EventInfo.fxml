@@ -2,32 +2,37 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="stackpaneid" prefHeight="722.0" prefWidth="926.0" styleClass="logindiv" stylesheets="/easv/GUI/View/CSS/Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.EventInfoController">
+<StackPane fx:id="stackpaneid" prefHeight="722.0" prefWidth="926.0" styleClass="honey" stylesheets="/easv/GUI/View/CSS/Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.EventInfoController">
    <children>
-      <AnchorPane fx:id="anchorid" prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane fx:id="anchorid" prefHeight="200.0" prefWidth="200.0" styleClass="changedBackgroundColor">
          <children>
-            <ImageView fx:id="imageid" fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="eventnameid" layoutX="229.0" layoutY="24.0" prefHeight="25.0" prefWidth="438.0" styleClass="eventnamefont" text="event name" textFill="#fffefe" />
-            <Label fx:id="infoid" layoutX="229.0" layoutY="63.0" prefHeight="163.0" prefWidth="575.0" text="event enfo" textFill="WHITE">
+            <ImageView fx:id="imageid" fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+            <Label fx:id="eventnameid" layoutX="229.0" layoutY="24.0" prefHeight="25.0" prefWidth="575.0" text="event name" AnchorPane.leftAnchor="229.0" AnchorPane.topAnchor="24.0" />
+            <Label fx:id="infoid" layoutX="229.0" layoutY="52.0" prefHeight="37.0" prefWidth="575.0" text="Event Info" AnchorPane.leftAnchor="229.0" AnchorPane.topAnchor="52.0" />
+            <Label fx:id="participantsid" alignment="CENTER" layoutX="374.0" layoutY="200.0" prefHeight="30.0" prefWidth="160.0" text="Participants " textAlignment="CENTER" AnchorPane.leftAnchor="374.0" AnchorPane.rightAnchor="392.0" AnchorPane.topAnchor="200.0">
                <font>
-                  <Font name="Calibri Light Italic" size="24.0" />
+                  <Font size="24.0" />
                </font></Label>
-            <Label fx:id="locationid" layoutX="229.0" layoutY="243.0" prefHeight="17.0" prefWidth="320.0" text="Location" textFill="WHITE">
-               <font>
-                  <Font name="Arial Italic" size="15.0" />
-               </font></Label>
-            <Label fx:id="locguideid" layoutX="191.0" layoutY="288.0" prefHeight="31.0" prefWidth="705.0" text="locationguidence" textFill="#fffefe">
-               <font>
-                  <Font name="Bell MT" size="16.0" />
-               </font></Label>
+            <Label fx:id="locationid" layoutX="229.0" layoutY="89.0" prefHeight="25.0" prefWidth="575.0" text="Location" AnchorPane.leftAnchor="229.0" AnchorPane.topAnchor="89.0" />
+            <Label fx:id="locguideid" layoutX="229.0" layoutY="122.0" prefHeight="31.0" prefWidth="575.0" text="Location guidence" AnchorPane.leftAnchor="229.0" AnchorPane.topAnchor="126.0" />
             <TilePane fx:id="tilepaneid" layoutX="14.0" layoutY="446.0" prefHeight="200.0" prefWidth="879.0" />
-            <JFXButton fx:id="backid" layoutX="804.0" layoutY="658.0" onAction="#backbtn" prefHeight="37.0" prefWidth="89.0" text="back" />
+            <JFXButton fx:id="backid" layoutX="825.0" layoutY="670.0" onAction="#backbtn" prefHeight="37.0" prefWidth="89.0" text="back" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="12.0" />
+            <TableView layoutX="13.0" layoutY="238.0" prefHeight="427.0" prefWidth="903.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="238.0">
+              <columns>
+                <TableColumn prefWidth="198.0" text="Name" />
+                <TableColumn prefWidth="266.0" text="Email" />
+                  <TableColumn prefWidth="255.0" text="Ticket type" />
+                  <TableColumn prefWidth="183.0" text="Ticket Number" />
+              </columns>
+            </TableView>
          </children>
       </AnchorPane>
    </children>

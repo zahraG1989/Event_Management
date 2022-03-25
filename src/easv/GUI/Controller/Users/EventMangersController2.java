@@ -201,7 +201,20 @@ public class EventMangersController2 implements Initializable {
     public void updateticketbtn(ActionEvent actionEvent) {
     }
 
-    public void backbtn(ActionEvent actionEvent) {
+    public void backbtn(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/mainWindow.fxml"));
+        Parent root = loader.load();
+        Scene scene = backid.getScene();
+        root.translateYProperty().set(scene.getHeight());
+        stackid.getChildren().add(root);
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.setOnFinished(t -> {
+            stackid.getChildren().remove(ancorid);
+        });
+        timeline.play();
     }
 
     public void setController(LoginController loginController) {
