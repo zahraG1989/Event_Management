@@ -27,7 +27,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -83,6 +85,7 @@ public class EventMangersController implements Initializable {
     public JFXButton updateeventid;
     public JFXButton updateticketid;
     public JFXButton backid;
+    public TextField filter;
 
     private LoginController cntrl ;
 
@@ -103,8 +106,6 @@ public class EventMangersController implements Initializable {
         getuserinevent();
         displayTicketsInsideEvent();
 
-
-
     }
 
     public void getUsersinSelectedEvent(MouseEvent mouseEvent) {
@@ -116,8 +117,26 @@ public class EventMangersController implements Initializable {
             selectedeventid = tableviewevents.getSelectionModel().getSelectedItem().getId();
              selectedevent = tableviewevents.getSelectionModel().getSelectedItem();
             System.out.println(selectedeventid);
+            createeventid.setText("Modify");
         }
 
+    }
+
+    public void filteruser(KeyEvent keyEvent) {
+        if(filter.getText() == null || filter.getText().length() <= 0 ){
+            System.out.println(" the filter is empty ");
+            tableviewusers.setItems(getAllusers);
+        }
+        else {
+            System.out.println("something is added ");
+            ObservableList<User> found ;
+
+            found = userModel.searchforuser( getAllusers, filter.getText());
+
+            if(found != null){
+                tableviewusers.setItems(found);
+            }
+        }
     }
 
 
@@ -161,7 +180,7 @@ public class EventMangersController implements Initializable {
     public void createeventbtn(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/create/createevent.fxml"));
         Parent root = loader.load();
-//        loader.<CreateeventController>getController().setController(this);
+        loader.<CreateeventController>getController().setController(this);
         Scene scene = createticketid.getScene();
         root.translateYProperty().set(scene.getHeight());
         stackid.getChildren().add(root);
@@ -178,7 +197,7 @@ public class EventMangersController implements Initializable {
     public void createticketbtn(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/create/createTicket.fxml"));
         Parent root = loader.load();
-//        loader.<CreateTicketController>getController().setController(this);
+        loader.<CreateTicketController>getController().setController(this);
         Scene scene = createticketid.getScene();
         root.translateYProperty().set(scene.getHeight());
         stackid.getChildren().add(root);
@@ -193,23 +212,79 @@ public class EventMangersController implements Initializable {
     }
 
     public void deleteeventbtn(ActionEvent actionEvent) {
+        eventModel.deleteEvent(tableviewevents.getSelectionModel().getSelectedItem() ,tableviewevents.getSelectionModel().getSelectedIndex());
+        ticketModel.updatethelist();
+        tableviewevents.refresh();
     }
 
     public void deleteticketbtn(ActionEvent actionEvent) {
+        ticketModel.deleteTicket(tableviewtickets.getSelectionModel().getSelectedItem() ,tableviewtickets.getSelectionModel().getSelectedIndex());
+        ticketModel.updatethelist();
+        tableviewtickets.refresh();
     }
 
-    public void updateeventbtn(ActionEvent actionEvent) {
+    public void updateeventbtn(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/create/createevent.fxml"));
+        Parent root = loader.load();
+        loader.<CreateeventController>getController().setController(this);
+        Scene scene = createticketid.getScene();
+        root.translateYProperty().set(scene.getHeight());
+        stackid.getChildren().add(root);
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.setOnFinished(t -> {
+            stackid.getChildren().remove(ancorid);
+        });
+        timeline.play();
     }
 
-    public void updateticketbtn(ActionEvent actionEvent) {
+    public void updateticketbtn(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/create/createTicket.fxml"));
+        Parent root = loader.load();
+        loader.<CreateeventController>getController().setController(this);
+        Scene scene = createticketid.getScene();
+        root.translateYProperty().set(scene.getHeight());
+        stackid.getChildren().add(root);
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.setOnFinished(t -> {
+            stackid.getChildren().remove(ancorid);
+        });
+        timeline.play();
     }
 
-    public void backbtn(ActionEvent actionEvent) {
+    public void backbtn(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/mainWindow.fxml"));
+        Parent root = loader.load();
+        Scene scene = createticketid.getScene();
+        root.translateYProperty().set(scene.getHeight());
+        stackid.getChildren().add(root);
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.setOnFinished(t -> {
+            stackid.getChildren().remove(ancorid);
+        });
+        timeline.play();
     }
 
     public void setController(LoginController loginController) {
         this.cntrl = loginController ;
     }
 
+
+    public void anchorouse(MouseEvent mouseEvent) {
+        createeventid.setText("Create");
+        createticketid.setText("Create");
+    }
+
+    public void ticketmouse(MouseEvent mouseEvent) {
+        createticketid.setText("Modify");
+    }
 
 }

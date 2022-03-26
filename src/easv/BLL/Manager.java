@@ -125,4 +125,9 @@ public class Manager implements LogicFecade{
     public User verifyUsers(String username, String password) {
         return daluser.verifyUsers(username, password);
     }
+
+    @Override
+    public List<User> searchforUser(String quury) {
+        return daluser.searchforUser(quury);
+    }
 }

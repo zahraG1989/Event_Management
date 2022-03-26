@@ -8,6 +8,8 @@ import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.List;
+
 public class UserModel {
 
     private static final  UserModel usersingleton = new UserModel();
@@ -20,7 +22,6 @@ public class UserModel {
     }
 
     public static UserModel getInstance(){
-
         if(usersingleton == null){
             return new UserModel();
         }
@@ -32,20 +33,22 @@ public class UserModel {
     }
 
     public ObservableList<User> getAllUsers(){
+        users = FXCollections.observableArrayList();
+        users.addAll(logicFecade.getAllUsers());
+        return users;
+    }
+
+    public ObservableList<User> getAlleventcoordinatoers(){
 
         users = FXCollections.observableArrayList();
-
-        users.addAll(logicFecade.getAllUsers());
+        users.addAll(logicFecade.getAllEventCoordinatoer());
 
         return users;
     }
 
     public ObservableList<User> getuserinevent(int id){
-
         users = FXCollections.observableArrayList();
-
         users.addAll(logicFecade.getusersinEvent(id));
-
         return users;
     }
 
@@ -56,8 +59,14 @@ public class UserModel {
     public User adduser(String username, String password, String email, String usertype){
         User u = logicFecade.adduser(username ,password ,email , usertype);
         users.add(u);
-
         return u ;
+    }
+
+    public ObservableList<User> searchforuser(ObservableList<User> allusers,String qury){
+      allusers = FXCollections.observableArrayList();
+      allusers.addAll(logicFecade.searchforUser(qury));
+
+      return allusers ;
     }
 
     public void deleteUser(User user , int item){
@@ -68,11 +77,9 @@ public class UserModel {
 
     public void updatethelist() {
         users.setAll(logicFecade.getAllUsers());
-
     }
 
     public void updateUser (User user , int index , String username, String password, String email, String usertype){
-
         logicFecade.updateUser(user ,username,password , email ,usertype);
         users.set(index , user);
         updatethelist();

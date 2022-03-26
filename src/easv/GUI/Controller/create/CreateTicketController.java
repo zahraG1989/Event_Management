@@ -2,7 +2,6 @@ package easv.GUI.Controller.create;
 
 import com.jfoenix.controls.JFXButton;
 import easv.GUI.Controller.Users.EventMangersController;
-import easv.GUI.Controller.Users.EventMangersController2;
 import easv.GUI.Model.TicketModel;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -41,7 +40,7 @@ public class CreateTicketController implements Initializable {
     @FXML
     public TextArea infoid;
 
-    private EventMangersController2 cntrl ;
+    private EventMangersController cntrl ;
     private TicketModel ticketModel ;
 
     @Override
@@ -51,7 +50,19 @@ public class CreateTicketController implements Initializable {
     }
 
     public void savebtn(ActionEvent actionEvent) throws IOException {
-        createTicekt();
+        updateticket();
+       /*
+        if(tickettypeid.getText().length() == 0) {
+           createTicekt();
+        }else{
+            updateticket();
+        }
+
+        */
+        switchsence();
+    }
+
+    public void switchsence() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/Users/EventMangers.fxml"));
         Parent root = loader.load();
         Scene scene = exitid.getScene();
@@ -84,9 +95,11 @@ public class CreateTicketController implements Initializable {
 
     }
 
-    public void setController(EventMangersController2 eventMangersController) {
+    public void setController(EventMangersController eventMangersController) {
        this.cntrl = eventMangersController ;
-
+        if(cntrl.createticketid.getText().equals("Modify")){
+            updateticketnf();
+        }
     }
 
     public void createTicekt(){
@@ -104,5 +117,19 @@ public class CreateTicketController implements Initializable {
         ticketModel.createTicket(cntrl.selectedevent ,cntrl.selectedeventid , type , price ,sbd , cntrl.selectedevent.getEndevent() , info  );
     }
 
+    public void updateticketnf(){
+        String price = String.valueOf(cntrl.tableviewtickets.getSelectionModel().getSelectedItem().getTicketprice());
+        tickettypeid.setText(cntrl.tableviewtickets.getSelectionModel().getSelectedItem().getType());
+        ticketpriceid.setText(price);
+        infoid.setText(cntrl.tableviewtickets.getSelectionModel().getSelectedItem().getInfo());
 
+    }
+
+    public void updateticket(){
+        System.out.println(" updateticket()");
+        int price = Integer.parseInt(ticketpriceid.getText());
+        String info = infoid.getText();
+        ticketModel.updateTicket(cntrl.tableviewtickets.getSelectionModel().getSelectedItem() , cntrl.tableviewtickets.getSelectionModel().getSelectedIndex() ,
+                tickettypeid.getText() ,price ,info);
+    }
 }

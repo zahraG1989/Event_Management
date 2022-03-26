@@ -2,7 +2,6 @@ package easv.GUI.Controller.create;
 
 import com.jfoenix.controls.JFXButton;
 import easv.GUI.Controller.Users.EventMangersController;
-import easv.GUI.Controller.Users.EventMangersController2;
 import easv.GUI.Model.EventModel;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -18,7 +17,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -50,8 +48,8 @@ public class CreateeventController implements Initializable {
     @FXML
     public JFXButton backid;
     public JFXButton saveid;
-    @FXML
-    private EventMangersController2 cntrl ;
+
+    private EventMangersController cntrl ;
     @FXML
     private EventModel eventModel ;
 
@@ -62,32 +60,57 @@ public class CreateeventController implements Initializable {
     }
 
     public void save(ActionEvent actionEvent) throws ParseException {
-        java.util.Date Ust = new Date();
-        java.sql.Date date = new java.sql.Date(Ust.getTime());
+        if(eventnameid.getText().length() == 0) {
+            createEvent();
+        }else{
+            updateevent();
+        }
+
+    }
+
+    private void updateevent() throws ParseException {
+        String name = eventnameid.getText();
+        String locations = eventlocid.getText();
+        String notes = eventinfoid.getText();
+        String locationGuidance = locationguideid.getText();
+        String imagepath = "/resourse/icons8_java_64px.png";
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                // 2022-03-24 20:59
         Date date1 = dateFormat.parse(startdateid.getText());
         Date date2 = dateFormat.parse(enddateid.getText());
         long time1 = date1.getTime();
         long time2 = date2.getTime();
         Timestamp stamp1 = new Timestamp(time1);
         Timestamp stamp2 = new Timestamp(time2);
-        // stamp1 will be the start event
-        // stamp2 will be the end event
 
+        eventModel.updateEvent(cntrl.selectedevent , cntrl.tableviewevents.getSelectionModel().getSelectedIndex() ,name ,locations ,notes ,0 ,stamp1 ,stamp2 ,locationGuidance ,imagepath);
+    }
+
+
+    public void createEvent() throws ParseException {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date date1 = dateFormat.parse(startdateid.getText());
+        Date date2 = dateFormat.parse(enddateid.getText());
+        long time1 = date1.getTime();
+        long time2 = date2.getTime();
+        Timestamp stamp1 = new Timestamp(time1);
+        Timestamp stamp2 = new Timestamp(time2);
         String name = eventnameid.getText();
         String locations = eventlocid.getText();
         String notes = eventinfoid.getText();
         String locationGuidance = locationguideid.getText();
-        String imagepath = "/resourse/icons8_java_64px.png" ;
+        String imagepath = "/resourse/icons8_java_64px.png";
         eventModel.createEvent(name , locations ,notes ,0 ,stamp1 , stamp2 , locationGuidance , imagepath);
         eventModel.updatethelist();
     }
 
-    public void setController(EventMangersController2 eventMangersController) {
-    this.cntrl = eventMangersController ;
-
-    }
+    public void updataevent(){
+        eventnameid.setText(cntrl.selectedevent.getName());
+        eventlocid.setText(cntrl.selectedevent.getLocation());
+        startdateid.setText(cntrl.selectedevent.getStartevent().toString());
+        enddateid.setText(cntrl.selectedevent.getEndevent().toString());
+        eventinfoid.setText(cntrl.selectedevent.getNotes());
+        locationguideid.setText(cntrl.selectedevent.getLocationGuidance());
+   }
 
     public void back(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/Users/EventMangers.fxml"));
@@ -106,4 +129,10 @@ public class CreateeventController implements Initializable {
     }
 
 
+    public void setController(EventMangersController eventMangersController) {
+        this.cntrl = eventMangersController;
+        if(cntrl.createeventid.getText().equals("Modify")){
+            updataevent();
+        }
+    }
 }

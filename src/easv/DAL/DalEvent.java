@@ -2,15 +2,9 @@ package easv.DAL;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import easv.BE.Event;
-import easv.BE.Ticket;
-import easv.BE.User;
 import easv.DAL.DataAccess.DataAccess;
-import javafx.scene.image.Image;
-
-
 import java.sql.*;
 import java.util.ArrayList;
-
 import java.util.List;
 
 public class DalEvent implements DaoEvent{
@@ -31,7 +25,6 @@ public class DalEvent implements DaoEvent{
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while(rs.next()){
-
                 String name = rs.getString("name");
                 String location = rs.getString("location");
                 String notes = rs.getString("notes");
@@ -41,7 +34,6 @@ public class DalEvent implements DaoEvent{
                 String locatioguide = rs.getString("LocationGuidance");
                 int id = rs.getInt("id");
                 String imagepath = rs.getString("images");
-
                 Event event = new Event(id ,name ,location , notes , participants , startevent , endevent, locatioguide , imagepath );
                 events.add(event);
             }
@@ -57,7 +49,6 @@ public class DalEvent implements DaoEvent{
 
     @Override
     public Event createEvent(String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance , String imagepath) {
-
         try (Connection con = dataAccess.getConnection()) {
             String sql = "INSERT INTO Event(name , location, notes , participants , startevent , endevent , LocationGuidance , images )" +
                     "VALUES  (?,?,?,?,?, ?,?,?)";
@@ -82,16 +73,13 @@ public class DalEvent implements DaoEvent{
     @Override
     public int newestid() {
         int newid = -1;
-
         try (Connection con = dataAccess.getConnection()) {
             String sql = "SELECT TOP(1) * FROM Event ORDER by id desc";
             PreparedStatement prs = con.prepareStatement(sql);
             ResultSet rs = prs.executeQuery();
             while (rs.next()) {
-
                 newid = rs.getInt("id");
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -102,7 +90,6 @@ public class DalEvent implements DaoEvent{
     public void updateEvent(Event event, String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance , String image) {
         try(Connection con = dataAccess.getConnection()){
             String sql = "UPDATE Event SET  name = ? , location = ? , notes = ?  , participants = ? ,startevent = ? ,endevent = ? ,LocationGuidance = ? , images = ?  WHERE id = ? ";
-
             PreparedStatement prs = con.prepareStatement(sql);
             prs.setString(1 , name);
             prs.setString(2 , location);
@@ -114,7 +101,6 @@ public class DalEvent implements DaoEvent{
             prs.setString(8 , image);
             prs.setInt(9 , event.getId());
             prs.executeUpdate();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -124,9 +110,7 @@ public class DalEvent implements DaoEvent{
     @Override
     public void deleteEvent(Event event) {
         try(Connection con = dataAccess.getConnection()) {
-
             String sql = "DELETE FROM Event WHERE id = ?  " ;
-
             PreparedStatement prs = con.prepareStatement(sql);
             prs.setInt(1 , event.getId());
             prs.executeUpdate();

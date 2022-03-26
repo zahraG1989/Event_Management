@@ -2,8 +2,6 @@ package easv.GUI.Controller;
 
 import com.jfoenix.controls.JFXButton;
 import easv.BE.User;
-import easv.GUI.Controller.Users.AdminController;
-import easv.GUI.Controller.Users.AdminController2;
 import easv.GUI.Controller.Users.CustomerController;
 import easv.GUI.Controller.Users.EventMangersController;
 import easv.GUI.Model.UserModel;
@@ -11,15 +9,12 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -67,7 +62,7 @@ public class LoginController implements Initializable {
                     logintouser();
 
                 }else if ( user.getUserType().equals("Admin")){
-                    logintoAdmin();
+                   // logintoAdmin();
 
                 }else if ( user.getUserType().equals("EventCoordinator")){
                     logintoEventCoordinatoer();
@@ -115,7 +110,7 @@ public class LoginController implements Initializable {
         });
         timeline.play();
     }
-
+/*
     public void logintoAdmin() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/Users/adminpage2.fxml"));
         Parent root = loader.load();
@@ -132,6 +127,8 @@ public class LoginController implements Initializable {
         });
         timeline.play();
     }
+
+ */
 
     public void logintoEventCoordinatoer() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/Users/EventMangers.fxml"));

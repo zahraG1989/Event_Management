@@ -188,4 +188,38 @@ public class DalUser implements DaoUser {
         }
         return user;
     }
+
+    @Override
+    public List<User> searchforUser(String quury) {
+
+        List<User> users = new ArrayList<>();
+
+        String stringquery = "%" + quury + "%" ;
+
+        try(Connection con = dataAccess.getConnection()) {
+            String command = "Select * from users where  username like ? or usertype like ? ";
+            PreparedStatement prs = con.prepareStatement(command);
+            prs.setString(1 ,stringquery);
+            prs.setString(2,stringquery);
+            prs.execute();
+            ResultSet rs = prs.getResultSet();
+            while(rs.next()){
+
+                int id = rs.getInt("id");
+               String username = rs.getString("username");
+               String email = rs.getString("email");
+               String usertype = rs.getString("usertype");
+
+               User user = new User(id ,username,email,usertype);
+               users.add(user);
+            }
+
+        } catch (SQLServerException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return users;
+    }
 }

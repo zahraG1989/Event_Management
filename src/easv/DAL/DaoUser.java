@@ -21,4 +21,6 @@ public interface DaoUser {
     void deleteUser(User customer);
 
     User verifyUsers(String username, String password);
+
+    List<User> searchforUser(String quury);
 }

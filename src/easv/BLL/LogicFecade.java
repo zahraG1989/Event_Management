@@ -9,7 +9,6 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public interface LogicFecade {
-    //  Event  methods
 
     List<Event> getAllEvents();
 
@@ -22,7 +21,6 @@ public interface LogicFecade {
     List<Ticket> getTicketsinEvent( int idi );
 
     List<User> getusersinEvent(int idi);
-        // user methods
 
     List<User> getAllUsers();
 
@@ -36,9 +34,8 @@ public interface LogicFecade {
 
     void deleteUser(User customer);
 
-    // ticket
     List<Ticket> getAllTickets();
-    //String ticketholder, String type, String eventname, int ticketprice, String eventlocation, String barcode, Date expirationdan
+
     Ticket createticket(Event event, int id , String type , int ticketprice , String barcode, Timestamp expirationdan , String info);
 
     void updateTicket(Ticket ticket , String type , int ticketprice, String info);
@@ -47,11 +44,11 @@ public interface LogicFecade {
 
     List<Ticket> getusertickets(int id);
 
-    // usereventticket
-
     void addusertoEvent(User user , Event event , Ticket ticket);
 
     void removeuserfromEvent(User user , Event event ,Ticket ticket);
 
     User verifyUsers(String username, String password);
+
+    List<User> searchforUser(String quury);
 }

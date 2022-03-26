@@ -13,7 +13,7 @@ public class Main extends Application {
     }
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/easv/GUI/View/mainWindow.fxml"));
+        FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/easv/GUI/View/Users/adminpage.fxml"));
         Parent root = fxmlLoader.load();
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("MainWindow");
