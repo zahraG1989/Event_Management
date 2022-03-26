@@ -16,7 +16,7 @@ public interface DaoUser {
 
     int newestid();
 
-    void updateUser(User customer , String username, String password, String email , String usertype);
+    void updateUser(User customer , String username, String email , String usertype);
 
     void deleteUser(User customer);
 

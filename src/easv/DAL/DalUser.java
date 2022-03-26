@@ -130,16 +130,15 @@ public class DalUser implements DaoUser {
     }
 
     @Override
-    public void updateUser(User customer, String username, String password, String email , String usertype) {
+    public void updateUser(User customer, String username, String email , String usertype) {
         try(Connection con = dataAccess.getConnection()){
-            String sql = "UPDATE users SET  username = ? , password = ? , email = ?  , usertype = ?  WHERE id = ? ";
+            String sql = "UPDATE users SET  username = ?  , email = ?  , usertype = ?  WHERE id = ? ";
 
             PreparedStatement prs = con.prepareStatement(sql);
             prs.setString(1 , username);
-            prs.setString(2 , password);
-            prs.setString(3, email);
-            prs.setString(4,usertype);
-            prs.setInt(5,customer.getId());
+            prs.setString(2, email);
+            prs.setString(3,usertype);
+            prs.setInt(4,customer.getId());
 
             prs.executeUpdate();
 

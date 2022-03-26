@@ -14,17 +14,12 @@
          <children>
             <Label layoutX="35.0" layoutY="25.0" prefHeight="33.0" prefWidth="112.0" text="admin name here " />
             <JFXButton fx:id="exitid" layoutX="866.0" layoutY="690.0" onAction="#exitbtn" prefHeight="33.0" prefWidth="63.0" text="Exit" />
-            <TableView fx:id="customertable" layoutX="22.0" layoutY="115.0" prefHeight="365.0" prefWidth="224.0">
+            <TableView fx:id="customertable" layoutX="22.0" layoutY="115.0" prefHeight="365.0" prefWidth="373.0">
               <columns>
                 <TableColumn fx:id="cutomername" prefWidth="75.0" text="name" />
                 <TableColumn fx:id="customeremail" prefWidth="148.0" text="email" />
+                  <TableColumn fx:id="customertyoe" prefWidth="148.0" text="Type" />
               </columns>
-            </TableView>
-            <TableView fx:id="eventcorditable" layoutX="253.0" layoutY="115.0" prefHeight="365.0" prefWidth="224.0">
-               <columns>
-                  <TableColumn fx:id="evecorname" prefWidth="75.0" text="name" />
-                  <TableColumn fx:id="evecoremail" prefWidth="148.0" text="email" />
-               </columns>
             </TableView>
             <TableView fx:id="eventstable" layoutX="495.0" layoutY="115.0" prefHeight="365.0" prefWidth="453.0">
                <columns>
@@ -35,15 +30,10 @@
                </columns>
             </TableView>
             <JFXButton layoutX="22.0" layoutY="489.0" onAction="#deleteUserbtn" text="Delete" />
-            <JFXButton layoutX="82.0" layoutY="489.0" onAction="#manageUserbtn" text="Manage" />
-            <JFXButton layoutX="259.0" layoutY="489.0" onAction="#deleteEventerbtn" text="Delete" />
-            <JFXButton layoutX="314.0" layoutY="489.0" onAction="#manageEventerbtn" text="Manage" />
-            <JFXButton layoutX="382.0" layoutY="489.0" onAction="#createEventbtn" text="Create" />
-            <JFXButton layoutX="147.0" layoutY="489.0" onAction="#createUserbtn" text="Create" />
+            <JFXButton fx:id="createid" layoutX="147.0" layoutY="489.0" onAction="#createUserbtn" text="Create" />
             <Label layoutX="21.0" layoutY="80.0" prefHeight="25.0" prefWidth="60.0" text="Customers" />
-            <Label layoutX="255.0" layoutY="80.0" prefHeight="25.0" prefWidth="112.0" text="EventCoordinator " />
             <Label layoutX="495.0" layoutY="80.0" prefHeight="25.0" prefWidth="60.0" text="Events" />
-            <TextField layoutX="754.0" layoutY="29.0" onKeyPressed="#searcher" prefHeight="25.0" prefWidth="175.0" />
+            <TextField fx:id="filter" layoutX="754.0" layoutY="29.0" onKeyPressed="#searcher" prefHeight="25.0" prefWidth="175.0" />
          </children>
       </AnchorPane>
    </children>

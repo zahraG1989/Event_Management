@@ -72,15 +72,15 @@ public class UserModel {
     public void deleteUser(User user , int item){
         logicFecade.deleteUser(user);
         users.remove(item);
-        updatethelist();
+
     }
 
     public void updatethelist() {
         users.setAll(logicFecade.getAllUsers());
     }
 
-    public void updateUser (User user , int index , String username, String password, String email, String usertype){
-        logicFecade.updateUser(user ,username,password , email ,usertype);
+    public void updateUser (User user , int index , String username, String email, String usertype){
+        logicFecade.updateUser(user ,username, email ,usertype);
         users.set(index , user);
         updatethelist();
     }

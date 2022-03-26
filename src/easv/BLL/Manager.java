@@ -66,8 +66,8 @@ public class Manager implements LogicFecade{
     }
 
     @Override
-    public void updateUser(User customer, String username, String password, String email, String usertype) {
-        daluser.updateUser(customer , username,password ,email ,usertype);
+    public void updateUser(User customer, String username, String email, String usertype) {
+        daluser.updateUser(customer , username ,email ,usertype);
     }
 
     @Override

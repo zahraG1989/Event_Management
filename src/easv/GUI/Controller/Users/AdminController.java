@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import easv.BE.Event;
 import easv.BE.User;
 import easv.GUI.Controller.LoginController;
+import easv.GUI.Controller.create.CreatePremotController;
 import easv.GUI.Controller.create.CreateeventController;
 import easv.GUI.Model.EventModel;
 import easv.GUI.Model.UserModel;
@@ -21,6 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -40,11 +42,7 @@ public class AdminController implements Initializable {
     @FXML
     public TableView<User> customertable;
     @FXML
-    public TableView<User> eventcorditable;
-    @FXML
     public TableView<Event> eventstable;
-    @FXML
-    public JFXButton createUserid;
     @FXML
     public LoginController cntrl ;
     @FXML
@@ -54,10 +52,6 @@ public class AdminController implements Initializable {
     @FXML
     public TableColumn<User , String> customeremail;
     @FXML
-    public TableColumn<User , String> evecorname;
-    @FXML
-    public TableColumn<User , String> evecoremail;
-    @FXML
     public TableColumn<Event ,String > eventname;
     @FXML
     public TableColumn<Event , String > eventlocation;
@@ -65,12 +59,17 @@ public class AdminController implements Initializable {
     public TableColumn<Event , Date> evestartdate;
     @FXML
     public TableColumn<Event , Date> eventenddate;
+    @FXML
+    public TableColumn<User , String> customertyoe;
+    @FXML
+    public TextField filter;
+    @FXML
+    public JFXButton createid;
 
     private UserModel userModel ;
     private EventModel eventModel ;
-   private ObservableList<User> listofusers;
-   private ObservableList<Event> listofEvents ;
-   private ObservableList<User> listofeventcoordinatoers ;
+    private ObservableList<Event> listofEvents ;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
        displayinfo();
@@ -80,22 +79,14 @@ public class AdminController implements Initializable {
         userModel = UserModel.getInstance();
         eventModel = EventModel.getInstance();
 
-        listofusers = FXCollections.observableArrayList();
-        listofusers.addAll(userModel.getAllUsers());
-
         listofEvents = FXCollections.observableArrayList();
         listofEvents.addAll(eventModel.getAllEvents());
 
-        listofeventcoordinatoers = FXCollections.observableArrayList();
-        listofeventcoordinatoers.addAll(userModel.getAlleventcoordinatoers());
-
-        customertable.setItems(listofusers);
+        customertable.setItems(userModel.getAllUsers());
         cutomername.setCellValueFactory(new PropertyValueFactory<>("username"));
         customeremail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        customertyoe.setCellValueFactory(new PropertyValueFactory<>("userType"));
 
-        eventcorditable.setItems(listofeventcoordinatoers);
-        evecorname.setCellValueFactory(new PropertyValueFactory<>("username"));
-        evecoremail.setCellValueFactory(new PropertyValueFactory<>("email"));
 
         eventstable.setItems(listofEvents);
         eventname.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -103,6 +94,23 @@ public class AdminController implements Initializable {
         evestartdate.setCellValueFactory(new PropertyValueFactory<>("startevent"));
         eventenddate.setCellValueFactory(new PropertyValueFactory<>("endevent"));
 
+    }
+
+    public void searcher(KeyEvent keyEvent) {
+        if(filter.getText() == null || filter.getText().length() <= 0 ){
+            System.out.println(" the filter is empty ");
+            customertable.setItems(userModel.getAllUsers());
+        }
+        else {
+            System.out.println("something is added ");
+            ObservableList<User> found ;
+
+            found = userModel.searchforuser( userModel.getAllUsers(), filter.getText());
+
+            if(found != null){
+                customertable.setItems(found);
+            }
+        }
     }
 
     public void deleteUserbtn(ActionEvent actionEvent) {
@@ -113,31 +121,11 @@ public class AdminController implements Initializable {
         }
     }
 
-    public void manageUserbtn(ActionEvent actionEvent) {
-
-    }
-
-    public void deleteEventerbtn(ActionEvent actionEvent) {
-       if(eventcorditable.getSelectionModel().getSelectedIndex() != -1){
-         userModel.deleteUser(eventcorditable.getSelectionModel().getSelectedItem(), eventcorditable.getSelectionModel().getSelectedIndex());
-         userModel.updatethelist();
-         eventcorditable.refresh();
-       }
-    }
-
-    public void manageEventerbtn(ActionEvent actionEvent) {
-
-    }
-
-    public void createEventbtn(ActionEvent actionEvent) {
-
-    }
-
     public void createUserbtn(ActionEvent actionEvent) throws IOException {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/Users/adminpage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/create/create_premot.fxml"));
         Parent root = loader.load();
-        //loader.<AdminController>getController().setController(this);
-        Scene scene = createUserid.getScene();
+        loader.<CreatePremotController>getController().setController(this);
+        Scene scene = createid.getScene();
         root.translateYProperty().set(scene.getHeight());
         stackpne.getChildren().add(root);
         Timeline timeline = new Timeline();
@@ -145,19 +133,17 @@ public class AdminController implements Initializable {
         KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
         timeline.getKeyFrames().add(kf);
         timeline.setOnFinished(t -> {
-            stackpne.getChildren().remove(stackpne);
+            stackpne.getChildren().remove(anchorid);
         });
         timeline.play();
-    }
 
+    }
 
 
     public void setController(LoginController loginController) {
         this.cntrl = loginController;
     }
 
-    public void searcher(KeyEvent keyEvent) {
-    }
 
     public void exitbtn(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/mainWindow.fxml"));
