@@ -99,6 +99,37 @@ public class EventInfoController implements Initializable {
            // vBox.getChildren().add(view);
             tilepaneid.getChildren().add(vBox);
             vBox.setOnMousePressed(event -> {
+                int answer = JOptionPane.showConfirmDialog(null, "Do you have an Account ");
+                System.out.println(answer);
+                //  0 yes 1 no 2 cancel
+                if(answer == 0){
+                    System.out.println("user said yes ,, he have an account ,, so we need to create page where he have to enter his name and password ");
+                  /*  try {
+
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/loginpage.fxml"));
+                        Parent  root = loader.load();
+                        Scene scene = backid.getScene();
+                        root.translateYProperty().set(scene.getHeight());
+                        stackpaneid.getChildren().add(root);
+                        Timeline timeline = new Timeline();
+                        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+                        KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+                        timeline.getKeyFrames().add(kf);
+                        timeline.setOnFinished(ts -> {
+                            stackpaneid.getChildren().remove(anchorid);
+                        });
+                        timeline.play();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                         */
+
+                }else if ( answer == 1){
+                    System.out.println("user said no he doesnot have an account so he have to create one ");
+                }
+
+                /*
                 String name= JOptionPane.showInputDialog("Enter Name");
                 if(name != null ) {
                     User user = userModel.adduser(name, "1234", "1234", "Customer");
@@ -127,8 +158,12 @@ public class EventInfoController implements Initializable {
                     System.out.println("nothing selected ");
                 }
 
+                 */
+
             });
         }
+
+
     }
 
 
