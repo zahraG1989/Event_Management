@@ -1,31 +1,54 @@
 package easv;
 
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import javafx.geometry.Insets;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
-import java.util.Date;
+import javax.imageio.ImageIO;
+import javax.security.auth.callback.Callback;
+
 
 
 
 public class testedmain {
     public static void main(String[] args) throws Exception {
+/*
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(0, 10, 0, 10));
+        final TextField username = new TextField();
+        username.setPromptText("Username");
+        final PasswordField password = new PasswordField();
+        password.setPromptText("Password");
 
-        Dialog<String> dialog = new Dialog<String>();
-        dialog.setTitle("Dialog");
-        ButtonType type = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().add(type);
+        grid.add(new Label("Username:"), 0, 0);
+        grid.add(username, 1, 0);
+        grid.add(new Label("Password:"), 0, 1);
+        grid.add(password, 1, 1);
+
+        String usernameResult;
+        String passwordResult;
+
+        Callback myCallback = new Callback() {
+
+            public Void call(Void param) {
+              String  usernameResult = username.getText();
+                String     passwordResult = password.getText();
+                return null;
+            }
+        };
+        Stage stage = new Stage();
+        Dialogs.DialogResponse resp = Dialogs.showCustomDialog(stage, grid, "Please log in", "Login", Dialogs.DialogOptions.OK_CANCEL, myCallback);
+        System.out.println("Custom Dialog: User clicked: " + resp);
+//You must check the resp, since input fields' texts are returned regardless of what button was pressed. (ie. If user clicked 'Cancel' disregard the input)
+        System.out.println("Custom Dialog: Fields set from custom dialog: " + usernameResult + "/" + passwordResult);
+
+ */
     }
 
+/*
     private static void addTixttoimage(String text, String name , String when , String where , String barcode , int price , int ticketid , String type, File source, File destination) throws IOException {
         BufferedImage image = ImageIO.read(source);
         int imagetype = "png".equalsIgnoreCase(type) ? BufferedImage.TYPE_INT_ARGB : BufferedImage.TYPE_INT_RGB;
@@ -56,6 +79,8 @@ public class testedmain {
         ImageIO.write(bold ,type , destination);
         w.dispose();
     }
+
+ */
     //  String date_string = "26-09-1989";
     //Instantiating the SimpleDateFormat class
     //   SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");

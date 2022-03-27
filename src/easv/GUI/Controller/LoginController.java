@@ -53,7 +53,7 @@ public class LoginController implements Initializable {
     }
 
     public void loginbtn(ActionEvent actionEvent) throws IOException {
-        User user =userModel.verifyUsers(usernameid.getText(), passwordid.getText());
+        User user = userModel.verifyUsers(usernameid.getText(), passwordid.getText());
             if(user != null){
                 if( user.getUserType().equals("Customer")){
 
