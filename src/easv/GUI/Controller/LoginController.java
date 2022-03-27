@@ -2,6 +2,7 @@ package easv.GUI.Controller;
 
 import com.jfoenix.controls.JFXButton;
 import easv.BE.User;
+import easv.GUI.Controller.Users.AdminController;
 import easv.GUI.Controller.Users.CustomerController;
 import easv.GUI.Controller.Users.EventMangersController;
 import easv.GUI.Model.UserModel;
@@ -55,14 +56,14 @@ public class LoginController implements Initializable {
         User user =userModel.verifyUsers(usernameid.getText(), passwordid.getText());
             if(user != null){
                 if( user.getUserType().equals("Customer")){
-                    System.out.println(user.getId());
+
                     userid = user.getId();
                     username = user.getUsername();
                     useremail = user.getEmail();
                     logintouser();
 
                 }else if ( user.getUserType().equals("Admin")){
-                   // logintoAdmin();
+                    logintoAdmin();
 
                 }else if ( user.getUserType().equals("EventCoordinator")){
                     logintoEventCoordinatoer();
@@ -73,9 +74,6 @@ public class LoginController implements Initializable {
             }else{
                 System.out.println("Wrong user m8");
             }
-          //  System.out.println(user.getUsername() + " " + user.getPassword());
-
-
     }
 
     public void backbtn(ActionEvent actionEvent) throws IOException {
@@ -110,11 +108,11 @@ public class LoginController implements Initializable {
         });
         timeline.play();
     }
-/*
+
     public void logintoAdmin() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/Users/adminpage2.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/Users/adminpage.fxml"));
         Parent root = loader.load();
-        loader.<AdminController2>getController().setController(this);
+        loader.<AdminController>getController().setController(this);
         Scene scene = loginid.getScene();
         root.translateYProperty().set(scene.getHeight());
         stcpne.getChildren().add(root);
@@ -128,7 +126,7 @@ public class LoginController implements Initializable {
         timeline.play();
     }
 
- */
+
 
     public void logintoEventCoordinatoer() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/Users/EventMangers.fxml"));

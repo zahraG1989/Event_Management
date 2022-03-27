@@ -114,6 +114,7 @@ public class EventInfoController implements Initializable {
 
 
                       BufferedImage  image2 = barcodes.renderBarcode();
+                        Image image1  = new Image(String.valueOf(output));
 
                         addTixttoimage(image2 ,name , cntrl.selectedevent.getName() , cntrl.selectedevent.getStartevent().toString() , cntrl.selectedevent.getLocation() , t.getBarcode(),t.getTicketprice(),t.getId(),t.getType() , "jpg" , input , output);
                     } catch (IOException e) {

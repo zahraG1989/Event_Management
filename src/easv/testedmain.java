@@ -30,12 +30,12 @@ public class testedmain {
        // Date date = formatter.parse("23/09/2016");
      //   System.out.println("Date object value: "+date);
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        Date date2 = dateFormat.parse("2022-03-24 20:59");
-        long time = date2.getTime();
-        Timestamp stamp = new Timestamp(time);
-        System.out.println(stamp);
-/*
+     //   DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+       // Date date2 = dateFormat.parse("2022-03-24 20:59");
+     //   long time = date2.getTime();
+     //   Timestamp stamp = new Timestamp(time);
+      //  System.out.println(stamp);
+       /*
         Calendar cal = Calendar.getInstance();
         java.sql.Timestamp timestamp = new Timestamp(cal.getTimeInMillis());
 
@@ -51,7 +51,7 @@ public class testedmain {
         java.util.Date currentTime = calendar.getTime();
         System.out.println(currentTime);
 
- */
+        */
 
      //   String path = "/resourse/tickettemplate.png";
 

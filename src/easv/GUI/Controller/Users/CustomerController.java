@@ -46,45 +46,12 @@ public class CustomerController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ticketModel = TicketModel.getInstance();
         getalltickets = FXCollections.observableArrayList();
-
-
-        String path = "/resourse/tickettemplate.png";
-        //  String text = "eide nowroz \n Zahra  ";
-        // File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\ticket.jpg");
-        // File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\images3.jpg");
-
-        //addTixttoimage(text , "jpg" , input , output);
     }
 
     public void setController(LoginController loginController) {
     this.cntrl = loginController ;
         getalltickets.addAll(ticketModel.getuserTickets(cntrl.userid));
         choicebox.setItems(getalltickets);
-    }
-            // this method will add the data from each ticket in the user
-    private static void addTixttoimage(String text, String name , String when , String where , String barcode , int price , int ticketid,String type,  File source, File destination) throws IOException {
-        BufferedImage image = ImageIO.read(source);
-        int imagetype = "png".equalsIgnoreCase(type) ? BufferedImage.TYPE_INT_ARGB : BufferedImage.TYPE_INT_RGB;
-
-        BufferedImage bold = new BufferedImage(image.getWidth() , image.getHeight() , imagetype);
-
-        Graphics2D w = (Graphics2D) bold.getGraphics();
-
-        w.drawImage(image , 1 , 2 ,null);
-        AlphaComposite alpha = AlphaComposite.getInstance(AlphaComposite.SRC_OVER , 0.9f );
-        w.setComposite(alpha);
-        w.setColor(Color.YELLOW);
-        w.setFont(new Font(Font.SANS_SERIF , Font.BOLD , 15));
-
-        FontMetrics fontMetrics = w.getFontMetrics();
-        Rectangle2D rect = fontMetrics.getStringBounds(text , w );
-        int centerX = (image.getWidth() - (int) rect.getWidth())/2 ;
-
-        int centerY = image.getHeight()/2 ;
-
-        w.drawString(text , centerX , centerY);
-        ImageIO.write(bold ,type , destination);
-        w.dispose();
     }
 
 }

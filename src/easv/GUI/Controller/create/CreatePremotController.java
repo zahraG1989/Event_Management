@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class CreatePremotController implements Initializable {
     @FXML
-    public ChoiceBox choiceboxid;
+    public ChoiceBox<String> choiceboxid;
     @FXML
     public TextField usernametxt;
     @FXML
@@ -31,36 +31,38 @@ public class CreatePremotController implements Initializable {
 
     public AdminController cntrl ;
     public UserModel userModel ;
-
+    String value = "" ;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         userModel = UserModel.getInstance();
 
-    }
-
-    public void save(ActionEvent actionEvent) {
-
-    }
-
-    private void updateuser() {
-        String name = cntrl.customertable.getSelectionModel().getSelectedItem().getUsername();
-        String email =cntrl.customertable.getSelectionModel().getSelectedItem().getEmail();
         String admin = "Admin";
         String eventer = "EventCoordinator";
-        String choice = choiceboxid.getItems().toString();
-        System.out.println(choice);
         choiceboxid.getItems().add(admin);
         choiceboxid.getItems().add(eventer);
 
+         value =  choiceboxid.getValue();
+    }
+
+    public void save(ActionEvent actionEvent) {
+        updateuser();
+    }
+
+    private void updateuser() {
+
+        String name = usernametxt.getText();
+        String email = emailtxt.getText();
+
         userModel.updateUser(cntrl.customertable.getSelectionModel().getSelectedItem(),cntrl.customertable.getSelectionModel().getSelectedIndex()
-        ,name,email ,choice);
+        ,name,email ,value);
     }
     public void eixit(ActionEvent actionEvent) {
     }
 
     public void setController(AdminController adminController) {
         this.cntrl = adminController ;
-        updateuser();
+        usernametxt.setText(cntrl.customertable.getSelectionModel().getSelectedItem().getUsername());
+        emailtxt.setText(cntrl.customertable.getSelectionModel().getSelectedItem().getEmail());
     }
 
 
