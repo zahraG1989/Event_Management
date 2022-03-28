@@ -30,7 +30,7 @@
                <left>
                   <VBox prefHeight="711.0" prefWidth="140.0" style="-fx-background-color: #212121;" BorderPane.alignment="CENTER">
                      <children>
-                        <Label prefHeight="51.0" prefWidth="142.0" style="-fx-background-color: #81d4fa;" textFill="#b21e1e">
+                        <Label prefHeight="51.0" prefWidth="142.0" style="-fx-background-color: #81d4fa;" textFill="#ffffff">
                            <font>
                               <Font name="Consolas" size="18.0" />
                            </font>
