@@ -1,6 +1,8 @@
 package easv.GUI.Controller;
 
 import com.jfoenix.controls.JFXButton;
+import easv.BE.User;
+import easv.GUI.Model.UserModel;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -8,6 +10,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -15,9 +18,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
+import javax.swing.*;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class CreateAccountController {
+public class CreateAccountController implements Initializable {
     @FXML
     public StackPane stackpaneid;
     @FXML
@@ -32,8 +38,35 @@ public class CreateAccountController {
     public TextField email;
     @FXML
     public TextField password;
+    @FXML
+    public TextField repeatpassword;
+
+    private UserModel userModel ;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        userModel = UserModel.getInstance();
+
+    }
 
     public void saveUser(ActionEvent actionEvent) {
+       if(!name.getText().isEmpty() || !email.getText().isEmpty() || !password.getText().isEmpty()) {
+           if(password.getText().equals(repeatpassword.getText())) {
+               User user  =  userModel.verifyUsers(name.getText(), password.getText());
+               if(user == null ) {
+                   userModel.adduser(name.getText(), password.getText(), email.getText(), "Customer");
+                   JOptionPane.showMessageDialog(null, "Account created :D ");
+               }else {
+                   JOptionPane.showMessageDialog(null, "user already exsisted");
+
+               }
+           }else {
+               JOptionPane.showMessageDialog(null, "Password-field doesn't match ");
+           }
+       } else {
+           JOptionPane.showMessageDialog(null, "please fill out all the fields");
+       }
+
     }
 
     public void exit(ActionEvent actionEvent) throws IOException {
@@ -51,4 +84,6 @@ public class CreateAccountController {
         });
         timeline.play();
     }
+
+
 }

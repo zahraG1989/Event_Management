@@ -36,22 +36,22 @@
                   </Label>
                </children>
             </AnchorPane>
-            <TextField layoutX="599.0" layoutY="304.0" prefHeight="35.0" prefWidth="222.0" promptText="username" style="-fx-background-color: #ffffff; -fx-background-radius: 90;">
+            <TextField fx:id="name" layoutX="599.0" layoutY="304.0" prefHeight="35.0" prefWidth="222.0" promptText="username" style="-fx-background-color: #ffffff; -fx-background-radius: 90;">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <TextField layoutX="599.0" layoutY="376.0" prefHeight="35.0" prefWidth="222.0" promptText="Password" style="-fx-background-color: #ffffff; -fx-background-radius: 90;">
+            <TextField fx:id="password" layoutX="599.0" layoutY="376.0" prefHeight="35.0" prefWidth="222.0" promptText="Password" style="-fx-background-color: #ffffff; -fx-background-radius: 90;">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <TextField layoutX="599.0" layoutY="518.0" prefHeight="35.0" prefWidth="222.0" promptText="Email" style="-fx-background-color: #ffffff; -fx-background-radius: 90;">
+            <TextField fx:id="email" layoutX="599.0" layoutY="518.0" prefHeight="35.0" prefWidth="222.0" promptText="Email" style="-fx-background-color: #ffffff; -fx-background-radius: 90;">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <TextField layoutX="599.0" layoutY="451.0" prefHeight="35.0" prefWidth="222.0" promptText="RepeatPassword" style="-fx-background-color: #ffffff; -fx-background-radius: 90;">
+            <TextField fx:id="repeatpassword" layoutX="599.0" layoutY="451.0" prefHeight="35.0" prefWidth="222.0" promptText="RepeatPassword" style="-fx-background-color: #ffffff; -fx-background-radius: 90;">
                <font>
                   <Font size="15.0" />
                </font>
