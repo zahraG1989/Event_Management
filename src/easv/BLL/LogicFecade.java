@@ -1,6 +1,7 @@
 package easv.BLL;
 
 import easv.BE.Event;
+import easv.BE.QrCode;
 import easv.BE.Ticket;
 import easv.BE.User;
 
@@ -36,7 +37,7 @@ public interface LogicFecade {
 
     List<Ticket> getAllTickets();
 
-    Ticket createticket(Event event, int id , String type , int ticketprice , String barcode, Timestamp expirationdan , String info);
+    Ticket createticket(Event event, int id , String type , int ticketprice , Timestamp expirationdan , String info);
 
     void updateTicket(Ticket ticket , String type , int ticketprice, String info);
 
@@ -44,11 +45,13 @@ public interface LogicFecade {
 
     List<Ticket> getusertickets(int id);
 
-    void addusertoEvent(User user , Event event , Ticket ticket);
+    void addusertoEvent(User user , Event event , Ticket ticket );
 
     void removeuserfromEvent(User user , Event event ,Ticket ticket);
 
     User verifyUsers(String username, String password);
 
     List<User> searchforUser(String quury);
+
+    String getqrcode(User user);
 }

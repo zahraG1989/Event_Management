@@ -1,6 +1,7 @@
 package easv.BLL;
 
 import easv.BE.Event;
+import easv.BE.QrCode;
 import easv.BE.Ticket;
 import easv.BE.User;
 import easv.DAL.DalUser;
@@ -81,8 +82,8 @@ public class Manager implements LogicFecade{
     }
 
     @Override
-    public Ticket createticket(Event event, int id, String type, int ticketprice, String barcode, Timestamp expirationdan, String info) {
-        return dalTicket.createticket(event ,id ,type ,ticketprice ,barcode ,expirationdan ,info);
+    public Ticket createticket(Event event, int id, String type, int ticketprice, Timestamp expirationdan, String info) {
+        return dalTicket.createticket(event ,id ,type ,ticketprice  ,expirationdan ,info);
     }
 
     @Override
@@ -112,7 +113,7 @@ public class Manager implements LogicFecade{
     }
 
     @Override
-    public void addusertoEvent(User user, Event event, Ticket ticket) {
+    public void addusertoEvent(User user, Event event, Ticket ticket ) {
         dalUserEvent.addusertoEvent(user ,event ,ticket);
     }
 
@@ -129,5 +130,10 @@ public class Manager implements LogicFecade{
     @Override
     public List<User> searchforUser(String quury) {
         return daluser.searchforUser(quury);
+    }
+
+    @Override
+    public String getqrcode(User user) {
+        return dalUserEvent.getqrcode(user);
     }
 }

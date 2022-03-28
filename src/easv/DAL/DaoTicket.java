@@ -12,7 +12,7 @@ public interface DaoTicket {
 
     List<Ticket> getAllTickets();
         //String ticketholder, String type, String eventname, int ticketprice, String eventlocation, String barcode, Date expirationdan
-    Ticket createticket(Event event, int id , String type , int ticketprice , String barcode, Timestamp expirationdan , String info);
+    Ticket createticket(Event event, int id , String type , int ticketprice , Timestamp expirationdan , String info);
 
     List<Ticket> getusertickets(int id);
 

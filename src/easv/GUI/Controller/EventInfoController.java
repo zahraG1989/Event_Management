@@ -101,25 +101,23 @@ public class EventInfoController implements Initializable {
     public void showtickets(){
 
         tickets = ticketModel.getticketinevent(cntrl.eventid);
-        Image image = new Image("/resourse/user.png");
-       // ImageView view = new ImageView();
+
         for(Ticket t : tickets){
             String s =String.valueOf(t.getTicketprice());
             Label price = new Label(s);
             Label btn = new Label();
             btn.setText(t.getType());
-           // view.setImage(image);
+
             vBox = new VBox();
 
             vBox.getChildren().add(price);
             vBox.getChildren().add(btn);
 
-           // vBox.getChildren().add(view);
             tilepaneid.getChildren().add(vBox);
             vBox.setOnMousePressed(event -> {
                 int answer = JOptionPane.showConfirmDialog(null, "Do you have an Account ");
                 System.out.println(answer);
-                //  0 yes 1 no 2 cancel
+
                 if(answer == 0){
                     System.out.println("user said yes ,, he have an account ,, so we need to create page where he have to enter his name and password ");
                     GridPane grid = new GridPane();
@@ -147,8 +145,20 @@ public class EventInfoController implements Initializable {
                             if (user.getUserType().equals("Customer")) {
                                 System.out.println(username.getText() + " " + password.getText());
                                 try {
+                                    ticketModel.createUsTiEv(cntrl.selectedevent ,t ,user);
+                                    File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\tickettemplate.png");
+                                    File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\newticket.jpg");
+
+                                    Linear barcodes = new Linear();
+                                    barcodes.setType(Linear.CODE128B);
+                                    barcodes.setData(userModel.getqr(user));
+                                    barcodes.setI(1);
+
+                                    BufferedImage  image2 = barcodes.renderBarcode();
+
+                                    addTixttoimage(image2 ,user.getUsername() , cntrl.selectedevent.getName() , cntrl.selectedevent.getStartevent().toString() , cntrl.selectedevent.getLocation(),t.getTicketprice(),t.getId(),t.getType() , "jpg" , input , output);
                                     logintouser();
-                                } catch (IOException e) {
+                                } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             }
@@ -157,8 +167,6 @@ public class EventInfoController implements Initializable {
                         }
                         stage.close();
                             });
-                            // this is freaking awesome ... implementing javafx inside java swing inside javafx
-
 
                 }else if ( answer == 1){
                     try {
@@ -168,43 +176,11 @@ public class EventInfoController implements Initializable {
                     }
                     System.out.println("user said no he doesnot have an account so he have to create one ");
                 }
-
-                /*
-                String name= JOptionPane.showInputDialog("Enter Name");
-                if(name != null ) {
-                    User user = userModel.adduser(name, "1234", "1234", "Customer");
-                    ticketModel.createUsTiEv(cntrl.selectedevent, t ,user );
-                    try {
-                        File input = new File("C:\\Movies\\Ticket 627_643 px (1).png");
-                        File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\"+user.getUsername()+".jpg");
-
-                        Linear barcodes = new Linear();
-                        barcodes.setType(Linear.CODE128B);
-                        barcodes.setData(t.getBarcode());
-                        barcodes.setI(1);
-
-
-                      BufferedImage  image2 = barcodes.renderBarcode();
-                        Image image1  = new Image(String.valueOf(output));
-
-                        addTixttoimage(image2 ,name , cntrl.selectedevent.getName() , cntrl.selectedevent.getStartevent().toString() , cntrl.selectedevent.getLocation() , t.getBarcode(),t.getTicketprice(),t.getId(),t.getType() , "jpg" , input , output);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-               else {
-                    System.out.println("nothing selected ");
-                }
-
-                 */
-
             });
         }
-
-
     }
+
+
     public void logintouser() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/Users/customerpage.fxml"));
         Parent root = loader.load();
@@ -239,7 +215,7 @@ public class EventInfoController implements Initializable {
 
 
 
-    private static void addTixttoimage(BufferedImage image2,String text, String name , String when , String where , String barcode , int price , int ticketid,String tickettype ,String type, File source, File destination) throws IOException {
+    private static void addTixttoimage(BufferedImage image2,String text, String name , String when , String where  , int price , int ticketid,String tickettype ,String type, File source, File destination) throws IOException {
 
         BufferedImage image = ImageIO.read(source);
         int imagetype = "png".equalsIgnoreCase(type) ? BufferedImage.TYPE_INT_ARGB : BufferedImage.TYPE_INT_RGB;
@@ -264,7 +240,6 @@ public class EventInfoController implements Initializable {
         w.drawString(where, 525, 100);
         w.drawString(when, 518, 75);
         w.drawString(String.valueOf(price), 521, 126);
-        w.drawString(barcode, 482, 236);
         w.drawString(tickettype, 476, 185);
         w.drawString(String.valueOf(ticketid), 552, 149);
         w.drawString(text, 482, 210);
@@ -272,7 +247,6 @@ public class EventInfoController implements Initializable {
         ImageIO.write(bold, type, destination);
         w.dispose();
     }
-
 
     public void backbtn(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/mainWindow.fxml"));

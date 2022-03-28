@@ -62,6 +62,11 @@ public class UserModel {
         return u ;
     }
 
+    public String getqr(User user){
+
+       return logicFecade.getqrcode(user);
+    }
+
     public ObservableList<User> searchforuser(ObservableList<User> allusers,String qury){
       allusers = FXCollections.observableArrayList();
       allusers.addAll(logicFecade.searchforUser(qury));

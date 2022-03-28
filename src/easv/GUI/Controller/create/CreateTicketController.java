@@ -114,7 +114,7 @@ public class CreateTicketController implements Initializable {
         String type = tickettypeid.getText();
         int price = Integer.parseInt(ticketpriceid.getText());
         String info = infoid.getText();
-        ticketModel.createTicket(cntrl.selectedevent ,cntrl.selectedeventid , type , price ,sbd , cntrl.selectedevent.getEndevent() , info  );
+        ticketModel.createTicket(cntrl.selectedevent ,cntrl.selectedeventid , type , price, cntrl.selectedevent.getEndevent() , info  );
     }
 
     public void updateticketnf(){

@@ -1,18 +1,26 @@
 package easv;
 
-import javafx.geometry.Insets;
-import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
-import javax.imageio.ImageIO;
-import javax.security.auth.callback.Callback;
+import net.glxn.qrgen.QRCode;
+import net.glxn.qrgen.image.ImageType;
 
-
-
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 
 public class testedmain {
     public static void main(String[] args) throws Exception {
+        String name = "Diana ";
+        ByteArrayOutputStream out = QRCode.from(name).to(ImageType.PNG).stream();
+        //                                    File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\tickettemplate.png");
+        File f = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\qrcode.png");
+
+        FileOutputStream fos = new FileOutputStream(f);
+
+            fos.write(out.toByteArray());
+
+            fos.flush();
 /*
         GridPane grid = new GridPane();
         grid.setHgap(10);

@@ -1,6 +1,7 @@
 package easv.GUI.Model;
 
 import easv.BE.Event;
+import easv.BE.QrCode;
 import easv.BE.Ticket;
 import easv.BE.User;
 import easv.BLL.LogicFecade;
@@ -33,8 +34,8 @@ public class TicketModel {
         return tickets ;
     }
 
-    public void createTicket(Event event, int id, String type, int ticketprice, String barcode, Timestamp expirationdan, String info){
-       Ticket t = logicFecade.createticket(event , id , type , ticketprice , barcode , expirationdan , info);
+    public void createTicket(Event event, int id, String type, int ticketprice, Timestamp expirationdan, String info){
+       Ticket t = logicFecade.createticket(event , id , type , ticketprice  , expirationdan , info);
        tickets.add(t);
     }
 
@@ -45,8 +46,8 @@ public class TicketModel {
         return tickets ;
     }
 
-    public void createUsTiEv(Event event , Ticket ticket , User user){
-        logicFecade.addusertoEvent(user , event , ticket);
+    public void createUsTiEv(Event event , Ticket ticket , User user ){
+        logicFecade.addusertoEvent(user , event , ticket );
     }
                                 // used inside the customer controller
     public ObservableList<Ticket> getuserTickets(int id){
@@ -62,6 +63,8 @@ public class TicketModel {
         tickets.remove(item);
         updatethelist();
     }
+
+
 
     public void updateTicket(Ticket ticket , int index , String type, int ticketprice, String info ){
         logicFecade.updateTicket(ticket , type , ticketprice , info );

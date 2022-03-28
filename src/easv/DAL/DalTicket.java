@@ -27,8 +27,7 @@ public class DalTicket implements DaoTicket{
              String info = rs.getString("info");
              String type = rs.getString("tickettype");
              int ticketPrice = rs.getInt("price");
-             String barcode = rs.getString("barcode");
-             Ticket ticket = new Ticket(newestid() , type , ticketPrice , barcode , null , info);
+             Ticket ticket = new Ticket(newestid() , type , ticketPrice  , null , info);
              tickets.add(ticket);
             }
         } catch (SQLException e) {
@@ -38,18 +37,17 @@ public class DalTicket implements DaoTicket{
     }
 
     @Override
-    public Ticket createticket(Event event, int id , String type , int ticketprice , String barcode, Timestamp expirationdan , String info) {
+    public Ticket createticket(Event event, int id , String type , int ticketprice , Timestamp expirationdan , String info) {
         Ticket ticket = null ;
         try(Connection con = dataAccess.getConnection()) {
-            String sql = "insert into Ticket(Eventid , tickettype , price , barcode , info) values (?, ?, ?,?,?)";
+            String sql = "insert into Ticket(Eventid , tickettype , price  , info) values (?, ?, ?,?)";
             PreparedStatement prs = con.prepareStatement(sql);
             prs.setInt(1,event.getId());
             prs.setString(2 ,type);
             prs.setInt(3 , ticketprice);
-            prs.setString(4 , barcode);
-            prs.setString(5,info);
+            prs.setString(4,info);
             prs.executeUpdate();
-             ticket = new Ticket (newestid() , type , ticketprice , barcode , expirationdan ,info);
+             ticket = new Ticket (newestid() , type , ticketprice , expirationdan ,info);
         } catch (SQLServerException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -63,7 +61,7 @@ public class DalTicket implements DaoTicket{
         System.out.println(id);
         ArrayList<Ticket> tickets = new ArrayList<>();
         try(Connection con = dataAccess.getConnection()) {
-            String sql = "SELECT  tickettype , price , barcode , info ,  Ticket.id as TicketID" +
+            String sql = "SELECT  tickettype , price  , info ,  Ticket.id as TicketID" +
                     "       from users " +
                     "  join userevent on userevent.userid = users.id" +
                     "  join Ticket on  userevent.ticketid = Ticket.id" +
@@ -75,9 +73,9 @@ public class DalTicket implements DaoTicket{
                 int idi = rs.getInt("TicketID");
                 String type = rs.getString("tickettype");
                 int price = rs.getInt("price");
-                String barcode = rs.getString("barcode");
+
                 String info = rs.getString("info");
-                Ticket ticket = new Ticket(idi , type ,price ,barcode , null , info);
+                Ticket ticket = new Ticket(idi , type ,price  , null , info);
                 tickets.add(ticket);
             }
         } catch (SQLServerException e) {
