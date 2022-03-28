@@ -7,12 +7,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
 <!--<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>-->
 
 <StackPane fx:id="stackid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="962.0" stylesheets="/easv/GUI/View/CSS/Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.Users.EventMangersController">
    <children>
-      <AnchorPane fx:id="ancorid" onMousePressed="#anchorouse" prefHeight="749.0" prefWidth="962.0" styleClass="changedBackgroundColor">
+      <AnchorPane fx:id="ancorid" onMousePressed="#anchorouse" prefHeight="749.0" prefWidth="962.0" style="-fx-background-color: #212121;" styleClass="changedBackgroundColor">
          <children>
             <TableView fx:id="tableviewevents" layoutX="326.0" layoutY="14.0" onMousePressed="#getUsersinSelectedEvent" prefHeight="354.0" prefWidth="630.0">
                <columns>
@@ -24,7 +25,7 @@
                   <TableColumn fx:id="eventticketalt" minWidth="0.0" prefWidth="33.0" text="T.alt" />
                </columns>
             </TableView>
-            <TableView fx:id="tableviewusers" layoutX="13.0" layoutY="42.0" prefHeight="665.0" prefWidth="308.0">
+            <TableView fx:id="tableviewusers" layoutX="12.0" layoutY="67.0" prefHeight="665.0" prefWidth="308.0">
                <columns>
                   <TableColumn fx:id="usercheckbox" prefWidth="29.0" text="C1">
 <!--                     <graphic>-->
@@ -35,22 +36,28 @@
                   <TableColumn fx:id="userticket" prefWidth="146.0" text="Ticket" />
                </columns>
             </TableView>
-            <TableView fx:id="tableviewtickets" layoutX="326.0" layoutY="467.0" onMousePressed="#ticketmouse" prefHeight="187.0" prefWidth="607.0">
+            <TableView fx:id="tableviewtickets" layoutX="332.0" layoutY="500.0" onMousePressed="#ticketmouse" prefHeight="187.0" prefWidth="607.0">
                <columns>
                   <TableColumn fx:id="tickettype" prefWidth="90.0" text="type" />
                   <TableColumn fx:id="ticketprice" prefWidth="66.0" text="ticketprice" />
                   <TableColumn fx:id="ticketinfo" prefWidth="429.0" text="info" />
                </columns>
             </TableView>
-            <JFXButton fx:id="createeventid" layoutX="332.0" layoutY="375.0" onAction="#createeventbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #00e676;" text="Create Event" />
-            <JFXButton fx:id="createticketid" layoutX="332.0" layoutY="415.0" onAction="#createticketbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #00e676;" text="Create Ticket" />
-            <JFXButton fx:id="deleteeventid" layoutX="431.0" layoutY="375.0" onAction="#deleteeventbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #ff1744;" text="Delete Event" />
-            <JFXButton fx:id="deleteticketid" layoutX="431.0" layoutY="415.0" onAction="#deleteticketbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #ff1744;" text="Delete Ticket" />
-            <JFXButton fx:id="updateeventid" layoutX="533.0" layoutY="375.0" onAction="#updateeventbtn" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #2196f3;" text="Update Event" />
-            <JFXButton fx:id="updateticketid" layoutX="533.0" layoutY="415.0" onAction="#updateticketbtn" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #2196f3;" text="Update Ticket" />
-            <JFXButton fx:id="backid" layoutX="847.0" layoutY="701.0" onAction="#backbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #f6f6f5;" text="Exit" />
-            <TextField fx:id="filter" layoutX="66.0" layoutY="14.0" onKeyPressed="#filteruser" prefHeight="25.0" prefWidth="248.0" />
-            <Label layoutX="12.0" layoutY="18.0" prefHeight="17.0" prefWidth="48.0" text="Search" />
+            <JFXButton fx:id="createeventid" layoutX="332.0" layoutY="375.0" onAction="#createeventbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #64dd17; -fx-background-radius: 90;" text="Create Event" textFill="WHITE" />
+            <JFXButton fx:id="createticketid" layoutX="332.0" layoutY="461.0" onAction="#createticketbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #64dd17; -fx-background-radius: 90;" text="Create Ticket" textFill="WHITE" />
+            <JFXButton fx:id="deleteeventid" layoutX="431.0" layoutY="375.0" onAction="#deleteeventbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #64dd17; -fx-background-radius: 90;" text="Delete Event" textFill="WHITE" />
+            <JFXButton fx:id="deleteticketid" layoutX="431.0" layoutY="461.0" onAction="#deleteticketbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #64dd17; -fx-background-radius: 90;" text="Delete Ticket" textFill="WHITE" />
+            <JFXButton fx:id="updateeventid" layoutX="533.0" layoutY="375.0" onAction="#updateeventbtn" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #64dd17; -fx-background-radius: 90;" text="Update Event" textFill="WHITE" />
+            <JFXButton fx:id="updateticketid" layoutX="527.0" layoutY="461.0" onAction="#updateticketbtn" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #64dd17; -fx-background-radius: 90;" text="Update Ticket" textFill="WHITE" />
+            <JFXButton fx:id="backid" layoutX="847.0" layoutY="701.0" onAction="#backbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #64dd17; -fx-background-radius: 90;" text="Exit" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></JFXButton>
+            <TextField fx:id="filter" layoutX="72.0" layoutY="16.0" onKeyPressed="#filteruser" prefHeight="25.0" prefWidth="248.0" />
+            <Label layoutX="14.0" layoutY="19.0" prefHeight="20.0" prefWidth="54.0" style="-fx-background-radius: 90; -fx-background-color: #64dd17;" text="  Search" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
          </children>
       </AnchorPane>
    </children>

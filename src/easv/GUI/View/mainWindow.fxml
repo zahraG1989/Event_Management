@@ -14,11 +14,11 @@
 
 <StackPane fx:id="stackpne" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="722.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.MainWindowController">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #212121;">
          <children>
             <BorderPane fx:id="borderpne" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="724.0" prefWidth="934.0" stylesheets="/easv/GUI/View/CSS/Styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <center>
-                  <TilePane fx:id="tilePane" prefTileHeight="200.0" prefTileWidth="200.0" prefWidth="1014.0" styleClass="changedBackgroundColor" BorderPane.alignment="CENTER">
+                  <TilePane fx:id="tilePane" prefTileHeight="200.0" prefTileWidth="200.0" prefWidth="1014.0" style="-fx-background-color: #212121;" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets />
                      </BorderPane.margin>
@@ -28,7 +28,7 @@
                   </TilePane>
                </center>
                <left>
-                  <VBox prefHeight="711.0" prefWidth="140.0" style="-fx-background-color: #92A9BD;" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="711.0" prefWidth="140.0" style="-fx-background-color: #212121;" BorderPane.alignment="CENTER">
                      <children>
                         <Label prefHeight="51.0" prefWidth="142.0" style="-fx-background-color: #81d4fa;" textFill="#b21e1e">
                            <font>
@@ -41,11 +41,11 @@
                                  </image>
                               </ImageView>
                            </graphic></Label>
-                        <JFXButton fx:id="loginin" onAction="#login" prefHeight="74.0" prefWidth="147.0" style="-fx-background-color: #92A9BD;" text="Log in" textFill="#570b36">
+                        <JFXButton fx:id="loginin" onAction="#login" prefHeight="74.0" prefWidth="147.0" style="-fx-background-color: #64dd17;" text="Log in" textFill="WHITE">
                            <font>
                               <Font name="Serif Bold" size="31.0" />
                            </font></JFXButton>
-                        <JFXButton fx:id="exitid" onAction="#exitbtn" prefHeight="64.0" prefWidth="147.0" style="-fx-background-color: #92A9BD;" text="Exit" textFill="#570b36d9">
+                        <JFXButton fx:id="exitid" onAction="#exitbtn" prefHeight="64.0" prefWidth="147.0" style="-fx-background-color: #64dd17;" text="Exit" textFill="#ffffffd9">
                            <font>
                               <Font name="Serif Bold" size="31.0" />
                            </font>

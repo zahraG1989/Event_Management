@@ -1,33 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.control.Label?>
-<?import com.jfoenix.controls.JFXButton?>
 
 <StackPane fx:id="stackpaneid" prefHeight="722.0" prefWidth="926.0" styleClass="logindiv" stylesheets="/easv/GUI/View/CSS/Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.EventInfoController">
     <children>
-        <AnchorPane fx:id="anchorid" prefHeight="200.0" prefWidth="200.0">
+        <AnchorPane fx:id="anchorid" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #212121;">
             <children>
                 <ImageView fx:id="imageid" fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-                <Label fx:id="eventnameid" layoutX="229.0" layoutY="24.0" prefHeight="25.0" prefWidth="438.0" styleClass="eventnamefont" text="event name" textFill="#fffefe" />
-                <Label fx:id="infoid" layoutX="229.0" layoutY="63.0" prefHeight="163.0" prefWidth="575.0" text="event enfo" textFill="WHITE">
+                <Label fx:id="eventnameid" alignment="CENTER" layoutX="229.0" layoutY="24.0" prefHeight="25.0" prefWidth="438.0" style="-fx-background-radius: 90; -fx-background-color: #64dd17;" styleClass="eventnamefont" text="  Event Name" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+                <Label fx:id="infoid" layoutX="229.0" layoutY="197.0" prefHeight="31.0" prefWidth="147.0" style="-fx-background-radius: 90; -fx-background-color: #64dd17;" text="  Event Information" textFill="WHITE">
                     <font>
-                        <Font name="Calibri Light Italic" size="24.0" />
+                        <Font size="14.0" />
                     </font></Label>
-                <Label fx:id="locationid" layoutX="229.0" layoutY="243.0" prefHeight="17.0" prefWidth="320.0" text="Location" textFill="WHITE">
+                <Label fx:id="locationid" layoutX="229.0" layoutY="243.0" prefHeight="31.0" prefWidth="147.0" style="-fx-background-radius: 90; -fx-background-color: #64dd17;" text="  Location" textFill="WHITE">
                     <font>
-                        <Font name="Arial Italic" size="15.0" />
+                        <Font size="14.0" />
                     </font></Label>
-                <Label fx:id="locguideid" layoutX="191.0" layoutY="288.0" prefHeight="31.0" prefWidth="705.0" text="locationguidence" textFill="#fffefe">
+                <Label fx:id="locguideid" layoutX="229.0" layoutY="286.0" prefHeight="31.0" prefWidth="147.0" style="-fx-background-radius: 90; -fx-background-color: #64dd17;" text="  Location Guidance" textFill="#fffefe">
                     <font>
-                        <Font name="Bell MT" size="16.0" />
+                        <Font size="14.0" />
                     </font></Label>
                 <TilePane fx:id="tilepaneid" layoutX="14.0" layoutY="446.0" prefHeight="200.0" prefWidth="879.0" />
-                <JFXButton fx:id="backid" layoutX="804.0" layoutY="658.0" onAction="#backbtn" prefHeight="37.0" prefWidth="89.0" text="back" />
+                <JFXButton fx:id="backid" layoutX="804.0" layoutY="658.0" onAction="#backbtn" prefHeight="37.0" prefWidth="89.0" style="-fx-background-radius: 90; -fx-background-color: #64dd17;" text="back" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font></JFXButton>
             </children>
         </AnchorPane>
     </children>
