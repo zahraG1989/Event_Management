@@ -4,6 +4,7 @@ package easv.GUI.Controller;
 import com.barcodelib.barcode.Linear;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import easv.BE.Ticket;
 import easv.BE.User;
 import easv.GUI.Controller.Users.CustomerController;
@@ -160,17 +161,9 @@ public class EventInfoController implements Initializable {
                             if(user.getUserType().equals("Customer")) {
                                 System.out.println(username.getText() + " " + password.getText());
                                 try {
-
-                                    ticketModel.createUsTiEv(cntrl.selectedevent ,t ,user);
+                                        ticketModel.createUsTiEv(cntrl.selectedevent ,t ,user);
                                     File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\newtemplate.png");
                                     File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\newticket.jpg");
-
-                                   // Linear barcodes = new Linear();
-                                  //  barcodes.setType(Linear.CODE128B);
-                                  //  barcodes.setData(userModel.getqr(user));
-                                  //  barcodes.setI(1);
-                                  //  BufferedImage  image2 = barcodes.renderBarcode();
-                                  // Image image = new Image(String.valueOf(f));
 
                                     String name = cntrl.selectedevent.getName()+" \n" + t.getType()+" \n" + user.getUsername()+" \n" + t.getInfo() +" \n" + t.getTicketprice() ; // event name and ticket name
                                     ByteArrayOutputStream out = QRCode.from(name).to(ImageType.PNG).stream();
@@ -178,7 +171,6 @@ public class EventInfoController implements Initializable {
                                     FileOutputStream fos = new FileOutputStream(f);
                                     fos.write(out.toByteArray());
                                     fos.flush();
-
 
                                     BufferedImage img = null ;
                                     try {
@@ -188,11 +180,11 @@ public class EventInfoController implements Initializable {
                                         e.printStackTrace();
                                     }
 
-
                                     addTixttoimage(img ,user.getUsername() , cntrl.selectedevent.getName() , cntrl.selectedevent.getStartevent().toString() , cntrl.selectedevent.getLocation(),t.getTicketprice(),t.getId(),t.getType() , "jpg" , input , output);
                                     logintouser();
                                 } catch (Exception e) {
-                                    e.printStackTrace();
+                                   Alert alert = new Alert(Alert.AlertType.ERROR);
+                                   alert.setContentText("this user already have ticket for this Event ");
                                 }
                             }
                         }else{
@@ -212,7 +204,6 @@ public class EventInfoController implements Initializable {
             });
         }
     }
-
 
     public void logintouser() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/Users/customerpage.fxml"));
@@ -248,7 +239,7 @@ public class EventInfoController implements Initializable {
 
 
 
-    private static void addTixttoimage(BufferedImage image2,String username, String name , String when , String where  , int price , int ticketid,String tickettype ,String type, File source, File destination) throws IOException {
+    private static void addTixttoimage(BufferedImage image2 , String username, String name , String when , String where  , int price , int ticketid,String tickettype ,String type, File source, File destination) throws IOException {
 
         BufferedImage image = ImageIO.read(source);
         int imagetype = "png".equalsIgnoreCase(type) ? BufferedImage.TYPE_INT_ARGB : BufferedImage.TYPE_INT_RGB;
@@ -267,7 +258,6 @@ public class EventInfoController implements Initializable {
         Rectangle2D rect = fontMetrics.getStringBounds(username, w);
         int centerX = (image.getWidth() - (int) rect.getWidth()) / 2;
         int centerY = image.getHeight() / 2;
-
 
         w.drawString(name, 284, 90);
         w.drawString(where, 51, 65);

@@ -133,5 +133,11 @@ public class testedmain {
 
     //    addTixttoimage("" , "teaparty" , "2022-12-15" , "koldingvej13" , "156264",50,1  , "jpg" , input , output);
 
+    // Linear barcodes = new Linear();
+    //  barcodes.setType(Linear.CODE128B);
+    //  barcodes.setData(userModel.getqr(user));
+    //  barcodes.setI(1);
+    //  BufferedImage  image2 = barcodes.renderBarcode();
+    // Image image = new Image(String.valueOf(f));
 
 }
