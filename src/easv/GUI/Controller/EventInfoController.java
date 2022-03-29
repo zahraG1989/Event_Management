@@ -156,12 +156,13 @@ public class EventInfoController implements Initializable {
                     stage.show();
                     button.setOnAction(event1 -> {
                      User user  =  userModel.verifyUsers(username.getText(), password.getText());
-                        if(user != null) {
-                            if (user.getUserType().equals("Customer")) {
+                        if(user != null){
+                            if(user.getUserType().equals("Customer")) {
                                 System.out.println(username.getText() + " " + password.getText());
                                 try {
+
                                     ticketModel.createUsTiEv(cntrl.selectedevent ,t ,user);
-                                    File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\tickettemplate.png");
+                                    File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\newtemplate.png");
                                     File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\newticket.jpg");
 
                                    // Linear barcodes = new Linear();
@@ -169,21 +170,16 @@ public class EventInfoController implements Initializable {
                                   //  barcodes.setData(userModel.getqr(user));
                                   //  barcodes.setI(1);
                                   //  BufferedImage  image2 = barcodes.renderBarcode();
+                                  // Image image = new Image(String.valueOf(f));
 
-
-                                    String name = "dany"; // event name and ticket name
-
+                                    String name = cntrl.selectedevent.getName()+" \n" + t.getType()+" \n" + user.getUsername()+" \n" + t.getInfo() +" \n" + t.getTicketprice() ; // event name and ticket name
                                     ByteArrayOutputStream out = QRCode.from(name).to(ImageType.PNG).stream();
-
                                     File f = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\qrcode.png");
-
                                     FileOutputStream fos = new FileOutputStream(f);
-
                                     fos.write(out.toByteArray());
-
                                     fos.flush();
 
-                                   Image image = new Image(String.valueOf(f));
+
                                     BufferedImage img = null ;
                                     try {
                                          img = ImageIO.read(f);
@@ -252,7 +248,7 @@ public class EventInfoController implements Initializable {
 
 
 
-    private static void addTixttoimage(BufferedImage image2,String text, String name , String when , String where  , int price , int ticketid,String tickettype ,String type, File source, File destination) throws IOException {
+    private static void addTixttoimage(BufferedImage image2,String username, String name , String when , String where  , int price , int ticketid,String tickettype ,String type, File source, File destination) throws IOException {
 
         BufferedImage image = ImageIO.read(source);
         int imagetype = "png".equalsIgnoreCase(type) ? BufferedImage.TYPE_INT_ARGB : BufferedImage.TYPE_INT_RGB;
@@ -264,23 +260,23 @@ public class EventInfoController implements Initializable {
         w.drawImage(image, 1, 2, null);
         AlphaComposite alpha = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.9f);
         w.setComposite(alpha);
-        w.setColor(Color.BLACK);
+        w.setColor(Color.white);
         w.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
 
         FontMetrics fontMetrics = w.getFontMetrics();
-        Rectangle2D rect = fontMetrics.getStringBounds(text, w);
+        Rectangle2D rect = fontMetrics.getStringBounds(username, w);
         int centerX = (image.getWidth() - (int) rect.getWidth()) / 2;
         int centerY = image.getHeight() / 2;
 
 
-        w.drawString(name, 477, 59);
-        w.drawString(where, 525, 100);
-        w.drawString(when, 518, 75);
-        w.drawString(String.valueOf(price), 521, 126);
-        w.drawString(tickettype, 476, 185);
-        w.drawString(String.valueOf(ticketid), 552, 149);
-        w.drawString(text, 482, 210);
-         w.drawImage(image2,null ,0, 175); //250
+        w.drawString(name, 284, 90);
+        w.drawString(where, 51, 65);
+        w.drawString(when, 50, 30);
+        w.drawString(String.valueOf(price), 45, 97);
+        w.drawString(tickettype, 80, 97);
+        w.drawString(String.valueOf(ticketid), 75, 131);
+        w.drawString(username, 279, 123);
+         w.drawImage(image2,null ,10, 147);
         ImageIO.write(bold, type, destination);
         w.dispose();
     }
