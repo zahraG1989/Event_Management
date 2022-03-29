@@ -29,7 +29,7 @@
                     <font>
                         <Font size="14.0" />
                     </font></Label>
-                <TilePane fx:id="tilepaneid" alignment="CENTER_LEFT" layoutX="281.0" layoutY="446.0" prefHeight="123.0" prefWidth="200.0" />
+                <TilePane fx:id="tilepaneid" alignment="CENTER_LEFT" layoutX="13.0" layoutY="446.0" prefHeight="123.0" prefWidth="897.0" />
                 <JFXButton fx:id="backid" layoutX="804.0" layoutY="658.0" onAction="#backbtn" prefHeight="37.0" prefWidth="89.0" style="-fx-background-radius: 90; -fx-background-color: #64dd17;" text="back" textFill="WHITE">
                <font>
                   <Font size="15.0" />

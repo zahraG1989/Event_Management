@@ -29,6 +29,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import net.glxn.qrgen.QRCode;
@@ -87,6 +89,9 @@ public class EventInfoController implements Initializable {
 
     users = userModel.getAllUsers();
         // tickets = ticketModel.
+        tilepaneid.setHgap(100);
+
+
     }
 
     public void setController(MainWindowController mainWindowController) {
@@ -100,6 +105,7 @@ public class EventInfoController implements Initializable {
        locationid.setText(cntrl.loc);
         locguideid.setText(cntrl.locationGuidance);
         showtickets();
+
     }
 
     public void showtickets(){
@@ -109,14 +115,19 @@ public class EventInfoController implements Initializable {
         for(Ticket t : tickets){
             String s =String.valueOf(t.getTicketprice());
             Label price = new Label(s);
+           price.setTextFill(javafx.scene.paint.Color.BLACK);
+           javafx.scene.text.Font font = new javafx.scene.text.Font( Font.PLAIN);
+            price.setFont(javafx.scene.text.Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
             Label btn = new Label();
+            btn.setTextFill(javafx.scene.paint.Color.BLACK);
             btn.setText(t.getType());
+            btn.setFont(javafx.scene.text.Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
 
             vBox = new VBox();
 
             vBox.getChildren().add(price);
             vBox.getChildren().add(btn);
-
+            vBox.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Paint.valueOf("#A3CB38"), CornerRadii.EMPTY, Insets.EMPTY)));
             tilepaneid.getChildren().add(vBox);
             vBox.setOnMousePressed(event -> {
                 int answer = JOptionPane.showConfirmDialog(null, "Do you have an Account ");
