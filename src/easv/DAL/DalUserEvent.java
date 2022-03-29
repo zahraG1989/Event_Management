@@ -78,15 +78,16 @@ public class DalUserEvent implements DaoUserEvent{
     }
 
     @Override
-    public void addusertoEvent(User user, Event event, Ticket ticket) {
+    public void addusertoEvent(User user, Event event, Ticket ticket , String imagepath) {
         try(Connection connection = dataAccess.getConnection()) {
 
-            String sql = "INSERT INTO userevent(userid,eventid,ticketid ,barcode) VALUES (?,?,? , ?)";
+            String sql = "INSERT INTO userevent(userid,eventid,ticketid ,barcode , ticketimage) VALUES (?,?,?,?,?)";
             PreparedStatement prs = connection.prepareStatement(sql);
             prs.setInt(1, user.getId());
             prs.setInt(2 ,event.getId());
             prs.setInt(3 , ticket.getId());
             prs.setString(4, createQrCode());
+            prs.setString(5 ,imagepath);
             prs.executeUpdate();
         } catch (SQLServerException e) {
             e.printStackTrace();

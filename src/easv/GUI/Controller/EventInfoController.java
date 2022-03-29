@@ -161,10 +161,10 @@ public class EventInfoController implements Initializable {
                             if(user.getUserType().equals("Customer")) {
                                 System.out.println(username.getText() + " " + password.getText());
                                 try {
-                                        ticketModel.createUsTiEv(cntrl.selectedevent ,t ,user);
+
                                     File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\newtemplate.png");
                                     File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\newticket.jpg");
-
+                                    ticketModel.createUsTiEv(cntrl.selectedevent ,t ,user , String.valueOf(output));
                                     String name = cntrl.selectedevent.getName()+" \n" + t.getType()+" \n" + user.getUsername()+" \n" + t.getInfo() +" \n" + t.getTicketprice() ; // event name and ticket name
                                     ByteArrayOutputStream out = QRCode.from(name).to(ImageType.PNG).stream();
                                     File f = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\qrcode.png");

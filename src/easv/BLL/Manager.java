@@ -113,8 +113,8 @@ public class Manager implements LogicFecade{
     }
 
     @Override
-    public void addusertoEvent(User user, Event event, Ticket ticket ) {
-        dalUserEvent.addusertoEvent(user ,event ,ticket);
+    public void addusertoEvent(User user, Event event, Ticket ticket , String path ) {
+        dalUserEvent.addusertoEvent(user ,event ,ticket , path);
     }
 
     @Override

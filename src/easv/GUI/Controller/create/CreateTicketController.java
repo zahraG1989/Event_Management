@@ -50,7 +50,7 @@ public class CreateTicketController implements Initializable {
     }
 
     public void savebtn(ActionEvent actionEvent) throws IOException {
-        updateticket();
+       // updateticket();
        /*
         if(tickettypeid.getText().length() == 0) {
            createTicekt();
@@ -59,7 +59,8 @@ public class CreateTicketController implements Initializable {
         }
 
         */
-        switchsence();
+        createTicekt();
+      //  switchsence();
     }
 
     public void switchsence() throws IOException {

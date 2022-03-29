@@ -61,7 +61,7 @@ public class DalTicket implements DaoTicket{
         System.out.println(id);
         ArrayList<Ticket> tickets = new ArrayList<>();
         try(Connection con = dataAccess.getConnection()) {
-            String sql = "SELECT  tickettype , price  , info ,  Ticket.id as TicketID" +
+            String sql = "SELECT  barcode , price  , ticketimage ,  Ticket.id as TicketID" +
                     "       from users " +
                     "  join userevent on userevent.userid = users.id" +
                     "  join Ticket on  userevent.ticketid = Ticket.id" +
@@ -71,10 +71,10 @@ public class DalTicket implements DaoTicket{
             ResultSet rs = prs.executeQuery();
             while(rs.next()){
                 int idi = rs.getInt("TicketID");
-                String type = rs.getString("tickettype");
+                String type = rs.getString("barcode");
                 int price = rs.getInt("price");
+                String info = rs.getString("ticketimage");
 
-                String info = rs.getString("info");
                 Ticket ticket = new Ticket(idi , type ,price  , null , info);
                 tickets.add(ticket);
             }

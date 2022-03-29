@@ -12,7 +12,7 @@ public interface DaoUserEvent {
 
     List<Ticket> getTicketsinEvent(int idi );
 
-    void addusertoEvent(User user , Event event , Ticket ticket );
+    void addusertoEvent(User user , Event event , Ticket ticket , String imagepath );
 
     void removeuserfromEvent(User user , Event event ,Ticket ticket);
 

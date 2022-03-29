@@ -60,11 +60,11 @@ public class CreateeventController implements Initializable {
     }
 
     public void save(ActionEvent actionEvent) throws ParseException {
-        if(eventnameid.getText().length() == 0) {
+      //  if(eventnameid.getText().length() == 0) {
             createEvent();
-        }else{
-            updateevent();
-        }
+      //  }else{
+        //    updateevent();
+     //   }
 
     }
 

@@ -46,8 +46,8 @@ public class TicketModel {
         return tickets ;
     }
 
-    public void createUsTiEv(Event event , Ticket ticket , User user ){
-        logicFecade.addusertoEvent(user , event , ticket );
+    public void createUsTiEv(Event event , Ticket ticket , User user , String path ){
+        logicFecade.addusertoEvent(user , event , ticket, path );
     }
                                 // used inside the customer controller
     public ObservableList<Ticket> getuserTickets(int id){
