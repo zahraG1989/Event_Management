@@ -1,6 +1,7 @@
 package easv;
 
 
+import javafx.scene.image.Image;
 import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image.ImageType;
 
@@ -11,9 +12,8 @@ import java.io.FileOutputStream;
 
 public class testedmain {
     public static void main(String[] args) throws Exception {
-        String name = "Diana ";
+        String name = "danylo";
         ByteArrayOutputStream out = QRCode.from(name).to(ImageType.PNG).stream();
-        //                                    File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\tickettemplate.png");
         File f = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\qrcode.png");
 
         FileOutputStream fos = new FileOutputStream(f);
@@ -21,6 +21,8 @@ public class testedmain {
             fos.write(out.toByteArray());
 
             fos.flush();
+       // Image image = new Image(String.valueOf(f));
+
 /*
         GridPane grid = new GridPane();
         grid.setHgap(10);

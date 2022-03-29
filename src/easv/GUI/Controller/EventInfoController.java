@@ -31,6 +31,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import net.glxn.qrgen.QRCode;
+import net.glxn.qrgen.image.ImageType;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -38,7 +40,9 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferedImageOp;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -149,14 +153,36 @@ public class EventInfoController implements Initializable {
                                     File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\tickettemplate.png");
                                     File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\newticket.jpg");
 
-                                    Linear barcodes = new Linear();
-                                    barcodes.setType(Linear.CODE128B);
-                                    barcodes.setData(userModel.getqr(user));
-                                    barcodes.setI(1);
+                                   // Linear barcodes = new Linear();
+                                  //  barcodes.setType(Linear.CODE128B);
+                                  //  barcodes.setData(userModel.getqr(user));
+                                  //  barcodes.setI(1);
+                                  //  BufferedImage  image2 = barcodes.renderBarcode();
 
-                                    BufferedImage  image2 = barcodes.renderBarcode();
 
-                                    addTixttoimage(image2 ,user.getUsername() , cntrl.selectedevent.getName() , cntrl.selectedevent.getStartevent().toString() , cntrl.selectedevent.getLocation(),t.getTicketprice(),t.getId(),t.getType() , "jpg" , input , output);
+                                    String name = "dany"; // event name and ticket name
+
+                                    ByteArrayOutputStream out = QRCode.from(name).to(ImageType.PNG).stream();
+
+                                    File f = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\qrcode.png");
+
+                                    FileOutputStream fos = new FileOutputStream(f);
+
+                                    fos.write(out.toByteArray());
+
+                                    fos.flush();
+
+                                   Image image = new Image(String.valueOf(f));
+                                    BufferedImage img = null ;
+                                    try {
+                                         img = ImageIO.read(f);
+                                    } catch (IOException e) {
+                                        // TODO Auto-generated catch block
+                                        e.printStackTrace();
+                                    }
+
+
+                                    addTixttoimage(img ,user.getUsername() , cntrl.selectedevent.getName() , cntrl.selectedevent.getStartevent().toString() , cntrl.selectedevent.getLocation(),t.getTicketprice(),t.getId(),t.getType() , "jpg" , input , output);
                                     logintouser();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -243,7 +269,7 @@ public class EventInfoController implements Initializable {
         w.drawString(tickettype, 476, 185);
         w.drawString(String.valueOf(ticketid), 552, 149);
         w.drawString(text, 482, 210);
-        w.drawImage(image2, null, -20, 250);
+         w.drawImage(image2,null ,0, 175); //250
         ImageIO.write(bold, type, destination);
         w.dispose();
     }
