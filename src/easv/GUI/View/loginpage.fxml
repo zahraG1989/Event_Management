@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
@@ -13,7 +14,6 @@
       <AnchorPane fx:id="anchorpne" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #212121;">
          <children>
             <TextField fx:id="usernameid" layoutX="329.0" layoutY="268.0" prefHeight="25.0" prefWidth="231.0" promptText="Username" />
-            <TextField fx:id="passwordid" layoutX="329.0" layoutY="323.0" prefHeight="25.0" prefWidth="231.0" promptText="password" />
             <JFXButton fx:id="loginid" buttonType="RAISED" layoutX="382.0" layoutY="385.0" onAction="#loginbtn" prefHeight="52.0" prefWidth="130.0" ripplerFill="WHITE" style="-fx-background-radius: 90; -fx-background-color: #64dd17;" text="Login" textFill="WHITE">
                <font>
                   <Font size="15.0" />
@@ -30,6 +30,7 @@
             <Label layoutX="329.0" layoutY="231.0" prefHeight="17.0" prefWidth="231.0" style="-fx-background-color: #64dd17; -fx-background-radius: 90;" textFill="WHITE" />
             <FontAwesomeIconView fill="WHITE" glyphName="USER" layoutX="275.0" layoutY="291.0" size="30" wrappingWidth="27.71428680419922" />
             <FontAwesomeIconView fill="WHITE" glyphName="KEY" layoutX="275.0" layoutY="346.0" size="30" wrappingWidth="27.71428680419922" />
+            <PasswordField fx:id="passwordid" layoutX="329.0" layoutY="323.0" prefHeight="25.0" prefWidth="231.0" />
          </children>
       </AnchorPane>
    </children>

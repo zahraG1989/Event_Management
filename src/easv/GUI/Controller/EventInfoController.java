@@ -128,7 +128,7 @@ public class EventInfoController implements Initializable {
 
             vBox.getChildren().add(price);
             vBox.getChildren().add(btn);
-            vBox.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Paint.valueOf("#A3CB38"), CornerRadii.EMPTY, Insets.EMPTY)));
+            vBox.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Paint.valueOf("#64dd17"), CornerRadii.EMPTY, Insets.EMPTY)));
             tilepaneid.getChildren().add(vBox);
             vBox.setOnMousePressed(event -> {
                 int answer = JOptionPane.showConfirmDialog(null, "Do you have an Account ");

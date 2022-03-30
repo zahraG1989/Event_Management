@@ -17,19 +17,19 @@
                <font>
                   <Font size="16.0" />
                </font></Label>
-                <Label fx:id="infoid" alignment="CENTER" layoutX="292.0" layoutY="196.0" prefHeight="31.0" prefWidth="179.0" style="-fx-background-radius: 90; -fx-background-color: #64dd17;" text="    Event Information" textFill="WHITE">
+                <Label fx:id="infoid" alignment="TOP_LEFT" layoutX="229.0" layoutY="217.0" prefHeight="268.0" prefWidth="588.0" style="-fx-background-radius: 90; -fx-background-color: #212121;" text="    Event Information" textFill="#64dd17">
                     <font>
                         <Font size="14.0" />
                     </font></Label>
-                <Label fx:id="locationid" alignment="CENTER" layoutX="292.0" layoutY="240.0" prefHeight="31.0" prefWidth="179.0" style="-fx-background-radius: 90; -fx-background-color: #64dd17;" text="    Location" textFill="WHITE">
+                <Label fx:id="locationid" layoutX="240.0" layoutY="80.0" prefHeight="31.0" prefWidth="220.0" style="-fx-background-radius: 90; -fx-background-color: #212121;" text="Location" textFill="#64dd17">
                     <font>
                         <Font size="14.0" />
                     </font></Label>
-                <Label fx:id="locguideid" alignment="CENTER" layoutX="292.0" layoutY="288.0" prefHeight="31.0" prefWidth="179.0" style="-fx-background-radius: 90; -fx-background-color: #64dd17;" text="    Location Guidance" textFill="#fffefe">
+                <Label fx:id="locguideid" layoutX="546.0" layoutY="74.0" prefHeight="31.0" prefWidth="328.0" style="-fx-background-radius: 90; -fx-background-color: #212121;" text="Location Guidance" textFill="#64dd17">
                     <font>
                         <Font size="14.0" />
                     </font></Label>
-                <TilePane fx:id="tilepaneid" alignment="CENTER_LEFT" layoutX="13.0" layoutY="446.0" prefHeight="123.0" prefWidth="897.0" />
+                <TilePane fx:id="tilepaneid" alignment="CENTER_LEFT" layoutX="23.0" layoutY="512.0" prefHeight="123.0" prefWidth="897.0" />
                 <JFXButton fx:id="backid" layoutX="804.0" layoutY="658.0" onAction="#backbtn" prefHeight="37.0" prefWidth="89.0" style="-fx-background-radius: 90; -fx-background-color: #64dd17;" text="back" textFill="WHITE">
                <font>
                   <Font size="15.0" />
