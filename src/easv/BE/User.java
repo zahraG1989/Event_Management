@@ -17,6 +17,14 @@ public class User {
         this.select = new CheckBox();
     }
 
+    public CheckBox getSelect() {
+        return select;
+    }
+
+    public void setSelect(CheckBox select) {
+        this.select = select;
+    }
+
     public String getUserType() {
         return userType;
     }
