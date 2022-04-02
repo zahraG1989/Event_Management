@@ -8,6 +8,7 @@ import easv.GUI.Controller.create.CreatePremotController;
 import easv.GUI.Controller.create.CreateeventController;
 import easv.GUI.Model.EventModel;
 import easv.GUI.Model.UserModel;
+import easv.GUI.Model.util.ModelException;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -20,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -80,9 +82,18 @@ public class AdminController implements Initializable {
         eventModel = EventModel.getInstance();
 
         listofEvents = FXCollections.observableArrayList();
-        listofEvents.addAll(eventModel.getAllEvents());
+        try {
+            listofEvents.addAll(eventModel.getAllEvents());
+        } catch (ModelException e) {
+            setUpAlert("list of events cant be initialized please try again later  ");
+        }
 
-        customertable.setItems(userModel.getAllUsers());
+        try {
+            customertable.setItems(userModel.getAllUsers());
+        } catch (ModelException e) {
+            setUpAlert("something went wrong please try again later ");
+
+        }
         cutomername.setCellValueFactory(new PropertyValueFactory<>("username"));
         customeremail.setCellValueFactory(new PropertyValueFactory<>("email"));
         customertyoe.setCellValueFactory(new PropertyValueFactory<>("userType"));
@@ -96,28 +107,52 @@ public class AdminController implements Initializable {
 
     }
 
+    protected void setUpAlert(String text) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Alert");
+        alert.setHeaderText(null);
+        alert.setContentText(text);
+        alert.showAndWait();
+    }
+
     public void searcher(KeyEvent keyEvent) {
         if(filter.getText() == null || filter.getText().length() <= 0 ){
             System.out.println(" the filter is empty ");
-            customertable.setItems(userModel.getAllUsers());
+            try {
+                customertable.setItems(userModel.getAllUsers());
+            } catch (ModelException e) {
+                setUpAlert("something went wrong please try again later ");
+
+            }
         }
         else {
             System.out.println("something is added ");
             ObservableList<User> found ;
 
-            found = userModel.searchforuser( userModel.getAllUsers(), filter.getText());
+            try {
+                found = userModel.searchforuser( userModel.getAllUsers(), filter.getText());
+                if(found != null){
+                    customertable.setItems(found);
+                }
+            } catch (ModelException e) {
+                setUpAlert("something went wrong please try again later ");
 
-            if(found != null){
-                customertable.setItems(found);
             }
+
         }
     }
 
     public void deleteUserbtn(ActionEvent actionEvent) {
         if(customertable.getSelectionModel().getSelectedIndex() != -1 ){
-            userModel.deleteUser(customertable.getSelectionModel().getSelectedItem() , customertable.getSelectionModel().getSelectedIndex());
-            userModel.updatethelist();
-            customertable.refresh();
+            try {
+                userModel.deleteUser(customertable.getSelectionModel().getSelectedItem() , customertable.getSelectionModel().getSelectedIndex());
+                userModel.updatethelist();
+                customertable.refresh();
+            } catch (ModelException e) {
+                setUpAlert("something went wrong please try again later ");
+
+            }
+
         }
     }
 

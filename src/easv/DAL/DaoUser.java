@@ -1,26 +1,27 @@
 package easv.DAL;
 
 import easv.BE.User;
+import easv.DAL.DataAccess.dalException;
 
 import java.util.List;
 
 public interface DaoUser {
 
-    List<User> getAllUsers();
+    List<User> getAllUsers() throws dalException;
 
-    List<User> getAllAdmins();
+    List<User> getAllAdmins()throws dalException;
 
-    List<User> getAllEventCoordinatoer();
+    List<User> getAllEventCoordinatoer()throws dalException;
 
-    User adduser(String username, String password, String email , String usertype);
+    User adduser(String username, String password, String email , String usertype)throws dalException;
 
-    int newestid();
+    int newestid()throws dalException;
 
-    void updateUser(User customer , String username, String email , String usertype);
+    void updateUser(User customer , String username, String email , String usertype)throws dalException;
 
-    void deleteUser(User customer);
+    void deleteUser(User customer)throws dalException;
 
-    User verifyUsers(String username, String password);
+    User verifyUsers(String username, String password)throws dalException;
 
-    List<User> searchforUser(String quury);
+    List<User> searchforUser(String quury)throws dalException;
 }

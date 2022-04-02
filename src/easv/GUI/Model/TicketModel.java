@@ -6,6 +6,8 @@ import easv.BE.Ticket;
 import easv.BE.User;
 import easv.BLL.LogicFecade;
 import easv.BLL.Manager;
+import easv.BLL.bllException;
+import easv.GUI.Model.util.ModelException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -34,48 +36,80 @@ public class TicketModel {
         return tickets ;
     }
 
-    public void createTicket(Event event, int id, String type, int ticketprice, Timestamp expirationdan, String info){
-       Ticket t = logicFecade.createticket(event , id , type , ticketprice  , expirationdan , info);
-       tickets.add(t);
-    }
+    public void createTicket(Event event, int id, String type, int ticketprice, Timestamp expirationdan, String info) throws ModelException {
 
-
-    public ObservableList<Ticket> getticketinevent(int id){
-        tickets = FXCollections.observableArrayList();
-        tickets.addAll(logicFecade.getTicketsinEvent(id));
-        return tickets ;
-    }
-
-    public void createUsTiEv(Event event , Ticket ticket , User user , String path ){
-        logicFecade.addusertoEvent(user , event , ticket, path );
-    }
-                                // used inside the customer controller
-    public ObservableList<Ticket> getuserTickets(int id){
-        tickets = FXCollections.observableArrayList();
-        System.out.println(logicFecade.getTicketsinEvent(id));
-        tickets.addAll(logicFecade.getusertickets(id));
-
-        return tickets ;
-    }
-
-    public void deleteTicket(Ticket ticket , int item ){
-        logicFecade.deleteTicket(ticket);
-        tickets.remove(item);
-        updatethelist();
-    }
-
-
-
-    public void updateTicket(Ticket ticket , int index , String type, int ticketprice, String info ){
-        logicFecade.updateTicket(ticket , type , ticketprice , info );
-        tickets.set(index , ticket);
-        updatethelist();
+        try {
+          Ticket  t = logicFecade.createticket(event , id , type , ticketprice  , expirationdan , info);
+            tickets.add(t);
+        } catch (bllException e) {
+           throw new ModelException(e.getMessage());
+        }
 
     }
 
-    public void updatethelist(){
 
-        tickets.setAll(logicFecade.getAllTickets());
+    public ObservableList<Ticket> getticketinevent(int id)throws ModelException {
+
+        try {
+            tickets = FXCollections.observableArrayList();
+            tickets.addAll(logicFecade.getTicketsinEvent(id));
+            return tickets ;
+        } catch (bllException e) {
+            throw  new ModelException(e.getMessage());
+        }
+
+    }
+
+    public void createUsTiEv(Event event , Ticket ticket , User user , String path )throws ModelException {
+        try {
+            logicFecade.addusertoEvent(user , event , ticket, path );
+        } catch (bllException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ObservableList<Ticket> getuserTickets(int id)throws ModelException {
+
+        try {
+            tickets = FXCollections.observableArrayList();
+            tickets.addAll(logicFecade.getusertickets(id));
+            return tickets ;
+        } catch (bllException e) {
+            throw  new ModelException(e.getMessage());
+        }
+    }
+
+    public void deleteTicket(Ticket ticket , int item )throws ModelException {
+        try {
+            logicFecade.deleteTicket(ticket);
+            tickets.remove(item);
+            updatethelist();
+        } catch (bllException e) {
+           throw  new ModelException(e.getMessage());
+        }
+
+    }
+
+
+
+    public void updateTicket(Ticket ticket , int index , String type, int ticketprice, String info )throws ModelException {
+        try {
+            logicFecade.updateTicket(ticket , type , ticketprice , info );
+            tickets.set(index , ticket);
+            updatethelist();
+        } catch (bllException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void updatethelist()throws ModelException {
+
+        try {
+            tickets.setAll(logicFecade.getAllTickets());
+        } catch (bllException e) {
+           throw new ModelException(e.getMessage());
+        }
     }
 
 }

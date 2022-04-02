@@ -3,6 +3,8 @@ package easv.DAL;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import easv.BE.User;
 import easv.DAL.DataAccess.DataAccess;
+import easv.DAL.DataAccess.dalException;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,7 @@ public class DalUser implements DaoUser {
         dataAccess = new DataAccess();
     }
     @Override
-    public List<User> getAllUsers() {
+    public List<User> getAllUsers() throws dalException {
         ArrayList<User> customers = new ArrayList<>();
 
         try(Connection con = dataAccess.getConnection()){
@@ -42,7 +44,7 @@ public class DalUser implements DaoUser {
     }
 
     @Override
-    public List<User> getAllAdmins() {
+    public List<User> getAllAdmins() throws dalException{
         ArrayList<User> customers = new ArrayList<>();
 
         try(Connection con = dataAccess.getConnection()){
@@ -66,7 +68,7 @@ public class DalUser implements DaoUser {
     }
 
     @Override
-    public List<User> getAllEventCoordinatoer() {
+    public List<User> getAllEventCoordinatoer() throws dalException{
         ArrayList<User> customers = new ArrayList<>();
 
         try(Connection con = dataAccess.getConnection()){
@@ -91,7 +93,7 @@ public class DalUser implements DaoUser {
     }
 
     @Override
-    public User adduser(String username, String password, String email , String usertype) {
+    public User adduser(String username, String password, String email , String usertype)throws dalException {
         User user = null ;
         try (Connection con = dataAccess.getConnection()) {
             String sql = "INSERT INTO users(username , password, email , usertype)" +
@@ -111,10 +113,10 @@ public class DalUser implements DaoUser {
     }
 
     @Override
-    public int newestid() {
+    public int newestid()throws dalException {
         int newid = -1;
 
-        try (Connection con = dataAccess.getConnection()) {
+        try (Connection con = dataAccess.getConnection()){
             String sql = "SELECT TOP(1) * FROM users ORDER by id desc";
             PreparedStatement prs = con.prepareStatement(sql);
             ResultSet rs = prs.executeQuery();
@@ -130,7 +132,7 @@ public class DalUser implements DaoUser {
     }
 
     @Override
-    public void updateUser(User customer, String username, String email , String usertype) {
+    public void updateUser(User customer, String username, String email , String usertype)throws dalException {
         try(Connection con = dataAccess.getConnection()){
             String sql = "UPDATE users SET  username = ?  , email = ?  , usertype = ?  WHERE id = ? ";
 
@@ -148,7 +150,7 @@ public class DalUser implements DaoUser {
     }
 
     @Override
-    public void deleteUser(User user) {
+    public void deleteUser(User user)throws dalException {
     try(Connection con = dataAccess.getConnection()) {
 
         String sql = "DELETE FROM users WHERE Id = ?";
@@ -162,7 +164,7 @@ public class DalUser implements DaoUser {
     }
     }
     @Override
-    public User verifyUsers(String username, String password) {
+    public User verifyUsers(String username, String password)throws dalException {
         User user = null;
 
         try(Connection con = dataAccess.getConnection()){
@@ -189,17 +191,18 @@ public class DalUser implements DaoUser {
     }
 
     @Override
-    public List<User> searchforUser(String quury) {
+    public List<User> searchforUser(String quury)throws dalException {
 
         List<User> users = new ArrayList<>();
 
         String stringquery = "%" + quury + "%" ;
 
         try(Connection con = dataAccess.getConnection()) {
-            String command = "Select * from users where  username like ? or usertype like ? ";
+            String command = "Select * from users where  username like ? or usertype like ? or email like ? ";
             PreparedStatement prs = con.prepareStatement(command);
             prs.setString(1 ,stringquery);
             prs.setString(2,stringquery);
+            prs.setString(3,stringquery);
             prs.execute();
             ResultSet rs = prs.getResultSet();
             while(rs.next()){

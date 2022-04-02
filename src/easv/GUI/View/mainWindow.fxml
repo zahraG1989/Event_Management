@@ -14,7 +14,7 @@
 
 <StackPane fx:id="stackpne" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="722.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.MainWindowController">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #212121;">
+      <AnchorPane fx:id="anchorpane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #212121;">
          <children>
             <BorderPane fx:id="borderpne" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="724.0" prefWidth="934.0" stylesheets="/easv/GUI/View/CSS/Styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <center>

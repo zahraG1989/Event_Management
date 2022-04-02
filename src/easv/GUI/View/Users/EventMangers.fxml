@@ -11,21 +11,19 @@
 
 <!--<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>-->
 
-<StackPane fx:id="stackid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="962.0" stylesheets="/easv/GUI/View/CSS/Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.Users.EventMangersController">
+<StackPane fx:id="stackid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="722.0" prefWidth="926.0" stylesheets="/easv/GUI/View/CSS/Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.Users.EventMangersController">
    <children>
-      <AnchorPane fx:id="ancorid" onMousePressed="#anchorouse" prefHeight="749.0" prefWidth="962.0" style="-fx-background-color: #212121;" styleClass="changedBackgroundColor">
+      <AnchorPane fx:id="ancorid" onMousePressed="#anchorouse" prefHeight="722.0" prefWidth="926.0" style="-fx-background-color: #212121;" styleClass="changedBackgroundColor">
          <children>
-            <TableView fx:id="tableviewevents" layoutX="326.0" layoutY="14.0" onMousePressed="#getUsersinSelectedEvent" prefHeight="354.0" prefWidth="630.0">
+            <TableView fx:id="tableviewevents" layoutX="327.0" layoutY="14.0" onMousePressed="#getUsersinSelectedEvent" prefHeight="354.0" prefWidth="601.0">
                <columns>
-                  <TableColumn fx:id="eventname" prefWidth="183.0" text="name" />
-                  <TableColumn fx:id="eventloc" minWidth="6.0" prefWidth="168.0" text="location" />
-                  <TableColumn fx:id="usersineventalt" minWidth="0.0" prefWidth="66.0" text="C.alt" />
-                  <TableColumn fx:id="startevent" minWidth="0.0" prefWidth="89.0" text="start date" />
-                  <TableColumn fx:id="endevent" minWidth="0.0" prefWidth="90.0" text="end Date" />
-                  <TableColumn fx:id="eventticketalt" minWidth="0.0" prefWidth="33.0" text="T.alt" />
+                  <TableColumn fx:id="eventname" prefWidth="130.0" text="name" />
+                  <TableColumn fx:id="eventloc" minWidth="6.0" prefWidth="142.0" text="location" />
+                  <TableColumn fx:id="startevent" minWidth="0.0" prefWidth="150.0" text="start date" />
+                  <TableColumn fx:id="endevent" minWidth="0.0" prefWidth="206.0" text="end Date" />
                </columns>
             </TableView>
-            <TableView fx:id="tableviewusers" layoutX="12.0" layoutY="67.0" prefHeight="665.0" prefWidth="308.0">
+            <TableView fx:id="tableviewusers" layoutX="14.0" layoutY="52.0" prefHeight="665.0" prefWidth="308.0">
                <columns>
                   <TableColumn fx:id="usercheckbox" prefWidth="29.0" text="C1">
 <!--                     <graphic>-->
@@ -33,10 +31,10 @@
 <!--                     </graphic>-->
                   </TableColumn>
                   <TableColumn fx:id="username" prefWidth="132.0" text="Name" />
-                  <TableColumn fx:id="userticket" prefWidth="146.0" text="Ticket" />
+                  <TableColumn fx:id="useremail" prefWidth="146.0" text="email" />
                </columns>
             </TableView>
-            <TableView fx:id="tableviewtickets" layoutX="332.0" layoutY="500.0" onMousePressed="#ticketmouse" prefHeight="187.0" prefWidth="607.0">
+            <TableView fx:id="tableviewtickets" layoutX="335.0" layoutY="495.0" onMousePressed="#ticketmouse" prefHeight="187.0" prefWidth="591.0">
                <columns>
                   <TableColumn fx:id="tickettype" prefWidth="90.0" text="type" />
                   <TableColumn fx:id="ticketprice" prefWidth="66.0" text="ticketprice" />
@@ -47,9 +45,7 @@
             <JFXButton fx:id="createticketid" layoutX="332.0" layoutY="461.0" onAction="#createticketbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #64dd17; -fx-background-radius: 90;" text="Create Ticket" textFill="WHITE" />
             <JFXButton fx:id="deleteeventid" layoutX="431.0" layoutY="375.0" onAction="#deleteeventbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #64dd17; -fx-background-radius: 90;" text="Delete Event" textFill="WHITE" />
             <JFXButton fx:id="deleteticketid" layoutX="431.0" layoutY="461.0" onAction="#deleteticketbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #64dd17; -fx-background-radius: 90;" text="Delete Ticket" textFill="WHITE" />
-            <JFXButton fx:id="updateeventid" layoutX="533.0" layoutY="375.0" onAction="#updateeventbtn" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #64dd17; -fx-background-radius: 90;" text="Update Event" textFill="WHITE" />
-            <JFXButton fx:id="updateticketid" layoutX="527.0" layoutY="461.0" onAction="#updateticketbtn" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #64dd17; -fx-background-radius: 90;" text="Update Ticket" textFill="WHITE" />
-            <JFXButton fx:id="backid" layoutX="847.0" layoutY="701.0" onAction="#backbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #64dd17; -fx-background-radius: 90;" text="Exit" textFill="WHITE">
+            <JFXButton fx:id="backid" layoutX="833.0" layoutY="687.0" onAction="#backbtn" prefHeight="27.0" prefWidth="86.0" style="-fx-background-color: #64dd17; -fx-background-radius: 90;" text="Exit" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font></JFXButton>

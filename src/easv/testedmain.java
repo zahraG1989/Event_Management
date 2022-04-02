@@ -12,15 +12,19 @@ import java.io.FileOutputStream;
 
 public class testedmain {
     public static void main(String[] args) throws Exception {
-        String name = "danylo";
-        ByteArrayOutputStream out = QRCode.from(name).to(ImageType.PNG).stream();
-        File f = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\qrcode.png");
 
-        FileOutputStream fos = new FileOutputStream(f);
 
-            fos.write(out.toByteArray());
 
-            fos.flush();
+
+     //   String name = "danylo";
+    //    ByteArrayOutputStream out = QRCode.from(name).to(ImageType.PNG).stream();
+     //   File f = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\qrcode.png");
+
+     //   FileOutputStream fos = new FileOutputStream(f);
+
+        //    fos.write(out.toByteArray());
+
+         //   fos.flush();
        // Image image = new Image(String.valueOf(f));
 
 /*

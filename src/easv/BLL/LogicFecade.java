@@ -11,47 +11,47 @@ import java.util.List;
 
 public interface LogicFecade {
 
-    List<Event> getAllEvents();
+    List<Event> getAllEvents()throws bllException;
 
-    Event createEvent(String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance , String imagepath);
+    Event createEvent(String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance , String imagepath)throws bllException;
 
-    void updateEvent(Event event , String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance , String image);
+    void updateEvent(Event event , String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance , String image)throws bllException;
 
-    void deleteEvent(Event event);
+    void deleteEvent(Event event)throws bllException;
 
-    List<Ticket> getTicketsinEvent( int idi );
+    List<Ticket> getTicketsinEvent( int idi )throws bllException;
 
-    List<User> getusersinEvent(int idi);
+    List<User> getusersinEvent(int idi)throws bllException;
 
-    List<User> getAllUsers();
+    List<User> getAllUsers()throws bllException;
 
-    List<User> getAllAdmins();
+    List<User> getAllAdmins()throws bllException;
 
-    List<User> getAllEventCoordinatoer();
+    List<User> getAllEventCoordinatoer()throws bllException;
 
-    User adduser(String username, String password, String email , String usertype);
+    User adduser(String username, String password, String email , String usertype)throws bllException;
 
-    void updateUser(User customer , String username, String email , String usertype);
+    void updateUser(User customer , String username, String email , String usertype)throws bllException;
 
-    void deleteUser(User customer);
+    void deleteUser(User customer)throws bllException;
 
-    List<Ticket> getAllTickets();
+    List<Ticket> getAllTickets()throws bllException;
 
-    Ticket createticket(Event event, int id , String type , int ticketprice , Timestamp expirationdan , String info);
+    Ticket createticket(Event event, int id , String type , int ticketprice , Timestamp expirationdan , String info)throws bllException;
 
-    void updateTicket(Ticket ticket , String type , int ticketprice, String info);
+    void updateTicket(Ticket ticket , String type , int ticketprice, String info)throws bllException;
 
-    void deleteTicket(Ticket ticket);
+    void deleteTicket(Ticket ticket)throws bllException;
 
-    List<Ticket> getusertickets(int id);
+    List<Ticket> getusertickets(int id)throws bllException;
 
-    void addusertoEvent(User user , Event event , Ticket ticket , String path );
+    void addusertoEvent(User user , Event event , Ticket ticket , String path )throws bllException;
 
-    void removeuserfromEvent(User user , Event event ,Ticket ticket);
+    void removeuserfromEvent(User user , Event event ,Ticket ticket)throws bllException;
 
-    User verifyUsers(String username, String password);
+    User verifyUsers(String username, String password)throws bllException;
 
-    List<User> searchforUser(String quury);
+    List<User> searchforUser(String quury)throws bllException;
 
-    String getqrcode(User user);
+    String getqrcode(User user)throws bllException;
 }

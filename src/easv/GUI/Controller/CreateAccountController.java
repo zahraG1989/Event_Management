@@ -3,6 +3,7 @@ package easv.GUI.Controller;
 import com.jfoenix.controls.JFXButton;
 import easv.BE.User;
 import easv.GUI.Model.UserModel;
+import easv.GUI.Model.util.ModelException;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -13,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -52,9 +54,18 @@ public class CreateAccountController implements Initializable {
     public void saveUser(ActionEvent actionEvent) {
        if(!name.getText().isEmpty() || !email.getText().isEmpty() || !password.getText().isEmpty()) {
            if(password.getText().equals(repeatpassword.getText())) {
-               User user  =  userModel.verifyUsers(name.getText(), password.getText());
+               User user  = null;
+               try {
+                   user = userModel.verifyUsers(name.getText(), password.getText());
+               } catch (ModelException e) {
+                   setUpAlert("cant verify this user at the moment ");
+               }
                if(user == null ) {
-                   userModel.adduser(name.getText(), password.getText(), email.getText(), "Customer");
+                   try {
+                       userModel.adduser(name.getText(), password.getText(), email.getText(), "Customer");
+                   } catch (ModelException e) {
+                       setUpAlert("cant verify this user at the moment ");
+                   }
                    JOptionPane.showMessageDialog(null, "Account created :D ");
                }else {
                    JOptionPane.showMessageDialog(null, "user already exsisted");
@@ -67,6 +78,14 @@ public class CreateAccountController implements Initializable {
            JOptionPane.showMessageDialog(null, "please fill out all the fields");
        }
 
+    }
+
+    protected void setUpAlert(String text) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Alert");
+        alert.setHeaderText(null);
+        alert.setContentText(text);
+        alert.showAndWait();
     }
 
     public void exit(ActionEvent actionEvent) throws IOException {

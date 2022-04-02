@@ -5,6 +5,8 @@ import easv.BE.Ticket;
 import easv.BE.User;
 import easv.BLL.LogicFecade;
 import easv.BLL.Manager;
+import easv.BLL.bllException;
+import easv.GUI.Model.util.ModelException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -31,42 +33,64 @@ public class EventModel {
         return  eventingleton;
     }
 
-    public ObservableList<Event> getAllEvents(){
+    public ObservableList<Event> getAllEvents() throws ModelException{
 
         events = FXCollections.observableArrayList();
 
-        events.addAll(logicFecade.getAllEvents());
+        try {
+            events.addAll(logicFecade.getAllEvents());
+        } catch (bllException e) {
+            throw new ModelException(e.getMessage());
+        }
 
         return events;
     }
 
 
-    public ObservableList<Event> getcurrentEvents (){
+    public ObservableList<Event> getcurrentEvents ()throws ModelException{
         return  events ;
     }
 
-    public void createEvent(String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance, String imagepath){
-        Event e = logicFecade.createEvent(name, location, notes, participants, startevent, endevent, locationGuidance, imagepath);
-        events.add(e);
+    public void createEvent(String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance, String imagepath)throws ModelException{
+        try {
+            Event    e = logicFecade.createEvent(name, location, notes, participants, startevent, endevent, locationGuidance, imagepath);
+            events.add(e);
+       } catch (bllException ex) {
+           throw new ModelException(ex.getMessage());
+        }
+
     }
 
-    public void deleteEvent(Event event , int item){
-        logicFecade.deleteEvent(event);
-        events.remove(item);
-        updatethelist();
+    public void deleteEvent(Event event , int item)throws ModelException{
+        try {
+            logicFecade.deleteEvent(event);
+            events.remove(item);
+            updatethelist();
+        } catch (bllException e) {
+            throw new ModelException(e.getMessage());
+        }
+
     }
 
-    public void updateEvent (Event event, int index , String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance, String image){
+    public void updateEvent (Event event, int index , String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance, String image)throws ModelException {
 
-        logicFecade.updateEvent(event,name ,location , notes , participants , startevent , endevent , locationGuidance ,image);
-        events.set(index , event);
-        updatethelist();
+        try {
+            logicFecade.updateEvent(event, name, location, notes, participants, startevent, endevent, locationGuidance, image);
+            events.set(index, event);
+            updatethelist();
+        } catch (bllException e) {
+            throw new ModelException(e.getMessage());
+        }
     }
 
 
 
-    public void updatethelist() {
-        events.setAll(logicFecade.getAllEvents());
+    public void updatethelist()throws ModelException {
+        try {
+            events.setAll(logicFecade.getAllEvents());
+        } catch (bllException e) {
+            throw new ModelException(e.getMessage());
+        }
     }
 
 

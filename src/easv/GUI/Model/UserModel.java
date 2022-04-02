@@ -3,7 +3,9 @@ package easv.GUI.Model;
 import easv.BE.User;
 import easv.BLL.LogicFecade;
 import easv.BLL.Manager;
+import easv.BLL.bllException;
 import easv.GUI.Controller.LoginController;
+import easv.GUI.Model.util.ModelException;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,66 +30,113 @@ public class UserModel {
         return usersingleton;
     }
 
-    public User verifyUsers(String username, String password){
-        return logicFecade.verifyUsers(username, password);
+    public User verifyUsers(String username, String password)throws ModelException{
+        try {
+            return logicFecade.verifyUsers(username, password);
+        } catch (bllException e) {
+            throw new ModelException(e.getMessage());
+        }
     }
 
-    public ObservableList<User> getAllUsers(){
-        users = FXCollections.observableArrayList();
-        users.addAll(logicFecade.getAllUsers());
-        return users;
+    public ObservableList<User> getAllUsers()throws ModelException {
+
+        try {
+            users = FXCollections.observableArrayList();
+            users.addAll(logicFecade.getAllUsers());
+            return users;
+        } catch (bllException e) {
+            throw new ModelException(e.getMessage());
+        }
     }
 
-    public ObservableList<User> getAlleventcoordinatoers(){
+    public ObservableList<User> getAlleventcoordinatoers()throws ModelException{
 
-        users = FXCollections.observableArrayList();
-        users.addAll(logicFecade.getAllEventCoordinatoer());
 
-        return users;
+        try {
+            users = FXCollections.observableArrayList();
+            users.addAll(logicFecade.getAllEventCoordinatoer());
+            return users;
+        } catch (bllException e) {
+            throw new ModelException(e.getMessage());
+        }
+
+
     }
 
-    public ObservableList<User> getuserinevent(int id){
-        users = FXCollections.observableArrayList();
-        users.addAll(logicFecade.getusersinEvent(id));
-        return users;
+    public ObservableList<User> getuserinevent(int id)throws ModelException{
+        try {
+            users = FXCollections.observableArrayList();
+            users.addAll(logicFecade.getusersinEvent(id));
+            return users;
+        } catch (bllException e) {
+            throw new ModelException(e.getMessage());
+        }
     }
 
-    public ObservableList<User> getcurrentusers (){
+    public ObservableList<User> getcurrentusers ()throws ModelException{
         return  users ;
     }
 
-    public User adduser(String username, String password, String email, String usertype){
-        User u = logicFecade.adduser(username ,password ,email , usertype);
-        users.add(u);
-        return u ;
-    }
+    public User adduser(String username, String password, String email, String usertype)throws ModelException{
 
-    public String getqr(User user){
-
-       return logicFecade.getqrcode(user);
-    }
-
-    public ObservableList<User> searchforuser(ObservableList<User> allusers,String qury){
-      allusers = FXCollections.observableArrayList();
-      allusers.addAll(logicFecade.searchforUser(qury));
-
-      return allusers ;
-    }
-
-    public void deleteUser(User user , int item){
-        logicFecade.deleteUser(user);
-        users.remove(item);
+        try {
+            User   u = logicFecade.adduser(username ,password ,email , usertype);
+            users.add(u);
+            return u ;
+        } catch (bllException e) {
+         throw new ModelException(e.getMessage());
+        }
 
     }
 
-    public void updatethelist() {
-        users.setAll(logicFecade.getAllUsers());
+    public String getqr(User user)throws ModelException{
+
+        try {
+            return logicFecade.getqrcode(user);
+        } catch (bllException e) {
+          throw new ModelException(e.getMessage());
+        }
     }
 
-    public void updateUser (User user , int index , String username, String email, String usertype){
-        logicFecade.updateUser(user ,username, email ,usertype);
-        users.set(index , user);
-        updatethelist();
+    public ObservableList<User> searchforuser(ObservableList<User> allusers,String qury)throws ModelException{
+        try {
+            allusers = FXCollections.observableArrayList();
+            allusers.addAll(logicFecade.searchforUser(qury));
+            return allusers ;
+        } catch (bllException e) {
+            throw new ModelException(e.getMessage());
+        }
+
+
+    }
+
+    public void deleteUser(User user , int item)throws ModelException{
+        try {
+            logicFecade.deleteUser(user);
+            users.remove(item);
+        } catch (bllException e) {
+            throw new ModelException(e.getMessage());
+        }
+
+    }
+
+    public void updatethelist() throws ModelException{
+        try {
+            users.setAll(logicFecade.getAllUsers());
+        } catch (bllException e) {
+        throw new ModelException(e.getMessage());
+        }
+    }
+
+    public void updateUser (User user , int index , String username, String email, String usertype)throws ModelException{
+        try {
+            logicFecade.updateUser(user ,username, email ,usertype);
+            users.set(index , user);
+            updatethelist();
+        } catch (bllException e) {
+           throw new ModelException(" " +e.getMessage());
+        }
+
     }
 
 

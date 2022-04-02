@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="722.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.create.CreatePremotController">
+<StackPane fx:id="stackpaneid" prefHeight="722.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easv.GUI.Controller.create.CreatePremotController">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #212121;">
+      <AnchorPane fx:id="anchorpaneid" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #212121;">
          <children>
             <ChoiceBox fx:id="choiceboxid" layoutX="314.0" layoutY="373.0" prefWidth="150.0" />
             <TextField fx:id="usernametxt" layoutX="314.0" layoutY="219.0" promptText="username" />

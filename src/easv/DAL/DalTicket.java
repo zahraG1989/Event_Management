@@ -4,6 +4,8 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import easv.BE.Event;
 import easv.BE.Ticket;
 import easv.DAL.DataAccess.DataAccess;
+import easv.DAL.DataAccess.dalException;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,7 @@ public class DalTicket implements DaoTicket{
     }
 
     @Override
-    public List<Ticket> getAllTickets() {
+    public List<Ticket> getAllTickets()throws dalException {
         ArrayList<Ticket> tickets = new ArrayList<>();
         try(Connection con = dataAccess.getConnection()) {
             String sql = "Select * from Ticket";
@@ -37,7 +39,7 @@ public class DalTicket implements DaoTicket{
     }
 
     @Override
-    public Ticket createticket(Event event, int id , String type , int ticketprice , Timestamp expirationdan , String info) {
+    public Ticket createticket(Event event, int id , String type , int ticketprice , Timestamp expirationdan , String info)throws dalException {
         Ticket ticket = null ;
         try(Connection con = dataAccess.getConnection()) {
             String sql = "insert into Ticket(Eventid , tickettype , price  , info) values (?, ?, ?,?)";
@@ -57,7 +59,7 @@ public class DalTicket implements DaoTicket{
     }
 
     @Override
-    public List<Ticket> getusertickets(int id) {
+    public List<Ticket> getusertickets(int id)throws dalException {
         System.out.println(id);
         ArrayList<Ticket> tickets = new ArrayList<>();
         try(Connection con = dataAccess.getConnection()) {
@@ -87,7 +89,7 @@ public class DalTicket implements DaoTicket{
     }
 
     @Override
-    public int newestid() {
+    public int newestid()throws dalException {
         int newid = -1;
         try (Connection con = dataAccess.getConnection()) {
             String sql = "SELECT TOP(1) * FROM Ticket  ORDER by id desc";
@@ -103,7 +105,7 @@ public class DalTicket implements DaoTicket{
     }
 
     @Override
-    public void updateTicket(Ticket ticket , String type , int ticketprice, String info) {
+    public void updateTicket(Ticket ticket , String type , int ticketprice, String info)throws dalException {
         try(Connection con = dataAccess.getConnection()){
             String sql = "UPDATE Ticket SET  tickettype = ? , price = ? , info = ?  WHERE id = ? ";
             PreparedStatement prs = con.prepareStatement(sql);
@@ -118,7 +120,7 @@ public class DalTicket implements DaoTicket{
     }
 
     @Override
-    public void deleteTicket(Ticket ticket) {
+    public void deleteTicket(Ticket ticket)throws dalException {
         try(Connection con = dataAccess.getConnection()) {
             String sql = "DELETE FROM Ticket WHERE id = ?  " ;
             PreparedStatement prs = con.prepareStatement(sql);

@@ -3,6 +3,7 @@ package easv.GUI.Controller.create;
 import com.jfoenix.controls.JFXButton;
 import easv.GUI.Controller.Users.EventMangersController;
 import easv.GUI.Model.TicketModel;
+import easv.GUI.Model.util.ModelException;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -13,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -50,17 +52,14 @@ public class CreateTicketController implements Initializable {
     }
 
     public void savebtn(ActionEvent actionEvent) throws IOException {
-       // updateticket();
-       /*
-        if(tickettypeid.getText().length() == 0) {
-           createTicekt();
-        }else{
-            updateticket();
-        }
 
-        */
-        createTicekt();
-      //  switchsence();
+        //if(tickettypeid.getText().isEmpty()) {
+           createTicekt();
+    //    }else {
+         //   updateticket();
+       // }
+
+      switchsence();
     }
 
     public void switchsence() throws IOException {
@@ -115,7 +114,19 @@ public class CreateTicketController implements Initializable {
         String type = tickettypeid.getText();
         int price = Integer.parseInt(ticketpriceid.getText());
         String info = infoid.getText();
-        ticketModel.createTicket(cntrl.selectedevent ,cntrl.selectedeventid , type , price, cntrl.selectedevent.getEndevent() , info  );
+        try {
+            ticketModel.createTicket(cntrl.selectedevent ,cntrl.selectedeventid , type , price, cntrl.selectedevent.getEndevent() , info  );
+        } catch (ModelException e) {
+            setUpAlert("some thing went wrong please try again later ");
+        }
+    }
+
+    protected void setUpAlert(String text) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Alert");
+        alert.setHeaderText(null);
+        alert.setContentText(text);
+        alert.showAndWait();
     }
 
     public void updateticketnf(){
@@ -130,7 +141,12 @@ public class CreateTicketController implements Initializable {
         System.out.println(" updateticket()");
         int price = Integer.parseInt(ticketpriceid.getText());
         String info = infoid.getText();
-        ticketModel.updateTicket(cntrl.tableviewtickets.getSelectionModel().getSelectedItem() , cntrl.tableviewtickets.getSelectionModel().getSelectedIndex() ,
-                tickettypeid.getText() ,price ,info);
+        try {
+            ticketModel.updateTicket(cntrl.tableviewtickets.getSelectionModel().getSelectedItem() , cntrl.tableviewtickets.getSelectionModel().getSelectedIndex() ,
+                    tickettypeid.getText() ,price ,info);
+        } catch (ModelException e) {
+            setUpAlert("some thing went wrong please try again later ");
+
+        }
     }
 }

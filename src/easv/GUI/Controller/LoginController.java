@@ -6,6 +6,7 @@ import easv.GUI.Controller.Users.AdminController;
 import easv.GUI.Controller.Users.CustomerController;
 import easv.GUI.Controller.Users.EventMangersController;
 import easv.GUI.Model.UserModel;
+import easv.GUI.Model.util.ModelException;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -16,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -53,8 +55,13 @@ public class LoginController implements Initializable {
     }
 
     public void loginbtn(ActionEvent actionEvent) throws IOException {
-        User user = userModel.verifyUsers(usernameid.getText(), passwordid.getText());
-            if(user != null){
+        User user = null;
+        try {
+            user = userModel.verifyUsers(usernameid.getText(), passwordid.getText());
+        } catch (ModelException e) {
+            setUpAlert("something went wrong please try again later ");
+        }
+        if(user != null){
                 if( user.getUserType().equals("Customer")){
 
                     userid = user.getId();
@@ -74,6 +81,14 @@ public class LoginController implements Initializable {
             }else{
                 System.out.println("Wrong user m8");
             }
+    }
+
+    protected void setUpAlert(String text) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Alert");
+        alert.setHeaderText(null);
+        alert.setContentText(text);
+        alert.showAndWait();
     }
 
     public void backbtn(ActionEvent actionEvent) throws IOException {

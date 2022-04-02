@@ -10,6 +10,7 @@ import easv.BE.User;
 import easv.GUI.Controller.Users.CustomerController;
 import easv.GUI.Model.TicketModel;
 import easv.GUI.Model.UserModel;
+import easv.GUI.Model.util.ModelException;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -88,8 +89,12 @@ public class EventInfoController implements Initializable {
     ticketModel = TicketModel.getInstance();
     userModel = UserModel.getInstance();
 
-    users = userModel.getAllUsers();
-        // tickets = ticketModel.
+        try {
+            users = userModel.getAllUsers();
+        } catch (ModelException e) {
+            cntrl.setUpAlert("something went wrong please try again later ");
+        }
+
         tilepaneid.setHgap(100);
 
 
@@ -111,7 +116,12 @@ public class EventInfoController implements Initializable {
 
     public void showtickets(){
 
-        tickets = ticketModel.getticketinevent(cntrl.eventid);
+        try {
+            tickets = ticketModel.getticketinevent(cntrl.eventid);
+        } catch (ModelException e) {
+            cntrl.setUpAlert("something went wrong please try again later ");
+
+        }
 
         for(Ticket t : tickets){
             String s =String.valueOf(t.getTicketprice());
@@ -156,14 +166,25 @@ public class EventInfoController implements Initializable {
                     stage.setScene(scene);
                     stage.show();
                     button.setOnAction(event1 -> {
-                     User user  =  userModel.verifyUsers(username.getText(), password.getText());
+                        User user  = null;
+                        try {
+                            user = userModel.verifyUsers(username.getText(), password.getText());
+                        } catch (ModelException e) {
+                            cntrl.setUpAlert("something went wrong please try again later ");
+                        }
                         if(user != null){
                             if(user.getUserType().equals("Customer")) {
                                 System.out.println(username.getText() + " " + password.getText());
                                 try {
 
+
+                                    int counter;
+                                    for( counter = 1; counter <= 100; counter++){
+                                        counter++;
+                                    }
+
                                     File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\newtemplate.png");
-                                    File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\newticket.jpg");
+                                    File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\"+username+counter + ".jpg");
                                     ticketModel.createUsTiEv(cntrl.selectedevent ,t ,user , String.valueOf(output));
                                     String name = cntrl.selectedevent.getName()+" \n" + t.getType()+" \n" + user.getUsername()+" \n" + t.getInfo() +" \n" + t.getTicketprice() ; // event name and ticket name
                                     ByteArrayOutputStream out = QRCode.from(name).to(ImageType.PNG).stream();
@@ -197,7 +218,7 @@ public class EventInfoController implements Initializable {
                     try {
                         createuser();
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        cntrl.setUpAlert("something went wrong please try again later ");
                     }
                     System.out.println("user said no he doesnot have an account so he have to create one ");
                 }

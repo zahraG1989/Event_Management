@@ -3,6 +3,7 @@ package easv.GUI.Controller.create;
 import com.jfoenix.controls.JFXButton;
 import easv.GUI.Controller.Users.EventMangersController;
 import easv.GUI.Model.EventModel;
+import easv.GUI.Model.util.ModelException;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -13,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -60,11 +62,11 @@ public class CreateeventController implements Initializable {
     }
 
     public void save(ActionEvent actionEvent) throws ParseException {
-      //  if(eventnameid.getText().length() == 0) {
+       // if(eventnameid.getText().isEmpty()) {
             createEvent();
       //  }else{
-        //    updateevent();
-     //   }
+       //     updateevent();
+      //  }
 
     }
 
@@ -82,11 +84,25 @@ public class CreateeventController implements Initializable {
         Timestamp stamp1 = new Timestamp(time1);
         Timestamp stamp2 = new Timestamp(time2);
 
-        eventModel.updateEvent(cntrl.selectedevent , cntrl.tableviewevents.getSelectionModel().getSelectedIndex() ,name ,locations ,notes ,0 ,stamp1 ,stamp2 ,locationGuidance ,imagepath);
+        try {
+            eventModel.updateEvent(cntrl.selectedevent , cntrl.tableviewevents.getSelectionModel().getSelectedIndex() ,name ,locations ,notes ,0 ,stamp1 ,stamp2 ,locationGuidance ,imagepath);
+        } catch (ModelException e) {
+           setUpAlert(" some thing wnt wrong with the data base  please try again later ");
+        }
+    }
+
+
+    protected void setUpAlert(String text) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Alert");
+        alert.setHeaderText(null);
+        alert.setContentText(text);
+        alert.showAndWait();
     }
 
 
     public void createEvent() throws ParseException {
+
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date date1 = dateFormat.parse(startdateid.getText());
         Date date2 = dateFormat.parse(enddateid.getText());
@@ -99,8 +115,13 @@ public class CreateeventController implements Initializable {
         String notes = eventinfoid.getText();
         String locationGuidance = locationguideid.getText();
         String imagepath = "/resourse/icons8_java_64px.png";
-        eventModel.createEvent(name , locations ,notes ,0 ,stamp1 , stamp2 , locationGuidance , imagepath);
-        eventModel.updatethelist();
+        try {
+            eventModel.createEvent(name , locations ,notes ,0 ,stamp1 , stamp2 , locationGuidance , imagepath);
+            eventModel.updatethelist();
+        } catch (ModelException e) {
+            setUpAlert("database under heavy fire please try again later ");
+        }
+
     }
 
     public void updataevent(){
@@ -111,6 +132,8 @@ public class CreateeventController implements Initializable {
         eventinfoid.setText(cntrl.selectedevent.getNotes());
         locationguideid.setText(cntrl.selectedevent.getLocationGuidance());
    }
+
+
 
     public void back(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/Users/EventMangers.fxml"));
