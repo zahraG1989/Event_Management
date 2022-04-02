@@ -11,15 +11,16 @@ import java.util.List;
 
 public interface DaoTicket {
 
-    List<Ticket> getAllTickets()throws dalException;
-        //String ticketholder, String type, String eventname, int ticketprice, String eventlocation, String barcode, Date expirationdan
-    Ticket createticket(Event event, int id , String type , int ticketprice , Timestamp expirationdan , String info)throws dalException;
+    List<Ticket> getAllTickets() throws dalException;
 
-    List<Ticket> getusertickets(int id)throws dalException;
 
-    int newestid()throws dalException;
+    Ticket createticket(Event event, int id, String type, int ticketprice, Timestamp expirationdan, String info) throws dalException;
 
-    void updateTicket(Ticket ticket , String type , int ticketprice, String info)throws dalException;
+    List<Ticket> getusertickets(int id) throws dalException;
 
-    void deleteTicket(Ticket ticket)throws dalException;
+    int newestid() throws dalException;
+
+    void updateTicket(Ticket ticket, String type, int ticketprice, String info) throws dalException;
+
+    void deleteTicket(Ticket ticket) throws dalException;
 }

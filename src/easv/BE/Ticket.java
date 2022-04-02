@@ -5,18 +5,19 @@ import java.util.Date;
 
 public class Ticket {
 
-    private String type ;
-    private int ticketprice ;
-    private Timestamp expirationdan ;
-    private int id ;
-    private String info ;
-    public Ticket(int id , String type , int ticketprice , Timestamp expirationdan , String info) {
+    private String type;
+    private int ticketprice;
+    private Timestamp expirationdan;
+    private int id;
+    private String info;
+
+    public Ticket(int id, String type, int ticketprice, Timestamp expirationdan, String info) {
         this.type = type;
         this.ticketprice = ticketprice;
 
         this.expirationdan = expirationdan;
-        this.id = id ;
-        this.info = info ;
+        this.id = id;
+        this.info = info;
     }
 
     public String getInfo() {
@@ -47,21 +48,9 @@ public class Ticket {
         return ticketprice;
     }
 
-    public void setTicketprice(int ticketprice) {
-        this.ticketprice = ticketprice;
-    }
-
-    public Timestamp getExpirationdan() {
-        return expirationdan;
-    }
-
-    public void setExpirationdan(Timestamp expirationdan) {
-        this.expirationdan = expirationdan;
-    }
-
     @Override
     public String toString() {
         return "Ticket{" +
-                "type='" + type + ", ticketprice=" + ticketprice   + ", id=" + id + ", info='" + info + '}';
+                "type='" + type + ", ticketprice=" + ticketprice + ", id=" + id + ", info='" + info + '}';
     }
 }

@@ -43,7 +43,7 @@ public class CreateAccountController implements Initializable {
     @FXML
     public TextField repeatpassword;
 
-    private UserModel userModel ;
+    private UserModel userModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -52,31 +52,31 @@ public class CreateAccountController implements Initializable {
     }
 
     public void saveUser(ActionEvent actionEvent) {
-       if(!name.getText().isEmpty() || !email.getText().isEmpty() || !password.getText().isEmpty()) {
-           if(password.getText().equals(repeatpassword.getText())) {
-               User user  = null;
-               try {
-                   user = userModel.verifyUsers(name.getText(), password.getText());
-               } catch (ModelException e) {
-                   setUpAlert("cant verify this user at the moment ");
-               }
-               if(user == null ) {
-                   try {
-                       userModel.adduser(name.getText(), password.getText(), email.getText(), "Customer");
-                   } catch (ModelException e) {
-                       setUpAlert("cant verify this user at the moment ");
-                   }
-                   JOptionPane.showMessageDialog(null, "Account created :D ");
-               }else {
-                   JOptionPane.showMessageDialog(null, "user already exsisted");
+        if (!name.getText().isEmpty() || !email.getText().isEmpty() || !password.getText().isEmpty()) {
+            if (password.getText().equals(repeatpassword.getText())) {
+                User user = null;
+                try {
+                    user = userModel.verifyUsers(name.getText(), password.getText());
+                } catch (Exception e) {
+                    setUpAlert("cant verify this user at the moment ");
+                }
+                if (user == null) {
+                    try {
+                        userModel.adduser(name.getText(), password.getText(), email.getText(), "Customer");
+                    } catch (Exception e) {
+                        setUpAlert("cant verify this user at the moment ");
+                    }
+                    JOptionPane.showMessageDialog(null, "Account created :D ");
+                } else {
+                    JOptionPane.showMessageDialog(null, "user already exsisted");
 
-               }
-           }else {
-               JOptionPane.showMessageDialog(null, "Password-field doesn't match ");
-           }
-       } else {
-           JOptionPane.showMessageDialog(null, "please fill out all the fields");
-       }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Password-field doesn't match ");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "please fill out all the fields");
+        }
 
     }
 

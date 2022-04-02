@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -26,8 +27,8 @@ public class CustomerController implements Initializable {
     @FXML
     public ImageView imageid;
 
-    private LoginController cntrl ;
-    private TicketModel ticketModel ;
+    private LoginController cntrl;
+    private TicketModel ticketModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -36,11 +37,11 @@ public class CustomerController implements Initializable {
     }
 
     public void setController(LoginController loginController) {
-    this.cntrl = loginController ;
+        this.cntrl = loginController;
         try {
             choicebox.setItems(ticketModel.getuserTickets(cntrl.userid));
-        } catch (ModelException e) {
-           setUpAlert("items are not available at the moment please try again later ");
+        } catch (Exception e) {
+            setUpAlert("items are not available at the moment please try again later ");
         }
         choicebox.setOnAction(this::getimage);
     }
@@ -53,9 +54,9 @@ public class CustomerController implements Initializable {
         alert.showAndWait();
     }
 
-    public void getimage(ActionEvent event){
-            Image image = new javafx.scene.image.Image( choicebox.getValue().getInfo());
-            imageid.setImage(image);
+    public void getimage(ActionEvent event) {
+        Image image = new javafx.scene.image.Image(choicebox.getValue().getInfo());
+        imageid.setImage(image);
         System.out.println(choicebox.getValue().getInfo());
 
     }

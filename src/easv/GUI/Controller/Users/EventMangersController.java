@@ -51,25 +51,25 @@ public class EventMangersController implements Initializable {
     @FXML
     public StackPane stackid;
     @FXML
-    public TableColumn<Event , String > eventname;
+    public TableColumn<Event, String> eventname;
     @FXML
-    public TableColumn<Event , String > eventloc;
+    public TableColumn<Event, String> eventloc;
     @FXML
-    public TableColumn<Event , Date> startevent;
+    public TableColumn<Event, Date> startevent;
     @FXML
-    public TableColumn<Event , Date> endevent;
+    public TableColumn<Event, Date> endevent;
     @FXML
-    public TableColumn<User , String> username;
+    public TableColumn<User, String> username;
     @FXML
-    public TableColumn<User , String > useremail;
+    public TableColumn<User, String> useremail;
     @FXML
-    public TableColumn<User , String > usercheckbox;
+    public TableColumn<User, String> usercheckbox;
     @FXML
-    public TableColumn<Ticket , String> tickettype;
+    public TableColumn<Ticket, String> tickettype;
     @FXML
-    public TableColumn<Ticket , Integer> ticketprice;
+    public TableColumn<Ticket, Integer> ticketprice;
     @FXML
-    public TableColumn<Ticket , String > ticketinfo;
+    public TableColumn<Ticket, String> ticketinfo;
 
 
     public JFXButton createeventid;
@@ -79,19 +79,20 @@ public class EventMangersController implements Initializable {
     public JFXButton backid;
     public TextField filter;
 
-    private LoginController cntrl ;
+    private LoginController cntrl;
 
-    private EventModel  eventModel ;
-    private ObservableList<Event> getallevents ;
+    private EventModel eventModel;
+    private ObservableList<Event> getallevents;
 
     private UserModel userModel;
 
 
-    private TicketModel ticketModel ;
-    private ObservableList<Ticket> getAllticket ;
+    private TicketModel ticketModel;
+    private ObservableList<Ticket> getAllticket;
 
-    public int selectedeventid ;
-    public Event selectedevent ;
+    public int selectedeventid;
+    public Event selectedevent;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         displayEventsintableview();
@@ -101,7 +102,7 @@ public class EventMangersController implements Initializable {
     }
 
     public void getUsersinSelectedEvent(MouseEvent mouseEvent) {
-        if(tableviewevents.getSelectionModel().getSelectedIndex() != -1){
+        if (tableviewevents.getSelectionModel().getSelectedIndex() != -1) {
             tableviewusers.getItems().clear();
             tableviewtickets.getItems().clear();
             try {
@@ -112,10 +113,10 @@ public class EventMangersController implements Initializable {
             try {
                 tableviewtickets.setItems(ticketModel.getticketinevent(tableviewevents.getSelectionModel().getSelectedItem().getId()));
             } catch (ModelException e) {
-               setUpAlert("something went wrong please try again later ");
+                setUpAlert("something went wrong please try again later ");
             }
             selectedeventid = tableviewevents.getSelectionModel().getSelectedItem().getId();
-             selectedevent = tableviewevents.getSelectionModel().getSelectedItem();
+            selectedevent = tableviewevents.getSelectionModel().getSelectedItem();
             System.out.println(selectedeventid);
             createeventid.setText("Modify");
         }
@@ -131,21 +132,20 @@ public class EventMangersController implements Initializable {
     }
 
     public void filteruser(KeyEvent keyEvent) {
-        if(filter.getText() == null || filter.getText().length() <= 0 ){
+        if (filter.getText() == null || filter.getText().length() <= 0) {
             System.out.println(" the filter is empty ");
             try {
                 tableviewusers.setItems(userModel.getAllUsers());
             } catch (ModelException e) {
                 setUpAlert("something went wrong please try again later ");
             }
-        }
-        else {
+        } else {
             System.out.println("something is added ");
-            ObservableList<User> found ;
+            ObservableList<User> found;
 
             try {
-                found = userModel.searchforuser( userModel.getAllUsers(), filter.getText());
-                if(found != null){
+                found = userModel.searchforuser(userModel.getAllUsers(), filter.getText());
+                if (found != null) {
                     tableviewusers.setItems(found);
                 }
 
@@ -158,7 +158,7 @@ public class EventMangersController implements Initializable {
     }
 
 
-    public void getuserinevent(){
+    public void getuserinevent() {
         userModel = UserModel.getInstance();
 
         try {
@@ -173,7 +173,7 @@ public class EventMangersController implements Initializable {
         usercheckbox.setCellValueFactory(new PropertyValueFactory<>("select"));
     }
 
-    public void displayTicketsInsideEvent(){
+    public void displayTicketsInsideEvent() {
         ticketModel = TicketModel.getInstance();
         getAllticket = FXCollections.observableArrayList();
 
@@ -184,7 +184,7 @@ public class EventMangersController implements Initializable {
         ticketprice.setCellValueFactory(new PropertyValueFactory<>("ticketprice"));
     }
 
-    public void displayEventsintableview(){
+    public void displayEventsintableview() {
         eventModel = EventModel.getInstance();
         getallevents = FXCollections.observableArrayList();
         try {
@@ -239,10 +239,10 @@ public class EventMangersController implements Initializable {
 
     public void deleteeventbtn(ActionEvent actionEvent) {
         try {
-            eventModel.deleteEvent(tableviewevents.getSelectionModel().getSelectedItem() ,tableviewevents.getSelectionModel().getSelectedIndex());
+            eventModel.deleteEvent(tableviewevents.getSelectionModel().getSelectedItem(), tableviewevents.getSelectionModel().getSelectedIndex());
             ticketModel.updatethelist();
         } catch (ModelException e) {
-           setUpAlert("event cant be delete at te moment please try again later ");
+            setUpAlert("event cant be delete at te moment please try again later ");
         }
 
         tableviewevents.refresh();
@@ -250,15 +250,14 @@ public class EventMangersController implements Initializable {
 
     public void deleteticketbtn(ActionEvent actionEvent) {
         try {
-            ticketModel.deleteTicket(tableviewtickets.getSelectionModel().getSelectedItem() ,tableviewtickets.getSelectionModel().getSelectedIndex());
+            ticketModel.deleteTicket(tableviewtickets.getSelectionModel().getSelectedItem(), tableviewtickets.getSelectionModel().getSelectedIndex());
             ticketModel.updatethelist();
         } catch (ModelException e) {
-           setUpAlert("ticket cant be deleted at the moment please try again later ");
+            setUpAlert("ticket cant be deleted at the moment please try again later ");
         }
 
         tableviewtickets.refresh();
     }
-
 
 
     public void backbtn(ActionEvent actionEvent) throws IOException {
@@ -278,18 +277,17 @@ public class EventMangersController implements Initializable {
     }
 
     public void setController(LoginController loginController) {
-        this.cntrl = loginController ;
+        this.cntrl = loginController;
     }
 
 
     public void anchorouse(MouseEvent mouseEvent) {
-        createeventid.setText("Create");
-        createticketid.setText("Create");
-
-            tableviewusers.getItems().clear();
         try {
+            createeventid.setText("Create");
+            createticketid.setText("Create");
+            tableviewusers.getItems().clear();
             tableviewusers.setItems(userModel.getAllUsers());
-        } catch (ModelException e) {
+        } catch (Exception e) {
             setUpAlert("something went wrong please try again later ");
 
         }

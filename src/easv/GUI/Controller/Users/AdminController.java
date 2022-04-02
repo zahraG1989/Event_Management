@@ -46,51 +46,52 @@ public class AdminController implements Initializable {
     @FXML
     public TableView<Event> eventstable;
     @FXML
-    public LoginController cntrl ;
+    public LoginController cntrl;
     @FXML
     public AnchorPane anchorid;
     @FXML
     public TableColumn<User, String> cutomername;
     @FXML
-    public TableColumn<User , String> customeremail;
+    public TableColumn<User, String> customeremail;
     @FXML
-    public TableColumn<Event ,String > eventname;
+    public TableColumn<Event, String> eventname;
     @FXML
-    public TableColumn<Event , String > eventlocation;
+    public TableColumn<Event, String> eventlocation;
     @FXML
-    public TableColumn<Event , Date> evestartdate;
+    public TableColumn<Event, Date> evestartdate;
     @FXML
-    public TableColumn<Event , Date> eventenddate;
+    public TableColumn<Event, Date> eventenddate;
     @FXML
-    public TableColumn<User , String> customertyoe;
+    public TableColumn<User, String> customertyoe;
     @FXML
     public TextField filter;
     @FXML
     public JFXButton createid;
 
-    private UserModel userModel ;
-    private EventModel eventModel ;
-    private ObservableList<Event> listofEvents ;
+    private UserModel userModel;
+    private EventModel eventModel;
+    private ObservableList<Event> listofEvents;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-       displayinfo();
+        displayinfo();
     }
 
-    public void displayinfo(){
-        userModel = UserModel.getInstance();
-        eventModel = EventModel.getInstance();
+    public void displayinfo() {
 
-        listofEvents = FXCollections.observableArrayList();
         try {
+            eventModel = EventModel.getInstance();
+            listofEvents = FXCollections.observableArrayList();
             listofEvents.addAll(eventModel.getAllEvents());
-        } catch (ModelException e) {
+        } catch (Exception e) {
             setUpAlert("list of events cant be initialized please try again later  ");
         }
 
         try {
+            userModel = UserModel.getInstance();
+            eventModel = EventModel.getInstance();
             customertable.setItems(userModel.getAllUsers());
-        } catch (ModelException e) {
+        } catch (Exception e) {
             setUpAlert("something went wrong please try again later ");
 
         }
@@ -116,25 +117,24 @@ public class AdminController implements Initializable {
     }
 
     public void searcher(KeyEvent keyEvent) {
-        if(filter.getText() == null || filter.getText().length() <= 0 ){
+        if (filter.getText() == null || filter.getText().length() <= 0) {
             System.out.println(" the filter is empty ");
             try {
                 customertable.setItems(userModel.getAllUsers());
-            } catch (ModelException e) {
+            } catch (Exception e) {
                 setUpAlert("something went wrong please try again later ");
 
             }
-        }
-        else {
+        } else {
             System.out.println("something is added ");
-            ObservableList<User> found ;
+            ObservableList<User> found;
 
             try {
-                found = userModel.searchforuser( userModel.getAllUsers(), filter.getText());
-                if(found != null){
+                found = userModel.searchforuser(userModel.getAllUsers(), filter.getText());
+                if (found != null) {
                     customertable.setItems(found);
                 }
-            } catch (ModelException e) {
+            } catch (Exception e) {
                 setUpAlert("something went wrong please try again later ");
 
             }
@@ -143,12 +143,12 @@ public class AdminController implements Initializable {
     }
 
     public void deleteUserbtn(ActionEvent actionEvent) {
-        if(customertable.getSelectionModel().getSelectedIndex() != -1 ){
+        if (customertable.getSelectionModel().getSelectedIndex() != -1) {
             try {
-                userModel.deleteUser(customertable.getSelectionModel().getSelectedItem() , customertable.getSelectionModel().getSelectedIndex());
+                userModel.deleteUser(customertable.getSelectionModel().getSelectedItem(), customertable.getSelectionModel().getSelectedIndex());
                 userModel.updatethelist();
                 customertable.refresh();
-            } catch (ModelException e) {
+            } catch (Exception e) {
                 setUpAlert("something went wrong please try again later ");
 
             }

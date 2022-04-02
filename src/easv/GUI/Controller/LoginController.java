@@ -41,16 +41,16 @@ public class LoginController implements Initializable {
     @FXML
     public JFXButton backid;
 
-    private UserModel userModel ;
+    private UserModel userModel;
 
-    public int userid ;
-    public String username ;
+    public int userid;
+    public String username;
     public String useremail;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-     userModel = UserModel.getInstance();
+        userModel = UserModel.getInstance();
 
     }
 
@@ -61,26 +61,21 @@ public class LoginController implements Initializable {
         } catch (ModelException e) {
             setUpAlert("something went wrong please try again later ");
         }
-        if(user != null){
-                if( user.getUserType().equals("Customer")){
-
+        if (user != null) {
+            switch (user.getUserType()) {
+                case "Customer" -> {
                     userid = user.getId();
                     username = user.getUsername();
                     useremail = user.getEmail();
                     logintouser();
-
-                }else if ( user.getUserType().equals("Admin")){
-                    logintoAdmin();
-
-                }else if ( user.getUserType().equals("EventCoordinator")){
-                    logintoEventCoordinatoer();
-
-                }else {
-                    System.out.println("wrong data");
                 }
-            }else{
-                System.out.println("Wrong user m8");
+                case "Admin" -> logintoAdmin();
+                case "EventCoordinator" -> logintoEventCoordinatoer();
+                default -> System.out.println("wrong data");
             }
+        } else {
+            System.out.println("Wrong user m8");
+        }
     }
 
     protected void setUpAlert(String text) {
@@ -140,7 +135,6 @@ public class LoginController implements Initializable {
         });
         timeline.play();
     }
-
 
 
     public void logintoEventCoordinatoer() throws IOException {

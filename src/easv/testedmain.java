@@ -5,15 +5,25 @@ import javafx.scene.image.Image;
 import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image.ImageType;
 
+import java.awt.*;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.net.URI;
 
 public class testedmain {
     public static void main(String[] args) throws Exception {
 
-
+        Desktop desktop;
+        if (Desktop.isDesktopSupported()
+                && (desktop = Desktop.getDesktop()).isSupported(Desktop.Action.MAIL)) {
+            URI mailto = new URI("mailto:john@example.com?subject=Hello%20World");
+            desktop.mail(mailto);
+        } else {
+            // TODO fallback to some Runtime.exec(..) voodoo?
+            throw new RuntimeException("desktop doesn't support mailto; mail is dead anyway ;)");
+        }
 
 
      //   String name = "danylo";

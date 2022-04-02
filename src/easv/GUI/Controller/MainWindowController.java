@@ -1,7 +1,6 @@
 package easv.GUI.Controller;
 
 import com.jfoenix.controls.JFXButton;
-//import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import easv.BE.Event;
 import easv.GUI.Model.EventModel;
 import easv.GUI.Model.util.ModelException;
@@ -22,12 +21,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-
-
 import javafx.util.Duration;
+
 import java.io.IOException;
 import java.net.URL;
-
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -35,62 +32,57 @@ public class MainWindowController implements Initializable {
     @FXML
     public TilePane tilePane;
     @FXML
-    public JFXButton signin;
-    @FXML
     public JFXButton loginin;
     @FXML
     public StackPane stackpne;
     @FXML
     public BorderPane borderpne;
     @FXML
-    public VBox vBox ;
+    public VBox vBox;
     @FXML
-    public Image image ;
+    public Image image;
     @FXML
     public JFXButton exitid;
     @FXML
     public AnchorPane anchorpane;
-
     @FXML
-    ImageView view ;
-    private EventModel eventModel ;
-    private ObservableList<Event> listofEvents;
-    public String name ;
-    public String loc ;
-    public String notes ;
-    public int participants ;
-    public Date startevent ;
-    public Date endevent ;
-    public String locationGuidance ;
-    public String imagepath ;
-    public int eventid ;
-    public Event selectedevent ;
+    ImageView view;
 
-    Alert dalert = new Alert(Alert.AlertType.INFORMATION);
+    private EventModel eventModel;
+    private ObservableList<Event> listofEvents;
+    public String name;
+    public String loc;
+    public String notes;
+    public int participants;
+    public Date startevent;
+    public Date endevent;
+    public String locationGuidance;
+    public String imagepath;
+    public int eventid;
+    public Event selectedevent;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-       eventModel = EventModel.getInstance();
+        eventModel = EventModel.getInstance();
         try {
             listofEvents = eventModel.getAllEvents();
         } catch (ModelException e) {
-           setUpAlert("list are currently unavailable ");
+            setUpAlert("list are currently unavailable ");
         }
 
-
-        for(Event e : listofEvents){
+        for (Event e : listofEvents) {
 
             imagepath = e.getImagepath();
-         String s =String.valueOf(e.getParticipants());
-         Label lbl = new Label(e.getName());
-         image = new Image(imagepath);
-         view = new ImageView(image);
+            Label lbl = new Label(e.getName());
+            image = new Image(imagepath);
+            view = new ImageView(image);
             vBox = new VBox();
             vBox.setAlignment(Pos.BASELINE_CENTER);
             vBox.getChildren().add(view);
             vBox.getChildren().add(lbl);
             tilePane.getChildren().add(vBox);
             vBox.setOnMousePressed(event -> {
-                selectedevent = e ;
+                selectedevent = e;
                 eventid = e.getId();
                 imagepath = e.getImagepath();
                 name = e.getName();
@@ -103,13 +95,11 @@ public class MainWindowController implements Initializable {
                 System.out.println(name + loc + notes + participants + startevent + endevent + locationGuidance);
                 try {
                     showEventInfo();
-                } catch (IOException ex) {
-                   setUpAlert("something went wrong please try again later ");
+                } catch (Exception ex) {
+                    setUpAlert("something went wrong please try again later ");
                 }
             });
         }
-
-
     }
 
     public void showEventInfo() throws IOException {
@@ -129,7 +119,6 @@ public class MainWindowController implements Initializable {
         timeline.play();
     }
 
-
     public void login(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/loginpage.fxml"));
         Parent root = loader.load();
@@ -145,7 +134,6 @@ public class MainWindowController implements Initializable {
         });
         timeline.play();
     }
-
 
     public void exitbtn(ActionEvent actionEvent) {
         stackpne.getChildren().clear();

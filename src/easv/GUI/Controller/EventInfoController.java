@@ -1,21 +1,14 @@
 package easv.GUI.Controller;
 
-
-import com.barcodelib.barcode.Linear;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import easv.BE.Ticket;
 import easv.BE.User;
-import easv.GUI.Controller.Users.CustomerController;
 import easv.GUI.Model.TicketModel;
 import easv.GUI.Model.UserModel;
-import easv.GUI.Model.util.ModelException;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,13 +30,10 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image.ImageType;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageOp;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -59,8 +49,6 @@ public class EventInfoController implements Initializable {
     @FXML
     public Label infoid;
     @FXML
-    public Label participantsid;
-    @FXML
     public Label locationid;
     @FXML
     public Label locguideid;
@@ -73,25 +61,25 @@ public class EventInfoController implements Initializable {
     @FXML
     public AnchorPane anchorid;
     @FXML
-    private MainWindowController cntrl ;
+    private MainWindowController cntrl;
     @FXML
-    private TicketModel ticketModel ;
+    private TicketModel ticketModel;
 
-    public ObservableList<Ticket> tickets ;
-    public UserModel userModel ;
+    public ObservableList<Ticket> tickets;
+    public UserModel userModel;
     @FXML
-    private VBox vBox ;
-    private  ObservableList<User> users ;
+    private VBox vBox;
+    private ObservableList<User> users;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-    ticketModel = TicketModel.getInstance();
-    userModel = UserModel.getInstance();
+        ticketModel = TicketModel.getInstance();
+        userModel = UserModel.getInstance();
 
         try {
             users = userModel.getAllUsers();
-        } catch (ModelException e) {
+        } catch (Exception e) {
             cntrl.setUpAlert("something went wrong please try again later ");
         }
 
@@ -101,33 +89,31 @@ public class EventInfoController implements Initializable {
     }
 
     public void setController(MainWindowController mainWindowController) {
-       this.cntrl = mainWindowController;
-       Image i = new Image(cntrl.imagepath);
-       imageid.setImage(i);
-       eventnameid.setText(cntrl.name);
-       infoid.setText(cntrl.notes);
-        String s =String.valueOf(cntrl.participants);
-
-       locationid.setText(cntrl.loc);
+        this.cntrl = mainWindowController;
+        Image i = new Image(cntrl.imagepath);
+        imageid.setImage(i);
+        eventnameid.setText(cntrl.name);
+        infoid.setText(cntrl.notes);
+        locationid.setText(cntrl.loc);
         locguideid.setText(cntrl.locationGuidance);
         showtickets();
 
     }
 
-    public void showtickets(){
+    public void showtickets() {
 
         try {
             tickets = ticketModel.getticketinevent(cntrl.eventid);
-        } catch (ModelException e) {
+        } catch (Exception e) {
             cntrl.setUpAlert("something went wrong please try again later ");
 
         }
 
-        for(Ticket t : tickets){
-            String s =String.valueOf(t.getTicketprice());
+        for (Ticket t : tickets) {
+            String s = String.valueOf(t.getTicketprice());
             Label price = new Label(s);
-           price.setTextFill(javafx.scene.paint.Color.BLACK);
-           javafx.scene.text.Font font = new javafx.scene.text.Font( Font.PLAIN);
+            price.setTextFill(javafx.scene.paint.Color.BLACK);
+            javafx.scene.text.Font font = new javafx.scene.text.Font(Font.PLAIN);
             price.setFont(javafx.scene.text.Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
             Label btn = new Label();
             btn.setTextFill(javafx.scene.paint.Color.BLACK);
@@ -135,7 +121,6 @@ public class EventInfoController implements Initializable {
             btn.setFont(javafx.scene.text.Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
 
             vBox = new VBox();
-
             vBox.getChildren().add(price);
             vBox.getChildren().add(btn);
             vBox.setBackground(new Background(new BackgroundFill(javafx.scene.paint.Paint.valueOf("#64dd17"), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -144,7 +129,7 @@ public class EventInfoController implements Initializable {
                 int answer = JOptionPane.showConfirmDialog(null, "Do you have an Account ");
                 System.out.println(answer);
 
-                if(answer == 0){
+                if (answer == 0) {
                     System.out.println("user said yes ,, he have an account ,, so we need to create page where he have to enter his name and password ");
                     GridPane grid = new GridPane();
                     grid.setHgap(10);
@@ -160,64 +145,63 @@ public class EventInfoController implements Initializable {
                     grid.add(username, 1, 0);
                     grid.add(new Label("Password:"), 0, 1);
                     grid.add(password, 1, 1);
-                    grid.add(button ,1 , 2);
+                    grid.add(button, 1, 2);
                     Stage stage = new Stage();
                     Scene scene = new Scene(grid);
                     stage.setScene(scene);
                     stage.show();
                     button.setOnAction(event1 -> {
-                        User user  = null;
+                        User user = null;
                         try {
                             user = userModel.verifyUsers(username.getText(), password.getText());
-                        } catch (ModelException e) {
+                        } catch (Exception e) {
                             cntrl.setUpAlert("something went wrong please try again later ");
                         }
-                        if(user != null){
-                            if(user.getUserType().equals("Customer")) {
+                        if (user != null) {
+                            if (user.getUserType().equals("Customer")) {
                                 System.out.println(username.getText() + " " + password.getText());
                                 try {
 
 
                                     int counter;
-                                    for( counter = 1; counter <= 100; counter++){
+                                    for (counter = 1; counter <= 100; counter++) {
                                         counter++;
                                     }
 
                                     File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\newtemplate.png");
-                                    File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\"+username+counter + ".jpg");
-                                    ticketModel.createUsTiEv(cntrl.selectedevent ,t ,user , String.valueOf(output));
-                                    String name = cntrl.selectedevent.getName()+" \n" + t.getType()+" \n" + user.getUsername()+" \n" + t.getInfo() +" \n" + t.getTicketprice() ; // event name and ticket name
+                                    File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\" + username + counter + ".jpg");
+                                    ticketModel.createUsTiEv(cntrl.selectedevent, t, user, String.valueOf(output));
+                                    String name = cntrl.selectedevent.getName() + " \n" + t.getType() + " \n" + user.getUsername() + " \n" + t.getInfo() + " \n" + t.getTicketprice(); // event name and ticket name
                                     ByteArrayOutputStream out = QRCode.from(name).to(ImageType.PNG).stream();
                                     File f = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\qrcode.png");
                                     FileOutputStream fos = new FileOutputStream(f);
                                     fos.write(out.toByteArray());
                                     fos.flush();
 
-                                    BufferedImage img = null ;
+                                    BufferedImage img = null;
                                     try {
-                                         img = ImageIO.read(f);
-                                    } catch (IOException e) {
+                                        img = ImageIO.read(f);
+                                    } catch (Exception e) {
                                         // TODO Auto-generated catch block
-                                        e.printStackTrace();
+                                        cntrl.setUpAlert("something went wrong please try again later ");
                                     }
 
-                                    addTixttoimage(img ,user.getUsername() , cntrl.selectedevent.getName() , cntrl.selectedevent.getStartevent().toString() , cntrl.selectedevent.getLocation(),t.getTicketprice(),t.getId(),t.getType() , "jpg" , input , output);
+                                    addTixttoimage(img, user.getUsername(), cntrl.selectedevent.getName(), cntrl.selectedevent.getStartevent().toString(), cntrl.selectedevent.getLocation(), t.getTicketprice(), t.getId(), t.getType(), "jpg", input, output);
                                     logintouser();
                                 } catch (Exception e) {
-                                   Alert alert = new Alert(Alert.AlertType.ERROR);
-                                   alert.setContentText("this user already have ticket for this Event ");
+                                    cntrl.setUpAlert("something went wrong please try again later ");
                                 }
                             }
-                        }else{
+                        } else {
                             System.out.println("Wrong user m8");
                         }
                         stage.close();
-                            });
+                    });
 
-                }else if ( answer == 1){
+                } else if (answer == 1) {
                     try {
                         createuser();
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         cntrl.setUpAlert("something went wrong please try again later ");
                     }
                     System.out.println("user said no he doesnot have an account so he have to create one ");
@@ -259,8 +243,7 @@ public class EventInfoController implements Initializable {
     }
 
 
-
-    private static void addTixttoimage(BufferedImage image2 , String username, String name , String when , String where  , int price , int ticketid,String tickettype ,String type, File source, File destination) throws IOException {
+    private static void addTixttoimage(BufferedImage image2, String username, String name, String when, String where, int price, int ticketid, String tickettype, String type, File source, File destination) throws IOException {
 
         BufferedImage image = ImageIO.read(source);
         int imagetype = "png".equalsIgnoreCase(type) ? BufferedImage.TYPE_INT_ARGB : BufferedImage.TYPE_INT_RGB;
@@ -275,10 +258,10 @@ public class EventInfoController implements Initializable {
         w.setColor(Color.white);
         w.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
 
-        FontMetrics fontMetrics = w.getFontMetrics();
-        Rectangle2D rect = fontMetrics.getStringBounds(username, w);
-        int centerX = (image.getWidth() - (int) rect.getWidth()) / 2;
-        int centerY = image.getHeight() / 2;
+        // FontMetrics fontMetrics = w.getFontMetrics();
+        //  Rectangle2D rect = fontMetrics.getStringBounds(username, w);
+        //  int centerX = (image.getWidth() - (int) rect.getWidth()) / 2;
+        //  int centerY = image.getHeight() / 2;
 
         w.drawString(name, 284, 90);
         w.drawString(where, 51, 65);
@@ -287,7 +270,7 @@ public class EventInfoController implements Initializable {
         w.drawString(tickettype, 80, 97);
         w.drawString(String.valueOf(ticketid), 75, 131);
         w.drawString(username, 279, 123);
-         w.drawImage(image2,null ,10, 147);
+        w.drawImage(image2, null, 10, 147);
         ImageIO.write(bold, type, destination);
         w.dispose();
     }

@@ -42,8 +42,8 @@ public class CreatePremotController implements Initializable {
     @FXML
     public JFXButton exitid;
 
-    public AdminController cntrl ;
-    public UserModel userModel ;
+    public AdminController cntrl;
+    public UserModel userModel;
     @FXML
     public StackPane stackpaneid;
     @FXML
@@ -67,12 +67,13 @@ public class CreatePremotController implements Initializable {
     }
 
     private void updateuser() {
-        String name = usernametxt.getText();
-        String email = emailtxt.getText();
+
         try {
-            userModel.updateUser(cntrl.customertable.getSelectionModel().getSelectedItem(),cntrl.customertable.getSelectionModel().getSelectedIndex()
-            ,name,email ,choiceboxid.getValue());
-        } catch (ModelException e) {
+            String name = usernametxt.getText();
+            String email = emailtxt.getText();
+            userModel.updateUser(cntrl.customertable.getSelectionModel().getSelectedItem(), cntrl.customertable.getSelectionModel().getSelectedIndex()
+                    , name, email, choiceboxid.getValue());
+        } catch (Exception e) {
             setUpAlert("something went wrong please try again later ");
         }
 
@@ -107,7 +108,7 @@ public class CreatePremotController implements Initializable {
     }
 
     public void setController(AdminController adminController) {
-        this.cntrl = adminController ;
+        this.cntrl = adminController;
         usernametxt.setText(cntrl.customertable.getSelectionModel().getSelectedItem().getUsername());
         emailtxt.setText(cntrl.customertable.getSelectionModel().getSelectedItem().getEmail());
     }

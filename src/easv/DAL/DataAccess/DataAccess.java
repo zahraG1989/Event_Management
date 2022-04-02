@@ -12,32 +12,32 @@ import java.util.Properties;
 
 public class DataAccess {
 
-        private final SQLServerDataSource dataSource ;
+    private final SQLServerDataSource dataSource;
 
-        public DataAccess() {
+    public DataAccess() {
 
-            dataSource = new SQLServerDataSource();
-            try (InputStream input = new FileInputStream("data/database.properties")) {
+        dataSource = new SQLServerDataSource();
+        try (InputStream input = new FileInputStream("data/database.properties")) {
 
-                Properties prop = new Properties();
+            Properties prop = new Properties();
 
-                // load a properties file
-                prop.load(input);
-                dataSource.setServerName(prop.getProperty("servername"));
-                dataSource.setUser(prop.getProperty("user"));
-                dataSource.setPassword(prop.getProperty("password"));
-                dataSource.setDatabaseName(prop.getProperty("databasename"));
-                // get the property value and print it out
+            // load a properties file
+            prop.load(input);
+            dataSource.setServerName(prop.getProperty("servername"));
+            dataSource.setUser(prop.getProperty("user"));
+            dataSource.setPassword(prop.getProperty("password"));
+            dataSource.setDatabaseName(prop.getProperty("databasename"));
+            // get the property value and print it out
 
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
-        public Connection getConnection() throws SQLServerException {
+    public Connection getConnection() throws SQLServerException {
 
-            return dataSource.getConnection();
-        }
+        return dataSource.getConnection();
+    }
 }

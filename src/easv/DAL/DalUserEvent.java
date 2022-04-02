@@ -13,33 +13,33 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-public class DalUserEvent implements DaoUserEvent{
+public class DalUserEvent implements DaoUserEvent {
 
-    DataAccess dataAccess ;
+    DataAccess dataAccess;
 
-    public DalUserEvent(){
+    public DalUserEvent() {
 
         dataAccess = new DataAccess();
     }
 
     @Override
-    public List<User> getusersinEvent( int idi ) {
+    public List<User> getusersinEvent(int idi) {
         ArrayList<User> users = new ArrayList<>();
-            // we need name and ticket ...
-        try(Connection con = dataAccess.getConnection()) {
+        // we need name and ticket ...
+        try (Connection con = dataAccess.getConnection()) {
             String sql = "SELECT [users].[id] , [username] , [name] , [email] " +
                     " from [users] join userevent on [users].[id] = [userevent].[userid] " +
                     " join [Event] on  userevent.eventid = [event].[id] " +
                     " join Ticket on  userevent.ticketid = Ticket.id WHERE event.id = ? ";
-           PreparedStatement prs = con.prepareStatement(sql);
-           prs.setInt(1 , idi);
+            PreparedStatement prs = con.prepareStatement(sql);
+            prs.setInt(1, idi);
             ResultSet rs = prs.executeQuery();
-            while(rs.next()){
-               int id = rs.getInt("id");
-               String name = rs.getString("username");
-               String email = rs.getString("email");
-               User user = new User(id ,name , email,"Customer");
-               users.add(user);
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("username");
+                String email = rs.getString("email");
+                User user = new User(id, name, email, "Customer");
+                users.add(user);
 
             }
         } catch (SQLServerException e) {
@@ -52,20 +52,20 @@ public class DalUserEvent implements DaoUserEvent{
     }
 
     @Override
-    public List<Ticket> getTicketsinEvent(int idi ) {
+    public List<Ticket> getTicketsinEvent(int idi) {
         ArrayList<Ticket> tickets = new ArrayList<>();
         // we need name and ticket ...
-        try(Connection con = dataAccess.getConnection()) {
+        try (Connection con = dataAccess.getConnection()) {
             String sql = "select * from Ticket where Eventid = ?";
             PreparedStatement prs = con.prepareStatement(sql);
-            prs.setInt(1 , idi);
+            prs.setInt(1, idi);
             ResultSet rs = prs.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 int id = rs.getInt("id");
                 String tikcettype = rs.getString("tickettype");
                 int price = rs.getInt("price");
                 String ticketinfo = rs.getString("info");
-                Ticket ticket = new Ticket(id , tikcettype, price  ,null ,ticketinfo);
+                Ticket ticket = new Ticket(id, tikcettype, price, null, ticketinfo);
                 tickets.add(ticket);
             }
         } catch (SQLServerException e) {
@@ -78,16 +78,16 @@ public class DalUserEvent implements DaoUserEvent{
     }
 
     @Override
-    public void addusertoEvent(User user, Event event, Ticket ticket , String imagepath) {
-        try(Connection connection = dataAccess.getConnection()) {
+    public void addusertoEvent(User user, Event event, Ticket ticket, String imagepath) {
+        try (Connection connection = dataAccess.getConnection()) {
 
             String sql = "INSERT INTO userevent(userid,eventid,ticketid ,barcode , ticketimage) VALUES (?,?,?,?,?)";
             PreparedStatement prs = connection.prepareStatement(sql);
             prs.setInt(1, user.getId());
-            prs.setInt(2 ,event.getId());
-            prs.setInt(3 , ticket.getId());
+            prs.setInt(2, event.getId());
+            prs.setInt(3, ticket.getId());
             prs.setString(4, createQrCode());
-            prs.setString(5 ,imagepath);
+            prs.setString(5, imagepath);
             prs.executeUpdate();
         } catch (SQLServerException e) {
             e.printStackTrace();
@@ -96,7 +96,7 @@ public class DalUserEvent implements DaoUserEvent{
         }
     }
 
-    public String createQrCode(){
+    public String createQrCode() {
         Random random = new Random();
         StringBuilder sb = new StringBuilder();
         sb.append(random.nextInt(9) + 1);
@@ -104,23 +104,23 @@ public class DalUserEvent implements DaoUserEvent{
             sb.append(random.nextInt(10));
         }
         String sbd = String.valueOf(sb);
-        return sbd ;
+        return sbd;
     }
 
     @Override
-    public String getqrcode(User user){
+    public String getqrcode(User user) {
         QrCode qrCode = null;
-        try(Connection con = dataAccess.getConnection()) {
+        try (Connection con = dataAccess.getConnection()) {
             String sql = "  select barcode from userevent where userid = ?";
             PreparedStatement prs = con.prepareStatement(sql);
-            prs.setInt(1 , user.getId());
+            prs.setInt(1, user.getId());
             prs.execute();
             ResultSet rs = prs.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
 
                 String qrcode = rs.getString("barcode");
 
-                qrCode = new QrCode(0 , qrcode);
+                qrCode = new QrCode(0, qrcode);
             }
 
         } catch (SQLException e) {
@@ -130,14 +130,14 @@ public class DalUserEvent implements DaoUserEvent{
     }
 
     @Override
-    public void removeuserfromEvent(User user, Event event ,Ticket ticket) {
-        try(Connection con = dataAccess.getConnection()) {
-        String sql = "DELETE FROM userevent WHERE userid = ? AND eventid = ? AND ticketid = ?";
-        PreparedStatement prs = con.prepareStatement(sql);
-        prs.setInt(1 , user.getId());
-        prs.setInt(2 , event.getId());
-        prs.setInt(3 , ticket.getId());
-        prs.executeUpdate();
+    public void removeuserfromEvent(User user, Event event, Ticket ticket) {
+        try (Connection con = dataAccess.getConnection()) {
+            String sql = "DELETE FROM userevent WHERE userid = ? AND eventid = ? AND ticketid = ?";
+            PreparedStatement prs = con.prepareStatement(sql);
+            prs.setInt(1, user.getId());
+            prs.setInt(2, event.getId());
+            prs.setInt(3, ticket.getId());
+            prs.executeUpdate();
         } catch (SQLServerException e) {
             e.printStackTrace();
         } catch (SQLException e) {

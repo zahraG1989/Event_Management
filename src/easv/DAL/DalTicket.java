@@ -10,27 +10,27 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DalTicket implements DaoTicket{
+public class DalTicket implements DaoTicket {
 
-    private final DataAccess dataAccess ;
+    private final DataAccess dataAccess;
 
-    public DalTicket(){
+    public DalTicket() {
         dataAccess = new DataAccess();
     }
 
     @Override
-    public List<Ticket> getAllTickets()throws dalException {
+    public List<Ticket> getAllTickets() throws dalException {
         ArrayList<Ticket> tickets = new ArrayList<>();
-        try(Connection con = dataAccess.getConnection()) {
+        try (Connection con = dataAccess.getConnection()) {
             String sql = "Select * from Ticket";
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sql);
-            while(rs.next()){
-             String info = rs.getString("info");
-             String type = rs.getString("tickettype");
-             int ticketPrice = rs.getInt("price");
-             Ticket ticket = new Ticket(newestid() , type , ticketPrice  , null , info);
-             tickets.add(ticket);
+            while (rs.next()) {
+                String info = rs.getString("info");
+                String type = rs.getString("tickettype");
+                int ticketPrice = rs.getInt("price");
+                Ticket ticket = new Ticket(newestid(), type, ticketPrice, null, info);
+                tickets.add(ticket);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -39,17 +39,17 @@ public class DalTicket implements DaoTicket{
     }
 
     @Override
-    public Ticket createticket(Event event, int id , String type , int ticketprice , Timestamp expirationdan , String info)throws dalException {
-        Ticket ticket = null ;
-        try(Connection con = dataAccess.getConnection()) {
+    public Ticket createticket(Event event, int id, String type, int ticketprice, Timestamp expirationdan, String info) throws dalException {
+        Ticket ticket = null;
+        try (Connection con = dataAccess.getConnection()) {
             String sql = "insert into Ticket(Eventid , tickettype , price  , info) values (?, ?, ?,?)";
             PreparedStatement prs = con.prepareStatement(sql);
-            prs.setInt(1,event.getId());
-            prs.setString(2 ,type);
-            prs.setInt(3 , ticketprice);
-            prs.setString(4,info);
+            prs.setInt(1, event.getId());
+            prs.setString(2, type);
+            prs.setInt(3, ticketprice);
+            prs.setString(4, info);
             prs.executeUpdate();
-             ticket = new Ticket (newestid() , type , ticketprice , expirationdan ,info);
+            ticket = new Ticket(newestid(), type, ticketprice, expirationdan, info);
         } catch (SQLServerException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -59,25 +59,25 @@ public class DalTicket implements DaoTicket{
     }
 
     @Override
-    public List<Ticket> getusertickets(int id)throws dalException {
+    public List<Ticket> getusertickets(int id) throws dalException {
         System.out.println(id);
         ArrayList<Ticket> tickets = new ArrayList<>();
-        try(Connection con = dataAccess.getConnection()) {
+        try (Connection con = dataAccess.getConnection()) {
             String sql = "SELECT  barcode , price  , ticketimage ,  Ticket.id as TicketID" +
                     "       from users " +
                     "  join userevent on userevent.userid = users.id" +
                     "  join Ticket on  userevent.ticketid = Ticket.id" +
                     "   WHERE users.id =?";
             PreparedStatement prs = con.prepareStatement(sql);
-            prs.setInt(1 , id);
+            prs.setInt(1, id);
             ResultSet rs = prs.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 int idi = rs.getInt("TicketID");
                 String type = rs.getString("barcode");
                 int price = rs.getInt("price");
                 String info = rs.getString("ticketimage");
 
-                Ticket ticket = new Ticket(idi , type ,price  , null , info);
+                Ticket ticket = new Ticket(idi, type, price, null, info);
                 tickets.add(ticket);
             }
         } catch (SQLServerException e) {
@@ -89,7 +89,7 @@ public class DalTicket implements DaoTicket{
     }
 
     @Override
-    public int newestid()throws dalException {
+    public int newestid() throws dalException {
         int newid = -1;
         try (Connection con = dataAccess.getConnection()) {
             String sql = "SELECT TOP(1) * FROM Ticket  ORDER by id desc";
@@ -105,13 +105,13 @@ public class DalTicket implements DaoTicket{
     }
 
     @Override
-    public void updateTicket(Ticket ticket , String type , int ticketprice, String info)throws dalException {
-        try(Connection con = dataAccess.getConnection()){
+    public void updateTicket(Ticket ticket, String type, int ticketprice, String info) throws dalException {
+        try (Connection con = dataAccess.getConnection()) {
             String sql = "UPDATE Ticket SET  tickettype = ? , price = ? , info = ?  WHERE id = ? ";
             PreparedStatement prs = con.prepareStatement(sql);
-            prs.setString(1 , type);
-            prs.setInt(2 , ticketprice);
-            prs.setString(3, info );
+            prs.setString(1, type);
+            prs.setInt(2, ticketprice);
+            prs.setString(3, info);
             prs.setInt(4, ticket.getId());
             prs.executeUpdate();
         } catch (SQLException e) {
@@ -120,11 +120,11 @@ public class DalTicket implements DaoTicket{
     }
 
     @Override
-    public void deleteTicket(Ticket ticket)throws dalException {
-        try(Connection con = dataAccess.getConnection()) {
-            String sql = "DELETE FROM Ticket WHERE id = ?  " ;
+    public void deleteTicket(Ticket ticket) throws dalException {
+        try (Connection con = dataAccess.getConnection()) {
+            String sql = "DELETE FROM Ticket WHERE id = ?  ";
             PreparedStatement prs = con.prepareStatement(sql);
-            prs.setInt(1 , ticket.getId());
+            prs.setInt(1, ticket.getId());
             prs.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

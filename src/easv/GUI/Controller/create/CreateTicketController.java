@@ -42,8 +42,8 @@ public class CreateTicketController implements Initializable {
     @FXML
     public TextArea infoid;
 
-    private EventMangersController cntrl ;
-    private TicketModel ticketModel ;
+    private EventMangersController cntrl;
+    private TicketModel ticketModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -53,13 +53,14 @@ public class CreateTicketController implements Initializable {
 
     public void savebtn(ActionEvent actionEvent) throws IOException {
 
-        //if(tickettypeid.getText().isEmpty()) {
-           createTicekt();
-    //    }else {
-         //   updateticket();
-       // }
-
-      switchsence();
+        if (cntrl.createeventid.getText().equals("Modify")) {
+            System.out.println("updateing ");
+            updateticket();
+        } else {
+            System.out.println("creating ");
+            createTicekt();
+        }
+        switchsence();
     }
 
     public void switchsence() throws IOException {
@@ -96,27 +97,19 @@ public class CreateTicketController implements Initializable {
     }
 
     public void setController(EventMangersController eventMangersController) {
-       this.cntrl = eventMangersController ;
-        if(cntrl.createticketid.getText().equals("Modify")){
+        this.cntrl = eventMangersController;
+        if (cntrl.createticketid.getText().equals("Modify")) {
             updateticketnf();
         }
     }
 
-    public void createTicekt(){
-        Random random = new Random();
-        StringBuilder sb = new StringBuilder();
-        sb.append(random.nextInt(9) + 1);
-        for (int i = 0; i < 11; i++) {
-            sb.append(random.nextInt(10));
-        }
-
-        String sbd = String.valueOf(sb);
-        String type = tickettypeid.getText();
-        int price = Integer.parseInt(ticketpriceid.getText());
-        String info = infoid.getText();
+    public void createTicekt() {
         try {
-            ticketModel.createTicket(cntrl.selectedevent ,cntrl.selectedeventid , type , price, cntrl.selectedevent.getEndevent() , info  );
-        } catch (ModelException e) {
+            String type = tickettypeid.getText();
+            int price = Integer.parseInt(ticketpriceid.getText());
+            String info = infoid.getText();
+            ticketModel.createTicket(cntrl.selectedevent, cntrl.selectedeventid, type, price, cntrl.selectedevent.getEndevent(), info);
+        } catch (Exception e) {
             setUpAlert("some thing went wrong please try again later ");
         }
     }
@@ -129,7 +122,7 @@ public class CreateTicketController implements Initializable {
         alert.showAndWait();
     }
 
-    public void updateticketnf(){
+    public void updateticketnf() {
         String price = String.valueOf(cntrl.tableviewtickets.getSelectionModel().getSelectedItem().getTicketprice());
         tickettypeid.setText(cntrl.tableviewtickets.getSelectionModel().getSelectedItem().getType());
         ticketpriceid.setText(price);
@@ -137,14 +130,14 @@ public class CreateTicketController implements Initializable {
 
     }
 
-    public void updateticket(){
-        System.out.println(" updateticket()");
-        int price = Integer.parseInt(ticketpriceid.getText());
-        String info = infoid.getText();
+    public void updateticket() {
         try {
-            ticketModel.updateTicket(cntrl.tableviewtickets.getSelectionModel().getSelectedItem() , cntrl.tableviewtickets.getSelectionModel().getSelectedIndex() ,
-                    tickettypeid.getText() ,price ,info);
-        } catch (ModelException e) {
+            System.out.println(" updateticket()");
+            int price = Integer.parseInt(ticketpriceid.getText());
+            String info = infoid.getText();
+            ticketModel.updateTicket(cntrl.tableviewtickets.getSelectionModel().getSelectedItem(), cntrl.tableviewtickets.getSelectionModel().getSelectedIndex(),
+                    tickettypeid.getText(), price, info);
+        } catch (Exception e) {
             setUpAlert("some thing went wrong please try again later ");
 
         }

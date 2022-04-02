@@ -51,43 +51,43 @@ public class CreateeventController implements Initializable {
     public JFXButton backid;
     public JFXButton saveid;
 
-    private EventMangersController cntrl ;
+    private EventMangersController cntrl;
     @FXML
-    private EventModel eventModel ;
+    private EventModel eventModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         eventModel = EventModel.getInstance();
-
     }
 
     public void save(ActionEvent actionEvent) throws ParseException {
-       // if(eventnameid.getText().isEmpty()) {
+        if (cntrl.createeventid.getText().equals("Modify")) {
+            System.out.println("updateing ");
+            updateevent();
+        } else {
+            System.out.println("creating ");
             createEvent();
-      //  }else{
-       //     updateevent();
-      //  }
-
+        }
     }
 
     private void updateevent() throws ParseException {
-        String name = eventnameid.getText();
-        String locations = eventlocid.getText();
-        String notes = eventinfoid.getText();
-        String locationGuidance = locationguideid.getText();
-        String imagepath = "/resourse/icons8_java_64px.png";
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        Date date1 = dateFormat.parse(startdateid.getText());
-        Date date2 = dateFormat.parse(enddateid.getText());
-        long time1 = date1.getTime();
-        long time2 = date2.getTime();
-        Timestamp stamp1 = new Timestamp(time1);
-        Timestamp stamp2 = new Timestamp(time2);
 
         try {
-            eventModel.updateEvent(cntrl.selectedevent , cntrl.tableviewevents.getSelectionModel().getSelectedIndex() ,name ,locations ,notes ,0 ,stamp1 ,stamp2 ,locationGuidance ,imagepath);
-        } catch (ModelException e) {
-           setUpAlert(" some thing wnt wrong with the data base  please try again later ");
+            String name = eventnameid.getText();
+            String locations = eventlocid.getText();
+            String notes = eventinfoid.getText();
+            String locationGuidance = locationguideid.getText();
+            String imagepath = "/resourse/icons8_java_64px.png";
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            Date date1 = dateFormat.parse(startdateid.getText());
+            Date date2 = dateFormat.parse(enddateid.getText());
+            long time1 = date1.getTime();
+            long time2 = date2.getTime();
+            Timestamp stamp1 = new Timestamp(time1);
+            Timestamp stamp2 = new Timestamp(time2);
+            eventModel.updateEvent(cntrl.selectedevent, cntrl.tableviewevents.getSelectionModel().getSelectedIndex(), name, locations, notes, 0, stamp1, stamp2, locationGuidance, imagepath);
+        } catch (Exception e) {
+            setUpAlert(" some thing wnt wrong with the data base  please try again later ");
         }
     }
 
@@ -103,36 +103,35 @@ public class CreateeventController implements Initializable {
 
     public void createEvent() throws ParseException {
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        Date date1 = dateFormat.parse(startdateid.getText());
-        Date date2 = dateFormat.parse(enddateid.getText());
-        long time1 = date1.getTime();
-        long time2 = date2.getTime();
-        Timestamp stamp1 = new Timestamp(time1);
-        Timestamp stamp2 = new Timestamp(time2);
-        String name = eventnameid.getText();
-        String locations = eventlocid.getText();
-        String notes = eventinfoid.getText();
-        String locationGuidance = locationguideid.getText();
-        String imagepath = "/resourse/icons8_java_64px.png";
         try {
-            eventModel.createEvent(name , locations ,notes ,0 ,stamp1 , stamp2 , locationGuidance , imagepath);
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            Date date1 = dateFormat.parse(startdateid.getText());
+            Date date2 = dateFormat.parse(enddateid.getText());
+            long time1 = date1.getTime();
+            long time2 = date2.getTime();
+            Timestamp stamp1 = new Timestamp(time1);
+            Timestamp stamp2 = new Timestamp(time2);
+            String name = eventnameid.getText();
+            String locations = eventlocid.getText();
+            String notes = eventinfoid.getText();
+            String locationGuidance = locationguideid.getText();
+            String imagepath = "/resourse/icons8_java_64px.png";
+            eventModel.createEvent(name, locations, notes, 0, stamp1, stamp2, locationGuidance, imagepath);
             eventModel.updatethelist();
-        } catch (ModelException e) {
+        } catch (Exception e) {
             setUpAlert("database under heavy fire please try again later ");
         }
 
     }
 
-    public void updataevent(){
+    public void updataevent() {
         eventnameid.setText(cntrl.selectedevent.getName());
         eventlocid.setText(cntrl.selectedevent.getLocation());
         startdateid.setText(cntrl.selectedevent.getStartevent().toString());
         enddateid.setText(cntrl.selectedevent.getEndevent().toString());
         eventinfoid.setText(cntrl.selectedevent.getNotes());
         locationguideid.setText(cntrl.selectedevent.getLocationGuidance());
-   }
-
+    }
 
 
     public void back(ActionEvent actionEvent) throws IOException {
@@ -154,7 +153,7 @@ public class CreateeventController implements Initializable {
 
     public void setController(EventMangersController eventMangersController) {
         this.cntrl = eventMangersController;
-        if(cntrl.createeventid.getText().equals("Modify")){
+        if (cntrl.createeventid.getText().equals("Modify")) {
             updataevent();
         }
     }

@@ -15,20 +15,21 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
-public class Manager implements LogicFecade{
+public class Manager implements LogicFecade {
     private final DalUser daluser;
     private final DalEvent dalEvent;
     private final DalTicket dalTicket;
-    private final DalUserEvent dalUserEvent ;
+    private final DalUserEvent dalUserEvent;
 
-    public Manager(){
-      daluser = new DalUser();
-      dalEvent = new DalEvent();
-      dalTicket  = new DalTicket();
-      dalUserEvent = new DalUserEvent();
+    public Manager() {
+        daluser = new DalUser();
+        dalEvent = new DalEvent();
+        dalTicket = new DalTicket();
+        dalUserEvent = new DalUserEvent();
     }
+
     @Override
-    public List<Event> getAllEvents()throws bllException {
+    public List<Event> getAllEvents() throws bllException {
 
         try {
             return dalEvent.getAllEvents();
@@ -41,16 +42,16 @@ public class Manager implements LogicFecade{
     @Override
     public Event createEvent(String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance, String imagepath) throws bllException {
         try {
-            return dalEvent.createEvent(name , location,notes,participants,startevent,endevent,locationGuidance,imagepath);
+            return dalEvent.createEvent(name, location, notes, participants, startevent, endevent, locationGuidance, imagepath);
         } catch (dalException e) {
             throw new bllException(e.getMessage());
         }
     }
 
     @Override
-    public void updateEvent(Event event, String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance, String image)  throws bllException{
+    public void updateEvent(Event event, String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance, String image) throws bllException {
         try {
-            dalEvent.updateEvent(event , name , location , notes ,participants ,startevent ,endevent ,locationGuidance ,image);
+            dalEvent.updateEvent(event, name, location, notes, participants, startevent, endevent, locationGuidance, image);
         } catch (dalException e) {
             throw new bllException(e.getMessage());
         }
@@ -95,7 +96,7 @@ public class Manager implements LogicFecade{
     @Override
     public User adduser(String username, String password, String email, String usertype) throws bllException {
         try {
-            return daluser.adduser(username ,password ,email ,usertype);
+            return daluser.adduser(username, password, email, usertype);
         } catch (dalException e) {
             throw new bllException(e.getMessage());
         }
@@ -104,7 +105,7 @@ public class Manager implements LogicFecade{
     @Override
     public void updateUser(User customer, String username, String email, String usertype) throws bllException {
         try {
-            daluser.updateUser(customer , username ,email ,usertype);
+            daluser.updateUser(customer, username, email, usertype);
         } catch (dalException e) {
             throw new bllException(e.getMessage());
         }
@@ -129,18 +130,18 @@ public class Manager implements LogicFecade{
     }
 
     @Override
-    public Ticket createticket(Event event, int id, String type, int ticketprice, Timestamp expirationdan, String info) throws bllException{
+    public Ticket createticket(Event event, int id, String type, int ticketprice, Timestamp expirationdan, String info) throws bllException {
         try {
-            return dalTicket.createticket(event ,id ,type ,ticketprice  ,expirationdan ,info);
+            return dalTicket.createticket(event, id, type, ticketprice, expirationdan, info);
         } catch (dalException e) {
             throw new bllException(e.getMessage());
         }
     }
 
     @Override
-    public void updateTicket(Ticket ticket, String type, int ticketprice, String info)  throws bllException{
+    public void updateTicket(Ticket ticket, String type, int ticketprice, String info) throws bllException {
         try {
-            dalTicket.updateTicket(ticket ,type ,ticketprice ,info);
+            dalTicket.updateTicket(ticket, type, ticketprice, info);
         } catch (dalException e) {
             throw new bllException(e.getMessage());
         }
@@ -157,7 +158,7 @@ public class Manager implements LogicFecade{
 
     @Override
     public List<Ticket> getusertickets(int id) throws bllException {
-       // System.out.println(dalTicket.getusertickets(id));
+        // System.out.println(dalTicket.getusertickets(id));
         try {
             return dalTicket.getusertickets(id);
         } catch (dalException e) {
@@ -166,8 +167,8 @@ public class Manager implements LogicFecade{
     }
 
     @Override
-    public List<User> getusersinEvent(int idi ) throws bllException {
-        return  dalUserEvent.getusersinEvent(idi);
+    public List<User> getusersinEvent(int idi) throws bllException {
+        return dalUserEvent.getusersinEvent(idi);
     }
 
     @Override
@@ -176,13 +177,13 @@ public class Manager implements LogicFecade{
     }
 
     @Override
-    public void addusertoEvent(User user, Event event, Ticket ticket , String path )  throws bllException{
-        dalUserEvent.addusertoEvent(user ,event ,ticket , path);
+    public void addusertoEvent(User user, Event event, Ticket ticket, String path) throws bllException {
+        dalUserEvent.addusertoEvent(user, event, ticket, path);
     }
 
     @Override
     public void removeuserfromEvent(User user, Event event, Ticket ticket) throws bllException {
-        dalUserEvent.removeuserfromEvent(user ,event ,ticket);
+        dalUserEvent.removeuserfromEvent(user, event, ticket);
     }
 
     @Override

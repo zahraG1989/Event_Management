@@ -1,8 +1,6 @@
 package easv.BE;
 
 
-
-
 import javafx.scene.image.Image;
 
 import java.sql.Date;
@@ -11,18 +9,18 @@ import java.util.List;
 
 public class Event {
 
-    private String name ;
-    private String location ;
-    private String notes ;
-    private int participants ;
-    private Timestamp startevent ;
-    private Timestamp endevent ;
-    private String LocationGuidance ;
-    private int id ;
-    private String imagepath ;
+    private String name;
+    private String location;
+    private String notes;
+    private int participants;
+    private Timestamp startevent;
+    private Timestamp endevent;
+    private String LocationGuidance;
+    private int id;
+    private String imagepath;
 
 
-    public Event( int id, String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance, String imagepath ) {
+    public Event(int id, String name, String location, String notes, int participants, Timestamp startevent, Timestamp endevent, String locationGuidance, String imagepath) {
         this.name = name;
         this.location = location;
         this.notes = notes;
@@ -30,11 +28,10 @@ public class Event {
         this.startevent = startevent;
         this.endevent = endevent;
         LocationGuidance = locationGuidance;
-        this.id = id ;
-       this.imagepath = imagepath ;
+        this.id = id;
+        this.imagepath = imagepath;
 
     }
-
 
 
     public String getImagepath() {
@@ -73,16 +70,8 @@ public class Event {
         return notes;
     }
 
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
     public int getParticipants() {
         return participants;
-    }
-
-    public void setParticipants(int participants) {
-        this.participants = participants;
     }
 
     public Timestamp getStartevent() {
@@ -97,16 +86,8 @@ public class Event {
         return endevent;
     }
 
-    public void setEndevent(Timestamp endevent) {
-        this.endevent = endevent;
-    }
-
     public String getLocationGuidance() {
         return LocationGuidance;
-    }
-
-    public void setLocationGuidance(String locationGuidance) {
-        LocationGuidance = locationGuidance;
     }
 
     @Override
