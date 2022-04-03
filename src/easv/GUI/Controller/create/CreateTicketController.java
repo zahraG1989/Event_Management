@@ -53,7 +53,7 @@ public class CreateTicketController implements Initializable {
 
     public void savebtn(ActionEvent actionEvent) throws IOException {
 
-        if (cntrl.createeventid.getText().equals("Modify")) {
+        if (cntrl.createticketid.getText().equals("Modify")) {
             System.out.println("updateing ");
             updateticket();
         } else {

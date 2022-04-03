@@ -17,15 +17,15 @@
                <font>
                   <Font size="16.0" />
                </font></Label>
-                <Label fx:id="infoid" alignment="TOP_LEFT" layoutX="229.0" layoutY="217.0" prefHeight="268.0" prefWidth="588.0" style="-fx-background-radius: 90; -fx-background-color: #212121;" text="    Event Information" textFill="#64dd17">
+                <Label fx:id="infoid" alignment="TOP_LEFT" layoutX="21.0" layoutY="217.0" prefHeight="268.0" prefWidth="897.0" style="-fx-background-radius: 90; -fx-background-color: #212121;" text="    Event Information" textFill="#64dd17">
                     <font>
                         <Font size="14.0" />
                     </font></Label>
-                <Label fx:id="locationid" layoutX="240.0" layoutY="80.0" prefHeight="31.0" prefWidth="220.0" style="-fx-background-radius: 90; -fx-background-color: #212121;" text="Location" textFill="#64dd17">
+                <Label fx:id="locationid" layoutX="240.0" layoutY="80.0" prefHeight="91.0" prefWidth="291.0" style="-fx-background-radius: 90; -fx-background-color: #212121;" text="Location" textFill="#64dd17">
                     <font>
                         <Font size="14.0" />
                     </font></Label>
-                <Label fx:id="locguideid" layoutX="546.0" layoutY="74.0" prefHeight="31.0" prefWidth="328.0" style="-fx-background-radius: 90; -fx-background-color: #212121;" text="Location Guidance" textFill="#64dd17">
+                <Label fx:id="locguideid" layoutX="546.0" layoutY="74.0" prefHeight="102.0" prefWidth="328.0" style="-fx-background-radius: 90; -fx-background-color: #212121;" text="Location Guidance" textFill="#64dd17">
                     <font>
                         <Font size="14.0" />
                     </font></Label>

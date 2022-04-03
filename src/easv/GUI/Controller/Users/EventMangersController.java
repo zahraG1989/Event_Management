@@ -221,20 +221,24 @@ public class EventMangersController implements Initializable {
     }
 
     public void createticketbtn(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/create/createTicket.fxml"));
-        Parent root = loader.load();
-        loader.<CreateTicketController>getController().setController(this);
-        Scene scene = createticketid.getScene();
-        root.translateYProperty().set(scene.getHeight());
-        stackid.getChildren().add(root);
-        Timeline timeline = new Timeline();
-        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
-        KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
-        timeline.getKeyFrames().add(kf);
-        timeline.setOnFinished(t -> {
-            stackid.getChildren().remove(ancorid);
-        });
-        timeline.play();
+        if(tableviewevents.getSelectionModel().getSelectedIndex() != -1) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/create/createTicket.fxml"));
+            Parent root = loader.load();
+            loader.<CreateTicketController>getController().setController(this);
+            Scene scene = createticketid.getScene();
+            root.translateYProperty().set(scene.getHeight());
+            stackid.getChildren().add(root);
+            Timeline timeline = new Timeline();
+            KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+            KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+            timeline.getKeyFrames().add(kf);
+            timeline.setOnFinished(t -> {
+                stackid.getChildren().remove(ancorid);
+            });
+            timeline.play();
+        }else{
+            setUpAlert("may zahra can look into this ");
+        }
     }
 
     public void deleteeventbtn(ActionEvent actionEvent) {
