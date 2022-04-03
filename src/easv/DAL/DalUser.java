@@ -78,7 +78,6 @@ public class DalUser implements DaoUser {
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
                 String username = rs.getString("username");
-                String pasword = rs.getString("password");
                 String email = rs.getString("email");
                 User customer = new User(newestid(), username, email, null);
                 customers.add(customer);

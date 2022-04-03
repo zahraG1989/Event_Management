@@ -53,6 +53,16 @@
                   <Font size="14.0" />
                </font></Label>
             <TextField fx:id="filter" layoutX="754.0" layoutY="29.0" onKeyPressed="#searcher" prefHeight="25.0" prefWidth="175.0" />
+            <JFXButton layoutX="21.0" layoutY="690.0" onAction="#updatebtn" prefHeight="33.0" prefWidth="128.0" style="-fx-background-radius: 90; -fx-background-color: #64dd17;" text="update my info" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="mailid" layoutX="183.0" layoutY="552.0" onAction="#mailbtn" prefHeight="30.0" prefWidth="58.0" style="-fx-background-radius: 90; -fx-background-color: #64dd17;" text="mail" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
    </children>
