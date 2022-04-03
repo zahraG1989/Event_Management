@@ -21,8 +21,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
@@ -74,6 +78,8 @@ public class MainWindowController implements Initializable {
 
             imagepath = e.getImagepath();
             Label lbl = new Label(e.getName());
+            lbl.setTextFill(Color.LIMEGREEN);
+            lbl.setFont(javafx.scene.text.Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
             image = new Image(imagepath);
             view = new ImageView(image);
             vBox = new VBox();

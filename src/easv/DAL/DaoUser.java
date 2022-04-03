@@ -19,6 +19,8 @@ public interface DaoUser {
 
     void updateUser(User customer, String username, String email, String usertype) throws dalException;
 
+    void updatepassword(int id , String password) throws dalException;
+
     void deleteUser(User customer) throws dalException;
 
     User verifyUsers(String username, String password) throws dalException;

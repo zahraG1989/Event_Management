@@ -4,6 +4,7 @@ import easv.BE.User;
 import easv.BLL.LogicFecade;
 import easv.BLL.Manager;
 import easv.BLL.bllException;
+import easv.DAL.DataAccess.dalException;
 import easv.GUI.Model.util.ModelException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -111,6 +112,24 @@ public class UserModel {
             updatethelist();
         } catch (bllException e) {
             throw new ModelException(" " + e.getMessage());
+        }
+    }
+
+    public void updateUserinuserpage(User user, String username, String email, String usertype) throws ModelException {
+        try {
+            logicFecade.updateUser(user, username, email, usertype);
+           // updatethelist();
+        } catch (bllException e) {
+            throw new ModelException(" " + e.getMessage());
+        }
+    }
+
+    public void updatepassword(int id , String password)throws ModelException{
+        try {
+            logicFecade.updatepassword(id , password);
+           // updatethelist();
+        } catch (bllException e) {
+            e.printStackTrace();
         }
     }
 }

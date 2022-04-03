@@ -149,6 +149,21 @@ public class DalUser implements DaoUser {
             e.printStackTrace();
         }
     }
+    @Override
+    public void updatepassword( int id , String password ) throws dalException{
+
+        try(Connection con = dataAccess.getConnection()) {
+
+            String sql = "UPDATE users SET password = ? WHERE id = ?;";
+            PreparedStatement rs = con.prepareStatement(sql);
+            rs.setString(1, password );
+            rs.setInt(2 , id);
+            rs.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void deleteUser(User user) throws dalException {

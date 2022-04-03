@@ -4,6 +4,7 @@ import easv.BE.Event;
 import easv.BE.QrCode;
 import easv.BE.Ticket;
 import easv.BE.User;
+import easv.DAL.DataAccess.dalException;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -54,4 +55,6 @@ public interface LogicFecade {
     List<User> searchforUser(String quury) throws bllException;
 
     String getqrcode(User user) throws bllException;
+
+    void updatepassword(int id , String password) throws bllException;
 }

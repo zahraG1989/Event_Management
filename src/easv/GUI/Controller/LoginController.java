@@ -46,7 +46,7 @@ public class LoginController implements Initializable {
     public int userid;
     public String username;
     public String useremail;
-
+    public User user = null;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -55,7 +55,6 @@ public class LoginController implements Initializable {
     }
 
     public void loginbtn(ActionEvent actionEvent) throws IOException {
-        User user = null;
         try {
             user = userModel.verifyUsers(usernameid.getText(), passwordid.getText());
         } catch (ModelException e) {

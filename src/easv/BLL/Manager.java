@@ -208,4 +208,13 @@ public class Manager implements LogicFecade {
     public String getqrcode(User user) throws bllException {
         return dalUserEvent.getqrcode(user);
     }
+
+    @Override
+    public void updatepassword(int id , String password) throws bllException {
+        try {
+            daluser.updatepassword(id , password);
+        } catch (dalException e) {
+            e.printStackTrace();
+        }
+    }
 }

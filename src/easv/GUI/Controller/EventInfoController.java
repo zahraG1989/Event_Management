@@ -70,7 +70,7 @@ public class EventInfoController implements Initializable {
     @FXML
     private VBox vBox;
     private ObservableList<User> users;
-
+    public User user = null;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -151,7 +151,7 @@ public class EventInfoController implements Initializable {
                     stage.setScene(scene);
                     stage.show();
                     button.setOnAction(event1 -> {
-                        User user = null;
+
                         try {
                             user = userModel.verifyUsers(username.getText(), password.getText());
                         } catch (Exception e) {
