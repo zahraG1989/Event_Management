@@ -4,7 +4,10 @@ import com.jfoenix.controls.JFXButton;
 import easv.BE.Event;
 import easv.GUI.Model.EventModel;
 import easv.GUI.Model.util.ModelException;
-import javafx.animation.*;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,7 +24,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.awt.*;
@@ -49,8 +51,6 @@ public class MainWindowController implements Initializable {
     public AnchorPane anchorpane;
     @FXML
     ImageView view;
-    @FXML
-    public Label movinglbl ;
 
     private EventModel eventModel;
     private ObservableList<Event> listofEvents;
@@ -67,8 +67,6 @@ public class MainWindowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        iniClock();
         eventModel = EventModel.getInstance();
         try {
             listofEvents = eventModel.getAllEvents();
@@ -110,31 +108,15 @@ public class MainWindowController implements Initializable {
         }
     }
 
-    private void iniClock() {
-        movinglbl.setText("made by zahra & mustafa");
-        movinglbl.setFont(javafx.scene.text.Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 12));
-        Timeline clouck = new Timeline(new KeyFrame(Duration.ZERO , event -> {
-            movinglbl.setLayoutX(movinglbl.getLayoutX() - 2);
-            if(movinglbl.getLayoutX() <= -250 ){
-                movinglbl.setLayoutX(700);
-            }
-        }) , new KeyFrame(Duration.millis(25)));
-        clouck.setCycleCount(Animation.INDEFINITE);
-        clouck.play();
-    }
-
-
-
-
     public void showEventInfo() throws IOException {
         FXMLLoader laoder = new FXMLLoader(getClass().getResource("/easv/GUI/View/EventInfo.fxml"));
         Parent root = laoder.load();
         laoder.<EventInfoController>getController().setController(this);
         Scene scene = vBox.getScene();
-        root.translateXProperty().set(scene.getWidth());
+        root.translateYProperty().set(scene.getHeight());
         stackpne.getChildren().add(root);
         Timeline timeline = new Timeline();
-        KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
+        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
         KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
         timeline.getKeyFrames().add(kf);
         timeline.setOnFinished(t -> {
@@ -160,9 +142,7 @@ public class MainWindowController implements Initializable {
     }
 
     public void exitbtn(ActionEvent actionEvent) {
-        Stage stage = (Stage) exitid.getScene().getWindow();
-        stage.close();
-
+        stackpne.getChildren().clear();
     }
 
     protected void setUpAlert(String text) {

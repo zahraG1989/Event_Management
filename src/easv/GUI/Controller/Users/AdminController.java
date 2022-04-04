@@ -19,25 +19,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.awt.*;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
@@ -205,59 +199,4 @@ public class AdminController implements Initializable {
     }
 
 
-    public void updatebtn(ActionEvent event) {
-        GridPane grid = new GridPane();
-        grid.setStyle("-fx-background-color:#64dd17 ");
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(0, 10, 0, 10));
-        TextField username = new TextField();
-        username.setText(cntrl.user.getUsername());
-        username.setPromptText("Username");
-        PasswordField password = new PasswordField();
-        password.setPromptText("Password");
-        TextField email = new TextField();
-        email.setText(cntrl.user.getEmail());
-        javafx.scene.control.Button button = new Button();
-        button.setText("update");
-        grid.add(new javafx.scene.control.Label("Username:"), 0, 0);
-        grid.add(username, 1, 0);
-        grid.add(new javafx.scene.control.Label("Password:"), 0, 1);
-        grid.add(password, 1, 1);
-        grid.add(new Label("email") , 0 , 2);
-        grid.add(email ,1 , 2 );
-        grid.add(button, 1, 3);
-        Stage stage = new Stage();
-        Scene scene = new Scene(grid);
-        stage.setScene(scene);
-        stage.show();
-        button.setOnAction(event1 -> {
-            try {
-                if(!username.getText().isEmpty() || !password.getText().isEmpty() || !email.getText().isEmpty()) {
-                    userModel.updateUserinuserpage(cntrl.user, username.getText(), email.getText(), "Admin");
-                    userModel.updatepassword(cntrl.user.getId(), password.getText());
-                }else {
-                    setUpAlert("you left field empty ");
-                }
-            } catch (ModelException e) {
-                setUpAlert("user cant be updated ");
-            }
-        });
-    }
-
-    public void mailbtn(ActionEvent event) throws URISyntaxException, IOException {
-        if(customertable.getSelectionModel().getSelectedIndex() != -1) {
-            Desktop desktop;
-            if (Desktop.isDesktopSupported()
-                    && (desktop = Desktop.getDesktop()).isSupported(Desktop.Action.MAIL)) {
-                URI mailto = new URI("mailto:" + customertable.getSelectionModel().getSelectedItem().getEmail() + "?subject=Hello%20World");
-                desktop.mail(mailto);
-            } else {
-                // TODO fallback to some Runtime.exec(..) voodoo?
-                throw new RuntimeException("desktop doesn't support mailto; mail is dead anyway ;)");
-            }
-        }else {
-            setUpAlert("please select user ");
-        }
-    }
 }
