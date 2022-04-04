@@ -21,6 +21,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.awt.*;
@@ -159,7 +160,9 @@ public class MainWindowController implements Initializable {
     }
 
     public void exitbtn(ActionEvent actionEvent) {
-        stackpne.getChildren().clear();
+        Stage stage = (Stage) exitid.getScene().getWindow();
+        stage.close();
+
     }
 
     protected void setUpAlert(String text) {

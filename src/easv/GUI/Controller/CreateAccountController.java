@@ -63,6 +63,7 @@ public class CreateAccountController implements Initializable {
                 if (user == null) {
                     try {
                         userModel.adduser(name.getText(), password.getText(), email.getText(), "Customer");
+                        goBack();
                     } catch (Exception e) {
                         setUpAlert("cant verify this user at the moment ");
                     }
@@ -89,6 +90,11 @@ public class CreateAccountController implements Initializable {
     }
 
     public void exit(ActionEvent actionEvent) throws IOException {
+       goBack();
+    }
+
+
+    public void goBack() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/mainWindow.fxml"));
         Parent root = loader.load();
         Scene scene = exitid.getScene();
