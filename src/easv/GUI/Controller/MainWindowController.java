@@ -64,7 +64,7 @@ public class MainWindowController implements Initializable {
     public int eventid;
     public Event selectedevent;
          // testing master
-    
+    // I should really remove these comments
     //Wow am i really commenting
     @Override
     public void initialize(URL location, ResourceBundle resources) {
