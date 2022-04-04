@@ -21,19 +21,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -242,14 +243,21 @@ public class EventMangersController implements Initializable {
     }
 
     public void deleteeventbtn(ActionEvent actionEvent) {
-        try {
-            eventModel.deleteEvent(tableviewevents.getSelectionModel().getSelectedItem(), tableviewevents.getSelectionModel().getSelectedIndex());
-            ticketModel.updatethelist();
-        } catch (ModelException e) {
-            setUpAlert("event cant be delete at te moment please try again later ");
-        }
+      if(tableviewevents.getSelectionModel().getSelectedIndex() != -1) {
+          int answer = JOptionPane.showConfirmDialog(null, "are you sure you want to delete this event ");
+          if(answer == 0) {
+              try {
+                  eventModel.deleteEvent(tableviewevents.getSelectionModel().getSelectedItem(), tableviewevents.getSelectionModel().getSelectedIndex());
+                  ticketModel.updatethelist();
+              } catch (ModelException e) {
+                  setUpAlert("event cant be delete at te moment please try again later ");
+              }
+              tableviewevents.refresh();
+          }
+      }else {
+          setUpAlert("please select event ");
+      }
 
-        tableviewevents.refresh();
     }
 
     public void deleteticketbtn(ActionEvent actionEvent) {
@@ -302,4 +310,40 @@ public class EventMangersController implements Initializable {
         createticketid.setText("Modify");
     }
 
+    public void updateevenmanagerinfobtn(ActionEvent event) {
+
+        GridPane grid = new GridPane();
+        grid.setStyle("-fx-background-color:#64dd17 ");
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(0, 10, 0, 10));
+        TextField username = new TextField();
+        username.setText(cntrl.user.getUsername());
+        username.setPromptText("Username");
+        PasswordField password = new PasswordField();
+        password.setPromptText("Password");
+        TextField email = new TextField();
+        email.setText(cntrl.user.getEmail());
+        Button button = new Button();
+        button.setText("update");
+        grid.add(new Label("Username:"), 0, 0);
+        grid.add(username, 1, 0);
+        grid.add(new Label("Password:"), 0, 1);
+        grid.add(password, 1, 1);
+        grid.add(new Label("email") , 0 , 2);
+        grid.add(email ,1 , 2 );
+        grid.add(button, 1, 3);
+        Stage stage = new Stage();
+        Scene scene = new Scene(grid);
+        stage.setScene(scene);
+        stage.show();
+        button.setOnAction(event1 -> {
+            try {
+                userModel.updateUserinuserpage(cntrl.user, username.getText(),email.getText(),"EventCoordinator");
+                userModel.updatepassword(cntrl.user.getId() , password.getText());
+            } catch (ModelException e) {
+                setUpAlert("user cant be updated ");
+            }
+        });
+    }
 }

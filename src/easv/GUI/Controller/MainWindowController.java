@@ -4,10 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import easv.BE.Event;
 import easv.GUI.Model.EventModel;
 import easv.GUI.Model.util.ModelException;
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -51,6 +48,8 @@ public class MainWindowController implements Initializable {
     public AnchorPane anchorpane;
     @FXML
     ImageView view;
+    @FXML
+    public Label movinglbl ;
 
     private EventModel eventModel;
     private ObservableList<Event> listofEvents;
@@ -67,6 +66,8 @@ public class MainWindowController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        iniClock();
         eventModel = EventModel.getInstance();
         try {
             listofEvents = eventModel.getAllEvents();
@@ -108,15 +109,31 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    private void iniClock() {
+        movinglbl.setText("made by zahra & mustafa");
+        movinglbl.setFont(javafx.scene.text.Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 12));
+        Timeline clouck = new Timeline(new KeyFrame(Duration.ZERO , event -> {
+            movinglbl.setLayoutX(movinglbl.getLayoutX() - 2);
+            if(movinglbl.getLayoutX() <= -250 ){
+                movinglbl.setLayoutX(700);
+            }
+        }) , new KeyFrame(Duration.millis(25)));
+        clouck.setCycleCount(Animation.INDEFINITE);
+        clouck.play();
+    }
+
+
+
+
     public void showEventInfo() throws IOException {
         FXMLLoader laoder = new FXMLLoader(getClass().getResource("/easv/GUI/View/EventInfo.fxml"));
         Parent root = laoder.load();
         laoder.<EventInfoController>getController().setController(this);
         Scene scene = vBox.getScene();
-        root.translateYProperty().set(scene.getHeight());
+        root.translateXProperty().set(scene.getWidth());
         stackpne.getChildren().add(root);
         Timeline timeline = new Timeline();
-        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+        KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
         KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
         timeline.getKeyFrames().add(kf);
         timeline.setOnFinished(t -> {

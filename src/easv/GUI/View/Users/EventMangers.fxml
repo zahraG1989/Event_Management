@@ -54,6 +54,7 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
+            <JFXButton layoutX="337.0" layoutY="690.0" onAction="#updateevenmanagerinfobtn" prefHeight="25.0" prefWidth="117.0" style="-fx-background-color: #64dd17; -fx-background-radius: 90;" text="update my info" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

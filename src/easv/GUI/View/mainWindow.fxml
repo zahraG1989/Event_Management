@@ -53,6 +53,13 @@
                      </children>
                   </VBox>
                </left>
+               <bottom>
+                  <AnchorPane prefHeight="54.0" prefWidth="926.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="movinglbl" layoutX="713.0" layoutY="19.0" prefHeight="17.0" prefWidth="199.0" textFill="#18ff07" />
+                     </children>
+                  </AnchorPane>
+               </bottom>
             </BorderPane>
          </children>
       </AnchorPane>
