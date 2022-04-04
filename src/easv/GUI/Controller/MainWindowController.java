@@ -63,7 +63,7 @@ public class MainWindowController implements Initializable {
     public String imagepath;
     public int eventid;
     public Event selectedevent;
-
+         // testing master
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
