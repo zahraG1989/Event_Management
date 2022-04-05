@@ -111,8 +111,8 @@ public class MainWindowController implements Initializable {
     }
 
     private void iniClock() {
-        movinglbl.setText("made by zahra & mustafa");
-        movinglbl.setFont(javafx.scene.text.Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 12));
+        movinglbl.setText("Made by Zahra & Mustafa");
+        movinglbl.setFont(javafx.scene.text.Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 13));
         Timeline clouck = new Timeline(new KeyFrame(Duration.ZERO , event -> {
             movinglbl.setLayoutX(movinglbl.getLayoutX() - 2);
             if(movinglbl.getLayoutX() <= -250 ){
