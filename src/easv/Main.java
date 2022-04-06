@@ -29,7 +29,7 @@ public class Main extends Application {
         Parent root = fxmlLoader.load();
         primaryStage.setScene(new Scene(root));
        primaryStage.setTitle("MainWindow");
-
+        primaryStage.setResizable(false);
         primaryStage.show();
 
        System.out.println("first test in Main class ");

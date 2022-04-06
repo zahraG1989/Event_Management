@@ -18,7 +18,7 @@
          <children>
             <BorderPane fx:id="borderpne" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="724.0" prefWidth="934.0" stylesheets="/easv/GUI/View/CSS/Styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <center>
-                  <TilePane fx:id="tilePane" prefTileHeight="200.0" prefTileWidth="200.0" prefWidth="1014.0" style="-fx-background-color: #212121;" BorderPane.alignment="CENTER">
+                  <TilePane fx:id="tilePane" prefTileHeight="200.0" prefTileWidth="300.0" prefWidth="1014.0" style="-fx-background-color: #212121;" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets />
                      </BorderPane.margin>
