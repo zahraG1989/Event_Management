@@ -168,22 +168,38 @@ public class Manager implements LogicFecade {
 
     @Override
     public List<User> getusersinEvent(int idi) throws bllException {
-        return dalUserEvent.getusersinEvent(idi);
+        try {
+            return dalUserEvent.getusersinEvent(idi);
+        } catch (dalException e) {
+            throw new bllException(e.getMessage());
+        }
     }
 
     @Override
     public List<Ticket> getTicketsinEvent(int idi) throws bllException {
-        return dalUserEvent.getTicketsinEvent(idi);
+        try {
+            return dalUserEvent.getTicketsinEvent(idi);
+        } catch (dalException e) {
+            throw new bllException(e.getMessage());
+        }
     }
 
     @Override
     public void addusertoEvent(User user, Event event, Ticket ticket, String path) throws bllException {
-        dalUserEvent.addusertoEvent(user, event, ticket, path);
+        try {
+            dalUserEvent.addusertoEvent(user, event, ticket, path);
+        } catch (dalException e) {
+            throw new bllException(e.getMessage());
+        }
     }
 
     @Override
     public void removeuserfromEvent(User user, Event event, Ticket ticket) throws bllException {
-        dalUserEvent.removeuserfromEvent(user, event, ticket);
+        try {
+            dalUserEvent.removeuserfromEvent(user, event, ticket);
+        } catch (dalException e) {
+            throw new bllException(e.getMessage());
+        }
     }
 
     @Override
@@ -206,7 +222,11 @@ public class Manager implements LogicFecade {
 
     @Override
     public String getqrcode(User user) throws bllException {
-        return dalUserEvent.getqrcode(user);
+        try {
+            return dalUserEvent.getqrcode(user);
+        } catch (dalException e) {
+            throw new bllException(e.getMessage());
+        }
     }
 
     @Override
@@ -214,7 +234,7 @@ public class Manager implements LogicFecade {
         try {
             daluser.updatepassword(id , password);
         } catch (dalException e) {
-            e.printStackTrace();
+            throw new bllException(e.getMessage());
         }
     }
 }

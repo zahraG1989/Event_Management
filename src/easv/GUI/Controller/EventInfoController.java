@@ -1,6 +1,7 @@
 package easv.GUI.Controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import easv.BE.Ticket;
 import easv.BE.User;
 import easv.GUI.Model.TicketModel;
@@ -168,12 +169,13 @@ public class EventInfoController implements Initializable {
                                         counter++;
                                     }
 
-                                    File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\newtemplate.png");
-                                    File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\" + username + counter + ".jpg");
+                                    File input = new File("C:\\Users\\charl\\Documents\\Event_Management\\src\\resourse\\newtemplate.png");
+                                    File output = new File("C:\\Users\\charl\\Documents\\Event_Management\\src\\images\\" + t.getId() + counter + ".jpg");
                                     ticketModel.createUsTiEv(cntrl.selectedevent, t, user, String.valueOf(output));
+
                                     String name = cntrl.selectedevent.getName() + " \n" + t.getType() + " \n" + user.getUsername() + " \n" + t.getInfo() + " \n" + t.getTicketprice(); // event name and ticket name
                                     ByteArrayOutputStream out = QRCode.from(name).to(ImageType.PNG).stream();
-                                    File f = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\qrcode.png");
+                                    File f = new File("C:\\Users\\charl\\Documents\\Event_Management\\src\\resourse\\qrcode.png");
                                     FileOutputStream fos = new FileOutputStream(f);
                                     fos.write(out.toByteArray());
                                     fos.flush();
@@ -187,7 +189,7 @@ public class EventInfoController implements Initializable {
                                     }
 
                                     addTixttoimage(img, user.getUsername(), cntrl.selectedevent.getName(), cntrl.selectedevent.getStartevent().toString(), cntrl.selectedevent.getLocation(), t.getTicketprice(), t.getId(), t.getType(), "jpg", input, output);
-                                    logintouser();
+                                    rollBack();
                                 } catch (Exception e) {
                                     cntrl.setUpAlert("something went wrong please try again later ");
                                 }
@@ -210,8 +212,8 @@ public class EventInfoController implements Initializable {
         }
     }
 
-    public void logintouser() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/Users/customerpage.fxml"));
+    public void rollBack() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/mainWindow.fxml"));
         Parent root = loader.load();
         Scene scene = backid.getScene();
         root.translateYProperty().set(scene.getHeight());

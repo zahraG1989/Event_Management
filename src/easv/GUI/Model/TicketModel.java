@@ -56,7 +56,7 @@ public class TicketModel {
         try {
             logicFecade.addusertoEvent(user, event, ticket, path);
         } catch (bllException e) {
-            e.printStackTrace();
+            throw new ModelException(e.getMessage());
         }
     }
 
@@ -87,7 +87,7 @@ public class TicketModel {
             tickets.set(index, ticket);
             updatethelist();
         } catch (bllException e) {
-            e.printStackTrace();
+            throw new ModelException(e.getMessage());
         }
     }
 

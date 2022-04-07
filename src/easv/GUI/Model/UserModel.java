@@ -129,7 +129,7 @@ public class UserModel {
             logicFecade.updatepassword(id , password);
            // updatethelist();
         } catch (bllException e) {
-            e.printStackTrace();
+            throw new ModelException(e.getMessage());
         }
     }
 }

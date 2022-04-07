@@ -6,10 +6,16 @@ import easv.GUI.Controller.LoginController;
 import easv.GUI.Model.TicketModel;
 import easv.GUI.Model.UserModel;
 import easv.GUI.Model.util.ModelException;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -19,7 +25,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -32,7 +40,10 @@ public class CustomerController implements Initializable {
     public ChoiceBox<Ticket> choicebox;
     @FXML
     public ImageView imageid;
+    @FXML
     public JFXButton updateinfiid;
+    @FXML
+    public JFXButton back;
 
     private LoginController cntrl;
     private TicketModel ticketModel;
@@ -63,9 +74,14 @@ public class CustomerController implements Initializable {
     }
 
     public void getimage(ActionEvent event) {
-        Image image = new javafx.scene.image.Image(choicebox.getValue().getInfo());
-        imageid.setImage(image);
-        System.out.println(choicebox.getValue().getInfo());
+        try {
+            Image image = new javafx.scene.image.Image(choicebox.getValue().getInfo());
+            imageid.setImage(image);
+            System.out.println(choicebox.getValue().getInfo());
+        }
+       catch (Exception e ){
+            setUpAlert("image not found");
+       }
 
     }
 
@@ -106,4 +122,19 @@ public class CustomerController implements Initializable {
     }
 
 
+    public void backbtn(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/easv/GUI/View/mainWindow.fxml"));
+        Parent root = loader.load();
+        Scene scene = back.getScene();
+        root.translateYProperty().set(scene.getHeight());
+        stackpanid.getChildren().add(root);
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.setOnFinished(t -> {
+            stackpanid.getChildren().remove(anchorpaneid);
+        });
+        timeline.play();
+    }
 }

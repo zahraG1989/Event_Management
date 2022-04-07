@@ -6,6 +6,7 @@ import easv.BE.QrCode;
 import easv.BE.Ticket;
 import easv.BE.User;
 import easv.DAL.DataAccess.DataAccess;
+import easv.DAL.DataAccess.dalException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class DalUserEvent implements DaoUserEvent {
     }
 
     @Override
-    public List<User> getusersinEvent(int idi) {
+    public List<User> getusersinEvent(int idi) throws dalException {
         ArrayList<User> users = new ArrayList<>();
         // we need name and ticket ...
         try (Connection con = dataAccess.getConnection()) {
@@ -52,7 +53,7 @@ public class DalUserEvent implements DaoUserEvent {
     }
 
     @Override
-    public List<Ticket> getTicketsinEvent(int idi) {
+    public List<Ticket> getTicketsinEvent(int idi)throws dalException {
         ArrayList<Ticket> tickets = new ArrayList<>();
         // we need name and ticket ...
         try (Connection con = dataAccess.getConnection()) {
@@ -78,7 +79,7 @@ public class DalUserEvent implements DaoUserEvent {
     }
 
     @Override
-    public void addusertoEvent(User user, Event event, Ticket ticket, String imagepath) {
+    public void addusertoEvent(User user, Event event, Ticket ticket, String imagepath)throws dalException {
         try (Connection connection = dataAccess.getConnection()) {
 
             String sql = "INSERT INTO userevent(userid,eventid,ticketid ,barcode , ticketimage) VALUES (?,?,?,?,?)";
@@ -108,7 +109,7 @@ public class DalUserEvent implements DaoUserEvent {
     }
 
     @Override
-    public String getqrcode(User user) {
+    public String getqrcode(User user)throws dalException {
         QrCode qrCode = null;
         try (Connection con = dataAccess.getConnection()) {
             String sql = "  select barcode from userevent where userid = ?";
@@ -130,7 +131,7 @@ public class DalUserEvent implements DaoUserEvent {
     }
 
     @Override
-    public void removeuserfromEvent(User user, Event event, Ticket ticket) {
+    public void removeuserfromEvent(User user, Event event, Ticket ticket)throws dalException {
         try (Connection con = dataAccess.getConnection()) {
             String sql = "DELETE FROM userevent WHERE userid = ? AND eventid = ? AND ticketid = ?";
             PreparedStatement prs = con.prepareStatement(sql);
