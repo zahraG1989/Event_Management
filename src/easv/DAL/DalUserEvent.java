@@ -90,10 +90,8 @@ public class DalUserEvent implements DaoUserEvent {
             prs.setString(4, createQrCode());
             prs.setString(5, imagepath);
             prs.executeUpdate();
-        } catch (SQLServerException e) {
-            e.printStackTrace();
         } catch (SQLException e) {
-            e.printStackTrace();
+          throw new dalException("something went wrong ");
         }
     }
 

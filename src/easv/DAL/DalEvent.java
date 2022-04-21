@@ -40,10 +40,8 @@ public class DalEvent implements DaoEvent {
                 events.add(event);
             }
 
-        } catch (SQLServerException e) {
-            e.printStackTrace();
         } catch (SQLException e) {
-            e.printStackTrace();
+           throw new dalException(e.getMessage());
         }
         return events;
     }

@@ -40,6 +40,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class EventInfoController implements Initializable {
@@ -162,20 +163,16 @@ public class EventInfoController implements Initializable {
                             if (user.getUserType().equals("Customer")) {
                                 System.out.println(username.getText() + " " + password.getText());
                                 try {
-
-
-                                    int counter;
-                                    for (counter = 1; counter <= 100; counter++) {
-                                        counter++;
-                                    }
-
-                                    File input = new File("C:\\Users\\charl\\Documents\\Event_Management\\src\\resourse\\newtemplate.png");
-                                    File output = new File("C:\\Users\\charl\\Documents\\Event_Management\\src\\images\\" + t.getId() + counter + ".jpg");
+                                    Random random = new Random(500);
+                                            //C:\\Users\samkaxe\\Event_Management\\src\\resourse\\newtemplate.png
+                                    //C:\Users\samkaxe\Event_Management\src\resourse\newtemplate.png
+                                    File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\newtemplate.png");
+                                    File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\" + random.nextInt(1,1000) + ".jpg");
                                     ticketModel.createUsTiEv(cntrl.selectedevent, t, user, String.valueOf(output));
 
                                     String name = cntrl.selectedevent.getName() + " \n" + t.getType() + " \n" + user.getUsername() + " \n" + t.getInfo() + " \n" + t.getTicketprice(); // event name and ticket name
                                     ByteArrayOutputStream out = QRCode.from(name).to(ImageType.PNG).stream();
-                                    File f = new File("C:\\Users\\charl\\Documents\\Event_Management\\src\\resourse\\qrcode.png");
+                                    File f = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\"+random.nextInt(1,1000)  +"qrcode.png");
                                     FileOutputStream fos = new FileOutputStream(f);
                                     fos.write(out.toByteArray());
                                     fos.flush();
@@ -185,13 +182,13 @@ public class EventInfoController implements Initializable {
                                         img = ImageIO.read(f);
                                     } catch (Exception e) {
                                         // TODO Auto-generated catch block
-                                        cntrl.setUpAlert("something went wrong please try again later ");
+                                        cntrl.setUpAlert("image cant be created  ");
                                     }
 
                                     addTixttoimage(img, user.getUsername(), cntrl.selectedevent.getName(), cntrl.selectedevent.getStartevent().toString(), cntrl.selectedevent.getLocation(), t.getTicketprice(), t.getId(), t.getType(), "jpg", input, output);
                                     rollBack();
                                 } catch (Exception e) {
-                                    cntrl.setUpAlert("something went wrong please try again later ");
+                                    cntrl.setUpAlert("user allowed to have one ticket for one single event ");
                                 }
                             }
                         } else {
