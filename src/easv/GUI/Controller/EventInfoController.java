@@ -6,6 +6,7 @@ import easv.BE.Ticket;
 import easv.BE.User;
 import easv.GUI.Model.TicketModel;
 import easv.GUI.Model.UserModel;
+import easv.GUI.Model.util.ModelException;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -162,20 +163,31 @@ public class EventInfoController implements Initializable {
                         if (user != null) {
                             if (user.getUserType().equals("Customer")) {
                                 System.out.println(username.getText() + " " + password.getText());
-                                try {
+
                                     Random random = new Random(500);
                                             //C:\\Users\samkaxe\\Event_Management\\src\\resourse\\newtemplate.png
                                     //C:\Users\samkaxe\Event_Management\src\resourse\newtemplate.png
-                                    File input = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\newtemplate.png");
-                                    File output = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\" + random.nextInt(1,1000) + ".jpg");
+                                    File input = new File("C:\\Users\\charl\\Documents\\GitHub\\Event_Management\\src\\resourse\\newtemplate.png");
+                                    File output = new File("C:\\Users\\charl\\Documents\\GitHub\\Event_Management\\src\\resourse\\" + random.nextInt(1,1000) + ".jpg");
+                                try {
                                     ticketModel.createUsTiEv(cntrl.selectedevent, t, user, String.valueOf(output));
+                                } catch (ModelException e) {
+                                   cntrl.setUpAlert("couldnot add this user to the selected event ");
+                                }
 
-                                    String name = cntrl.selectedevent.getName() + " \n" + t.getType() + " \n" + user.getUsername() + " \n" + t.getInfo() + " \n" + t.getTicketprice(); // event name and ticket name
+                                String name = cntrl.selectedevent.getName() + " \n" + t.getType() + " \n" + user.getUsername() + " \n" + t.getInfo() + " \n" + t.getTicketprice(); // event name and ticket name
                                     ByteArrayOutputStream out = QRCode.from(name).to(ImageType.PNG).stream();
-                                    File f = new File("C:\\Users\\samkaxe\\Event_Management\\src\\resourse\\"+random.nextInt(1,1000)  +"qrcode.png");
+                                    //C:\Users\charl\Documents\GitHub\Event_Management\src\resourse
+                                    File f = new File("C:\\Users\\charl\\Documents\\GitHub\\Event_Management\\src\\resourse"+random.nextInt(1,1000)  +"qrcode.png");
+
+                                try {
                                     FileOutputStream fos = new FileOutputStream(f);
                                     fos.write(out.toByteArray());
                                     fos.flush();
+                                } catch (IOException e) {
+                                   cntrl.setUpAlert("couldnot print the ticket ");
+                                }
+
 
                                     BufferedImage img = null;
                                     try {
@@ -185,11 +197,17 @@ public class EventInfoController implements Initializable {
                                         cntrl.setUpAlert("image cant be created  ");
                                     }
 
+                                try {
                                     addTixttoimage(img, user.getUsername(), cntrl.selectedevent.getName(), cntrl.selectedevent.getStartevent().toString(), cntrl.selectedevent.getLocation(), t.getTicketprice(), t.getId(), t.getType(), "jpg", input, output);
-                                    rollBack();
-                                } catch (Exception e) {
-                                    cntrl.setUpAlert("user allowed to have one ticket for one single event ");
+                                } catch (IOException e) {
+                                    cntrl.setUpAlert("image cant be created ");
                                 }
+                                try {
+                                    rollBack();
+                                } catch (IOException e) {
+                                    cntrl.setUpAlert("couldnot rollback to the privous window");
+                                }
+
                             }
                         } else {
                             System.out.println("Wrong user m8");

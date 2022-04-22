@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jpackage" name="Event Management">
+    <output-path>$PROJECT_DIR$/out/artifacts/Event_Management</output-path>
+    <root id="root">
+      <element id="archive" name="Event_Management.jar">
+        <element id="module-output" name="Event Management" />
+      </element>
+    </root>
+  </artifact>
+</component>

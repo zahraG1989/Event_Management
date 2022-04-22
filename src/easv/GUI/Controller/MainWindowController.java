@@ -84,6 +84,7 @@ public class MainWindowController implements Initializable {
             lbl.setTextFill(Color.LIMEGREEN);
             lbl.setFont(javafx.scene.text.Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
             image = new Image(imagepath);
+
             view = new ImageView(image);
             vBox = new VBox();
             vBox.setAlignment(Pos.BASELINE_CENTER);
